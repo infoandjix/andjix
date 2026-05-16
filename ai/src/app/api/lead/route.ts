@@ -3,6 +3,27 @@ import { adminDb } from "@/lib/firebase-admin";
 
 export const runtime = "nodejs";
 
+const ALLOWED_ORIGINS = new Set([
+  "https://andjix.ca",
+  "https://www.andjix.ca",
+  "https://ai.andjix.ca",
+]);
+
+function corsHeaders(req: Request) {
+  const origin = req.headers.get("origin") ?? "";
+  const allow = ALLOWED_ORIGINS.has(origin) ? origin : "https://andjix.ca";
+  return {
+    "Access-Control-Allow-Origin": allow,
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Max-Age": "86400",
+  };
+}
+
+export async function OPTIONS(req: Request) {
+  return new Response(null, { status: 204, headers: corsHeaders(req) });
+}
+
 type LeadPayload = {
   name?: string;
   email?: string;
@@ -22,11 +43,12 @@ const SEGMENT_LABELS: Record<string, { fr: string; en: string }> = {
 };
 
 export async function POST(req: Request) {
+  const cors = corsHeaders(req);
   let body: LeadPayload;
   try {
     body = await req.json();
   } catch {
-    return Response.json({ ok: false, error: "invalid json" }, { status: 400 });
+    return Response.json({ ok: false, error: "invalid json" }, { status: 400, headers: cors });
   }
 
   const { name, email, phone, segment, need, conversation, lang = "fr" } = body;
@@ -34,7 +56,7 @@ export async function POST(req: Request) {
   if (!name || !email) {
     return Response.json(
       { ok: false, error: "name and email required" },
-      { status: 400 },
+      { status: 400, headers: cors },
     );
   }
 
@@ -131,5 +153,5 @@ export async function POST(req: Request) {
     }
   }
 
-  return Response.json({ ok: true });
+  return Response.json({ ok: true }, { headers: cors });
 }
