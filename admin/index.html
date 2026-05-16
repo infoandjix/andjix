@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Andjix Admin</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231E88E5'/%3E%3Cpath d='M19 44 L26 22 L31 22 L38 44 L33 44 L31.4 39 L25.6 39 L24 44 Z M27 34.5 L30 34.5 L28.5 28.8 Z' fill='white'/%3E%3C/svg%3E" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: '#1E88E5',
+          'brand-deep': '#0B3D91',
+          'brand-soft': '#E3F2FD',
+          accent: '#D52B1E',
+          paper: '#FAFAFA',
+        },
+        fontFamily: {
+          display: ['Sora', 'system-ui', 'sans-serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  .display { font-family: 'Sora', system-ui, sans-serif; }
+  .nav-item {
+    display: flex; align-items: center; gap: 0.625rem;
+    padding: 0.625rem 0.875rem; border-radius: 0.625rem;
+    font-size: 0.875rem; font-weight: 500;
+    color: rgb(71 85 105); text-decoration: none;
+    transition: background-color 0.15s, color 0.15s;
+  }
+  .nav-item:hover { background-color: rgb(241 245 249); }
+  .nav-item.active {
+    background-color: #E3F2FD; color: #0B3D91; font-weight: 600;
+  }
+  .stat-card {
+    background: white; border-radius: 1rem; padding: 1.25rem;
+    border: 1px solid rgb(226 232 240);
+  }
+  .table-row:hover { background-color: rgb(248 250 252); cursor: pointer; }
+  .badge {
+    display: inline-block; padding: 0.125rem 0.5rem; border-radius: 9999px;
+    font-size: 0.6875rem; font-weight: 600;
+  }
+  .chat-bubble {
+    padding: 0.625rem 0.875rem; border-radius: 1rem;
+    max-width: 80%; font-size: 0.875rem; line-height: 1.5;
+    white-space: pre-wrap; word-wrap: break-word;
+  }
+  .chat-bubble.user {
+    background-color: #1E88E5; color: white; margin-left: auto;
+    border-bottom-right-radius: 0.25rem;
+  }
+  .chat-bubble.assistant {
+    background-color: white; color: rgb(30 41 59);
+    border: 1px solid rgb(226 232 240);
+    border-bottom-left-radius: 0.25rem;
+  }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+</style>
+</head>
+<body class="bg-paper text-slate-800">
+
+<!-- Loading state -->
+<div id="loading" class="fixed inset-0 flex items-center justify-center bg-white">
+  <div class="text-center">
+    <div class="display text-2xl font-semibold text-brand-deep">Andjix Admin</div>
+    <div class="mt-2 text-sm text-slate-500">Chargement…</div>
+  </div>
+</div>
+
+<!-- Sign-in screen -->
+<div id="signin" class="fixed inset-0 hidden items-center justify-center bg-gradient-to-br from-brand-soft to-white">
+  <div class="w-full max-w-sm rounded-3xl bg-white p-8 shadow-xl">
+    <div class="display text-2xl font-semibold text-brand-deep">Andjix Admin</div>
+    <p class="mt-2 text-sm text-slate-500">Tableau de bord administrateur. Connexion réservée.</p>
+    <button id="signin-google" class="mt-6 flex w-full items-center justify-center gap-3 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-medium transition hover:border-brand hover:bg-brand-soft">
+      <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.71v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.61z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.81 5.96-2.18l-2.92-2.26c-.81.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.97 10.72A5.4 5.4 0 0 1 3.68 9c0-.6.1-1.18.29-1.72V4.95H.96A9 9 0 0 0 0 9c0 1.45.35 2.82.96 4.05l3.01-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58A9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z"/></svg>
+      Se connecter avec Google
+    </button>
+    <p id="signin-error" class="mt-4 hidden text-center text-xs text-red-600"></p>
+  </div>
+</div>
+
+<!-- Main app -->
+<div id="app" class="hidden min-h-screen">
+  <!-- Sidebar -->
+  <aside class="fixed left-0 top-0 z-30 hidden h-full w-60 flex-col border-r border-slate-200 bg-white p-4 lg:flex">
+    <div class="mb-6 flex items-center gap-2">
+      <svg width="32" height="32" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#1E88E5"/><path d="M19 44 L26 22 L31 22 L38 44 L33 44 L31.4 39 L25.6 39 L24 44 Z M27 34.5 L30 34.5 L28.5 28.8 Z" fill="white"/></svg>
+      <div>
+        <div class="display font-semibold leading-tight text-brand-deep">Andjix</div>
+        <div class="text-[11px] uppercase tracking-wider text-slate-500">Admin</div>
+      </div>
+    </div>
+
+    <nav id="sidebar-nav" class="flex flex-col gap-1">
+      <a href="#dashboard" class="nav-item active" data-tab="dashboard">📊 Tableau de bord</a>
+      <a href="#users" class="nav-item" data-tab="users">👥 Utilisateurs</a>
+      <a href="#leads" class="nav-item" data-tab="leads">📨 Prospects</a>
+      <a href="#bookings" class="nav-item" data-tab="bookings">📅 Réservations</a>
+      <a href="#settings" class="nav-item" data-tab="settings">⚙️ Paramètres</a>
+      <a href="#admins" class="nav-item" data-tab="admins">🔑 Administrateurs</a>
+    </nav>
+
+    <div class="mt-auto border-t border-slate-200 pt-4">
+      <div id="user-email" class="truncate text-xs text-slate-500"></div>
+      <button id="signout-btn" class="mt-2 text-xs font-medium text-slate-600 hover:text-brand-deep">Se déconnecter</button>
+    </div>
+  </aside>
+
+  <!-- Mobile header -->
+  <header class="sticky top-0 z-20 flex items-center justify-between border-b border-slate-200 bg-white px-4 py-3 lg:hidden">
+    <div class="display font-semibold text-brand-deep">Andjix Admin</div>
+    <select id="mobile-nav" class="rounded-lg border border-slate-200 px-2 py-1 text-sm">
+      <option value="dashboard">Tableau de bord</option>
+      <option value="users">Utilisateurs</option>
+      <option value="leads">Prospects</option>
+      <option value="bookings">Réservations</option>
+      <option value="settings">Paramètres</option>
+      <option value="admins">Administrateurs</option>
+    </select>
+  </header>
+
+  <!-- Main content -->
+  <main class="lg:ml-60 px-4 py-6 sm:px-6 lg:px-10 lg:py-8">
+
+    <!-- Dashboard -->
+    <section id="pane-dashboard" class="pane">
+      <h1 class="display text-2xl font-bold text-brand-deep">Tableau de bord</h1>
+      <p class="mt-1 text-sm text-slate-500">Aperçu de l'activité d'Andjix</p>
+
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="stat-card">
+          <div class="text-xs uppercase tracking-wider text-slate-500">Utilisateurs inscrits</div>
+          <div id="stat-users" class="display mt-2 text-3xl font-semibold text-brand-deep">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="text-xs uppercase tracking-wider text-slate-500">Messages (7j)</div>
+          <div id="stat-messages" class="display mt-2 text-3xl font-semibold text-brand-deep">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="text-xs uppercase tracking-wider text-slate-500">Prospects (7j)</div>
+          <div id="stat-leads" class="display mt-2 text-3xl font-semibold text-brand-deep">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="text-xs uppercase tracking-wider text-slate-500">Actifs (24h)</div>
+          <div id="stat-active" class="display mt-2 text-3xl font-semibold text-brand-deep">—</div>
+        </div>
+      </div>
+
+      <div class="mt-8 stat-card">
+        <h2 class="display text-lg font-semibold text-brand-deep">Derniers utilisateurs</h2>
+        <div id="recent-users" class="mt-3 divide-y divide-slate-100 text-sm">
+          <div class="py-3 text-slate-400">Chargement…</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Users -->
+    <section id="pane-users" class="pane hidden">
+      <div class="flex items-baseline justify-between">
+        <h1 class="display text-2xl font-bold text-brand-deep">Utilisateurs</h1>
+        <input id="user-search" placeholder="Rechercher…" class="rounded-lg border border-slate-200 px-3 py-1.5 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand-soft" />
+      </div>
+      <div class="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-white">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-left text-xs uppercase tracking-wider text-slate-500">
+            <tr>
+              <th class="px-4 py-3">Nom</th>
+              <th class="px-4 py-3">Email</th>
+              <th class="px-4 py-3">Profil</th>
+              <th class="px-4 py-3">Dernière activité</th>
+            </tr>
+          </thead>
+          <tbody id="users-tbody" class="divide-y divide-slate-100"></tbody>
+        </table>
+        <div id="users-empty" class="hidden p-8 text-center text-sm text-slate-500">
+          Aucun utilisateur pour l'instant.
+        </div>
+      </div>
+    </section>
+
+    <!-- Leads -->
+    <section id="pane-leads" class="pane hidden">
+      <h1 class="display text-2xl font-bold text-brand-deep">Prospects</h1>
+      <p class="mt-1 text-sm text-slate-500">Demandes de réservation reçues via le bot.</p>
+      <div id="leads-list" class="mt-6 space-y-3"></div>
+      <div id="leads-empty" class="hidden mt-8 rounded-xl border border-dashed border-slate-300 p-8 text-center text-sm text-slate-500">
+        Aucun prospect pour l'instant.
+      </div>
+    </section>
+
+    <!-- Bookings -->
+    <section id="pane-bookings" class="pane hidden">
+      <h1 class="display text-2xl font-bold text-brand-deep">Réservations</h1>
+      <p class="mt-1 text-sm text-slate-500">Rendez-vous Calendly enregistrés automatiquement.</p>
+      <div id="bookings-list" class="mt-6 space-y-3"></div>
+      <div id="bookings-empty" class="hidden mt-8 rounded-xl border border-dashed border-slate-300 p-8 text-center text-sm text-slate-500">
+        Aucune réservation pour l'instant. Vérifie que le webhook Calendly pointe vers <code class="rounded bg-slate-100 px-1.5 py-0.5">https://ai.andjix.ca/api/calendly</code>.
+      </div>
+    </section>
+
+    <!-- Settings -->
+    <section id="pane-settings" class="pane hidden">
+      <h1 class="display text-2xl font-bold text-brand-deep">Paramètres</h1>
+      <p class="mt-1 text-sm text-slate-500">Réglages partagés par le bot.</p>
+      <form id="settings-form" class="mt-6 max-w-2xl space-y-5 rounded-xl border border-slate-200 bg-white p-6">
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500">URL Calendly</label>
+          <input name="calendlyUrl" type="url" class="mt-1.5 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand-soft" placeholder="https://calendly.com/andjix/consultation" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500">Email de notification (prospects)</label>
+          <input name="leadEmailTo" type="email" class="mt-1.5 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand-soft" placeholder="info.andjix@gmail.com" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500">Notes additionnelles pour le bot</label>
+          <textarea name="kbNotes" rows="6" class="mt-1.5 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand-soft" placeholder="Tarifs, promotions, infos saisonnières que le bot doit mentionner…"></textarea>
+          <p class="mt-1 text-xs text-slate-500">Ces notes sont ajoutées au prompt système du bot. Évitez les infos sensibles.</p>
+        </div>
+        <div class="flex items-center justify-between">
+          <button type="submit" class="rounded-full bg-brand px-5 py-2 text-sm font-medium text-white transition hover:bg-brand-deep">Enregistrer</button>
+          <span id="settings-status" class="text-xs text-slate-500"></span>
+        </div>
+      </form>
+    </section>
+
+    <!-- Admins -->
+    <section id="pane-admins" class="pane hidden">
+      <h1 class="display text-2xl font-bold text-brand-deep">Administrateurs</h1>
+      <p class="mt-1 text-sm text-slate-500">Personnes autorisées à accéder au tableau de bord.</p>
+
+      <div class="mt-6 grid gap-6 lg:grid-cols-2">
+        <div class="rounded-xl border border-slate-200 bg-white p-5">
+          <h2 class="display font-semibold text-brand-deep">Liste actuelle</h2>
+          <ul id="admins-list" class="mt-3 divide-y divide-slate-100 text-sm"></ul>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white p-5">
+          <h2 class="display font-semibold text-brand-deep">Ajouter un administrateur</h2>
+          <form id="add-admin-form" class="mt-3 flex flex-col gap-2">
+            <input name="email" type="email" required placeholder="email@andjix.ca" class="rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand-soft" />
+            <input name="name" type="text" placeholder="Nom (optionnel)" class="rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand-soft" />
+            <button type="submit" class="self-start rounded-full bg-brand px-5 py-2 text-sm font-medium text-white transition hover:bg-brand-deep">Ajouter</button>
+            <span id="add-admin-status" class="text-xs text-slate-500"></span>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Conversation drawer -->
+<div id="convo-drawer" class="fixed inset-0 z-40 hidden">
+  <div class="absolute inset-0 bg-black/40" data-close-drawer></div>
+  <aside class="absolute right-0 top-0 flex h-full w-full max-w-2xl flex-col bg-white shadow-2xl">
+    <header class="flex items-center justify-between border-b border-slate-200 p-4">
+      <div>
+        <div id="convo-name" class="display font-semibold text-brand-deep">—</div>
+        <div id="convo-meta" class="text-xs text-slate-500"></div>
+      </div>
+      <button data-close-drawer class="rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600">✕</button>
+    </header>
+    <div id="convo-messages" class="flex-1 space-y-3 overflow-y-auto bg-paper p-4"></div>
+  </aside>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="pointer-events-none fixed bottom-6 right-6 hidden translate-y-2 rounded-xl bg-slate-900 px-4 py-3 text-sm text-white opacity-0 shadow-xl transition"></div>
+
+<script src="config.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+  import {
+    getFirestore, collection, doc, getDoc, getDocs, setDoc, deleteDoc,
+    query, orderBy, limit, where, Timestamp, serverTimestamp,
+  } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+
+  const cfg = window.FIREBASE_CONFIG;
+  if (!cfg || cfg.apiKey === "REPLACE_ME") {
+    document.getElementById("loading").innerHTML = `
+      <div class="max-w-md rounded-2xl border border-amber-200 bg-amber-50 p-6 text-center">
+        <div class="display text-lg font-semibold text-amber-900">Configuration manquante</div>
+        <p class="mt-2 text-sm text-amber-800">Édite <code class="rounded bg-amber-100 px-1.5 py-0.5">config.js</code> avec les valeurs Firebase du projet andjix-ai, puis recharge.</p>
+      </div>`;
+    throw new Error("Firebase config not set");
+  }
+
+  const app = initializeApp(cfg);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const bootstrap = window.BOOTSTRAP_ADMINS || [];
+
+  // ── DOM helpers ─────────────────────────────────────────────
+  const $ = (sel) => document.querySelector(sel);
+  const $$ = (sel) => document.querySelectorAll(sel);
+  const show = (el) => el.classList.remove("hidden");
+  const hide = (el) => el.classList.add("hidden");
+
+  function toast(msg, kind = "info") {
+    const el = $("#toast");
+    el.textContent = msg;
+    el.className = "fixed bottom-6 right-6 rounded-xl px-4 py-3 text-sm shadow-xl transition";
+    el.classList.add(kind === "error" ? "bg-red-600" : "bg-slate-900", "text-white");
+    el.classList.remove("hidden", "opacity-0", "translate-y-2");
+    setTimeout(() => {
+      el.classList.add("opacity-0", "translate-y-2");
+      setTimeout(() => hide(el), 200);
+    }, 2200);
+  }
+
+  function fmtDate(d) {
+    if (!d) return "—";
+    const date = d instanceof Date ? d : (d.toDate ? d.toDate() : new Date(d));
+    if (Number.isNaN(date.getTime())) return "—";
+    return date.toLocaleString("fr-CA", { dateStyle: "short", timeStyle: "short" });
+  }
+
+  function fmtRelative(d) {
+    if (!d) return "—";
+    const date = d instanceof Date ? d : (d.toDate ? d.toDate() : new Date(d));
+    const diff = (Date.now() - date.getTime()) / 1000;
+    if (diff < 60) return "à l'instant";
+    if (diff < 3600) return `il y a ${Math.floor(diff / 60)} min`;
+    if (diff < 86400) return `il y a ${Math.floor(diff / 3600)} h`;
+    if (diff < 604800) return `il y a ${Math.floor(diff / 86400)} j`;
+    return fmtDate(date);
+  }
+
+  function escapeHtml(s) {
+    return String(s ?? "").replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+    }[c]));
+  }
+
+  // ── Auth ───────────────────────────────────────────────────
+  $("#signin-google").addEventListener("click", async () => {
+    try {
+      await signInWithPopup(auth, new GoogleAuthProvider());
+    } catch (e) {
+      $("#signin-error").textContent = e.message;
+      show($("#signin-error"));
+    }
+  });
+
+  $("#signout-btn").addEventListener("click", () => signOut(auth));
+
+  async function isAdmin(user) {
+    if (!user?.email) return false;
+    const email = user.email.toLowerCase();
+    if (bootstrap.map((e) => e.toLowerCase()).includes(email)) return true;
+    try {
+      const snap = await getDoc(doc(db, "admins", email));
+      return snap.exists();
+    } catch {
+      return false;
+    }
+  }
+
+  let currentUser = null;
+  let currentIsAdmin = false;
+
+  onAuthStateChanged(auth, async (user) => {
+    hide($("#loading"));
+    if (!user) {
+      hide($("#app"));
+      show($("#signin"));
+      $("#signin").style.display = "flex";
+      return;
+    }
+    currentUser = user;
+    currentIsAdmin = await isAdmin(user);
+    if (!currentIsAdmin) {
+      $("#signin-error").textContent = `${user.email} n'a pas accès. Demandez à un administrateur de vous ajouter.`;
+      show($("#signin-error"));
+      hide($("#app"));
+      show($("#signin"));
+      $("#signin").style.display = "flex";
+      await signOut(auth);
+      return;
+    }
+    hide($("#signin"));
+    $("#signin").style.display = "none";
+    show($("#app"));
+    $("#user-email").textContent = user.email;
+    // Ensure this admin is in the admins collection so the rules count them.
+    // Doc id is the email (lowercased) — same key the rules use.
+    try {
+      await setDoc(
+        doc(db, "admins", user.email.toLowerCase()),
+        {
+          email: user.email,
+          name: user.displayName ?? "",
+          uid: user.uid,
+          lastSignInAt: serverTimestamp(),
+        },
+        { merge: true },
+      );
+    } catch {}
+    await loadAll();
+  });
+
+  // ── Routing ────────────────────────────────────────────────
+  function showTab(tab) {
+    $$(".pane").forEach((p) => hide(p));
+    const target = document.getElementById(`pane-${tab}`);
+    if (target) show(target);
+    $$("#sidebar-nav .nav-item").forEach((a) => {
+      a.classList.toggle("active", a.dataset.tab === tab);
+    });
+    const mobileSel = $("#mobile-nav");
+    if (mobileSel.value !== tab) mobileSel.value = tab;
+  }
+
+  function syncFromHash() {
+    const tab = (location.hash || "#dashboard").slice(1);
+    showTab(tab);
+  }
+  window.addEventListener("hashchange", syncFromHash);
+  $("#mobile-nav").addEventListener("change", (e) => {
+    location.hash = `#${e.target.value}`;
+  });
+
+  // ── Data loaders ──────────────────────────────────────────
+  let usersCache = [];
+  let leadsCache = [];
+
+  async function loadAll() {
+    syncFromHash();
+    await Promise.all([
+      loadStats(),
+      loadUsers(),
+      loadLeads(),
+      loadBookings(),
+      loadSettings(),
+      loadAdmins(),
+    ]);
+  }
+
+  async function loadStats() {
+    try {
+      const usersSnap = await getDocs(collection(db, "users"));
+      $("#stat-users").textContent = usersSnap.size;
+
+      // Active in last 24h
+      const dayAgo = new Date(Date.now() - 86400_000);
+      let active = 0;
+      usersSnap.forEach((d) => {
+        const data = d.data();
+        const last = data.lastActiveAt ? new Date(data.lastActiveAt) : null;
+        if (last && last > dayAgo) active++;
+      });
+      $("#stat-active").textContent = active;
+
+      // Recent users panel
+      const recent = usersSnap.docs
+        .map((d) => ({ id: d.id, ...d.data() }))
+        .filter((u) => u.lastActiveAt || u.createdAt)
+        .sort((a, b) => {
+          const ta = new Date(a.lastActiveAt || a.createdAt || 0).getTime();
+          const tb = new Date(b.lastActiveAt || b.createdAt || 0).getTime();
+          return tb - ta;
+        })
+        .slice(0, 6);
+
+      $("#recent-users").innerHTML = recent.length
+        ? recent.map((u) => `
+          <div class="flex items-center justify-between py-3">
+            <div>
+              <div class="font-medium">${escapeHtml(u.displayName || u.email || u.id)}</div>
+              <div class="text-xs text-slate-500">${escapeHtml(u.segment || "—")}</div>
+            </div>
+            <div class="text-xs text-slate-500">${fmtRelative(u.lastActiveAt || u.createdAt)}</div>
+          </div>`).join("")
+        : `<div class="py-3 text-sm text-slate-400">Aucun utilisateur pour l'instant.</div>`;
+    } catch (e) {
+      console.error(e);
+      $("#stat-users").textContent = "—";
+    }
+
+    // Leads + messages within 7d are loaded by their own functions; we read from caches.
+  }
+
+  async function loadUsers() {
+    try {
+      const snap = await getDocs(collection(db, "users"));
+      usersCache = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      usersCache.sort((a, b) => {
+        const ta = new Date(a.lastActiveAt || a.createdAt || 0).getTime();
+        const tb = new Date(b.lastActiveAt || b.createdAt || 0).getTime();
+        return tb - ta;
+      });
+      renderUsers(usersCache);
+    } catch (e) {
+      console.error(e);
+      toast("Erreur de chargement des utilisateurs", "error");
+    }
+  }
+
+  function renderUsers(list) {
+    const tbody = $("#users-tbody");
+    if (list.length === 0) {
+      tbody.innerHTML = "";
+      show($("#users-empty"));
+      return;
+    }
+    hide($("#users-empty"));
+    tbody.innerHTML = list.map((u) => `
+      <tr class="table-row" data-uid="${escapeHtml(u.id)}">
+        <td class="px-4 py-3 font-medium">${escapeHtml(u.displayName || "—")}</td>
+        <td class="px-4 py-3 text-slate-600">${escapeHtml(u.email || "—")}</td>
+        <td class="px-4 py-3"><span class="badge bg-brand-soft text-brand-deep">${escapeHtml(segmentLabel(u.segment))}</span></td>
+        <td class="px-4 py-3 text-slate-500">${fmtRelative(u.lastActiveAt || u.createdAt)}</td>
+      </tr>`).join("");
+    tbody.querySelectorAll("tr").forEach((tr) => {
+      tr.addEventListener("click", () => openConversation(tr.dataset.uid));
+    });
+  }
+
+  function segmentLabel(seg) {
+    return ({
+      newcomer: "Nouvel arrivant",
+      individual: "Particulier",
+      self_employed: "Travailleur autonome",
+      pme: "PME",
+      other: "Autre",
+    })[seg] || "—";
+  }
+
+  $("#user-search").addEventListener("input", (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    if (!q) return renderUsers(usersCache);
+    renderUsers(usersCache.filter((u) =>
+      [u.displayName, u.email, u.segment, u.notes].some((v) => (v || "").toLowerCase().includes(q)),
+    ));
+  });
+
+  async function openConversation(uid) {
+    const user = usersCache.find((u) => u.id === uid);
+    if (!user) return;
+    $("#convo-name").textContent = user.displayName || user.email || uid;
+    $("#convo-meta").textContent = `${user.email || ""} · ${segmentLabel(user.segment)} · ${fmtRelative(user.lastActiveAt)}`;
+    $("#convo-messages").innerHTML = `<div class="text-sm text-slate-400">Chargement…</div>`;
+    show($("#convo-drawer"));
+    document.body.style.overflow = "hidden";
+
+    try {
+      const q = query(
+        collection(db, "users", uid, "messages"),
+        orderBy("createdAt", "asc"),
+        limit(500),
+      );
+      const snap = await getDocs(q);
+      if (snap.empty) {
+        $("#convo-messages").innerHTML = `<div class="text-center text-sm text-slate-400">Aucun message échangé.</div>`;
+        return;
+      }
+      $("#convo-messages").innerHTML = snap.docs.map((d) => {
+        const m = d.data();
+        const cls = m.role === "user" ? "user" : "assistant";
+        return `
+          <div class="flex">
+            <div class="chat-bubble ${cls}">${escapeHtml(m.content)}</div>
+          </div>`;
+      }).join("");
+    } catch (e) {
+      console.error(e);
+      $("#convo-messages").innerHTML = `<div class="text-sm text-red-600">Erreur: ${escapeHtml(e.message)}</div>`;
+    }
+  }
+
+  $$("[data-close-drawer]").forEach((el) =>
+    el.addEventListener("click", () => {
+      hide($("#convo-drawer"));
+      document.body.style.overflow = "";
+    }),
+  );
+
+  async function loadLeads() {
+    try {
+      const q = query(collection(db, "leads"), orderBy("createdAt", "desc"), limit(100));
+      const snap = await getDocs(q);
+      leadsCache = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      renderLeads();
+
+      // Update 7-day stats
+      const weekAgo = Date.now() - 7 * 86400_000;
+      const recent = leadsCache.filter((l) => {
+        const t = l.createdAt?.toDate ? l.createdAt.toDate().getTime() : new Date(l.createdAt || 0).getTime();
+        return t > weekAgo;
+      });
+      $("#stat-leads").textContent = recent.length;
+    } catch (e) {
+      console.error(e);
+      $("#stat-leads").textContent = "0";
+    }
+  }
+
+  function renderLeads() {
+    const list = $("#leads-list");
+    if (leadsCache.length === 0) {
+      list.innerHTML = "";
+      show($("#leads-empty"));
+      return;
+    }
+    hide($("#leads-empty"));
+    list.innerHTML = leadsCache.map((l) => `
+      <details class="rounded-xl border border-slate-200 bg-white p-4">
+        <summary class="flex items-center justify-between gap-3">
+          <div>
+            <div class="font-medium">${escapeHtml(l.name || "Sans nom")}</div>
+            <div class="text-xs text-slate-500">${escapeHtml(l.email || "")} ${l.phone ? "· " + escapeHtml(l.phone) : ""}</div>
+          </div>
+          <div class="flex items-center gap-3">
+            ${l.segment ? `<span class="badge bg-brand-soft text-brand-deep">${escapeHtml(segmentLabel(l.segment))}</span>` : ""}
+            <span class="text-xs text-slate-500">${fmtRelative(l.createdAt)}</span>
+          </div>
+        </summary>
+        <div class="mt-3 border-t border-slate-100 pt-3 text-sm">
+          ${l.need ? `<p class="mb-3"><span class="text-xs uppercase tracking-wider text-slate-500">Besoin</span><br>${escapeHtml(l.need)}</p>` : ""}
+          ${l.transcript ? `<details><summary class="text-xs font-medium text-brand-deep">Voir la conversation</summary><pre class="mt-2 max-h-64 overflow-auto whitespace-pre-wrap rounded-lg bg-slate-50 p-3 text-xs">${escapeHtml(l.transcript)}</pre></details>` : ""}
+        </div>
+      </details>`).join("");
+  }
+
+  let bookingsCache = [];
+
+  async function loadBookings() {
+    try {
+      const q = query(collection(db, "bookings"), orderBy("receivedAt", "desc"), limit(100));
+      const snap = await getDocs(q);
+      bookingsCache = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      renderBookings();
+    } catch (e) {
+      console.error("bookings load failed", e);
+    }
+  }
+
+  function renderBookings() {
+    const list = $("#bookings-list");
+    if (bookingsCache.length === 0) {
+      list.innerHTML = "";
+      show($("#bookings-empty"));
+      return;
+    }
+    hide($("#bookings-empty"));
+    list.innerHTML = bookingsCache.map((b) => {
+      const isCancel = (b.eventType || "").includes("canceled");
+      const start = b.startTime ? new Date(b.startTime) : null;
+      const startLabel = start ? start.toLocaleString("fr-CA", { dateStyle: "full", timeStyle: "short" }) : "Date inconnue";
+      const answers = Array.isArray(b.answers) && b.answers.length
+        ? `<div class="mt-3 border-t border-slate-100 pt-3 text-sm">
+            ${b.answers.map((a) => `<p class="mb-1"><span class="text-xs uppercase tracking-wider text-slate-500">${escapeHtml(a.question || "")}</span><br>${escapeHtml(a.answer || "")}</p>`).join("")}
+          </div>`
+        : "";
+      return `
+        <div class="rounded-xl border ${isCancel ? "border-red-200 bg-red-50" : "border-slate-200 bg-white"} p-4">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <div class="font-medium">${escapeHtml(b.name || "Sans nom")} ${isCancel ? '<span class="badge bg-red-100 text-red-700 ml-1">Annulé</span>' : ""}</div>
+              <div class="text-xs text-slate-500">${escapeHtml(b.email || "")}</div>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-medium text-brand-deep">${escapeHtml(startLabel)}</div>
+              <div class="text-xs text-slate-500">${escapeHtml(b.eventName || "Consultation")}</div>
+            </div>
+          </div>
+          ${answers}
+          <div class="mt-3 flex gap-3 text-xs">
+            ${b.rescheduleUrl ? `<a class="text-brand-deep hover:underline" href="${escapeHtml(b.rescheduleUrl)}" target="_blank" rel="noopener">Reprogrammer</a>` : ""}
+            ${b.cancelUrl ? `<a class="text-red-600 hover:underline" href="${escapeHtml(b.cancelUrl)}" target="_blank" rel="noopener">Annuler</a>` : ""}
+          </div>
+        </div>`;
+    }).join("");
+  }
+
+  async function loadSettings() {
+    try {
+      const snap = await getDoc(doc(db, "config", "site"));
+      const data = snap.exists() ? snap.data() : {};
+      const form = $("#settings-form");
+      form.calendlyUrl.value = data.calendlyUrl || "";
+      form.leadEmailTo.value = data.leadEmailTo || "";
+      form.kbNotes.value = data.kbNotes || "";
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  $("#settings-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const status = $("#settings-status");
+    status.textContent = "Enregistrement…";
+    try {
+      await setDoc(doc(db, "config", "site"), {
+        calendlyUrl: form.calendlyUrl.value.trim(),
+        leadEmailTo: form.leadEmailTo.value.trim(),
+        kbNotes: form.kbNotes.value.trim(),
+        updatedAt: serverTimestamp(),
+        updatedBy: currentUser?.email || null,
+      }, { merge: true });
+      status.textContent = "Enregistré.";
+      toast("Paramètres enregistrés");
+      setTimeout(() => (status.textContent = ""), 3000);
+    } catch (err) {
+      status.textContent = "";
+      toast("Erreur: " + err.message, "error");
+    }
+  });
+
+  async function loadAdmins() {
+    try {
+      const snap = await getDocs(collection(db, "admins"));
+      const stored = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      const storedEmails = new Set(stored.map((a) => (a.email || a.id).toLowerCase()));
+      const bootstrapItems = bootstrap
+        .filter((email) => !storedEmails.has(email.toLowerCase()))
+        .map((email) => ({ id: email.toLowerCase(), email, name: "Bootstrap", bootstrap: true }));
+      const all = [...bootstrapItems, ...stored];
+      const ul = $("#admins-list");
+      ul.innerHTML = all.map((a) => `
+        <li class="flex items-center justify-between py-2.5">
+          <div>
+            <div class="font-medium">${escapeHtml(a.name || a.email)}</div>
+            <div class="text-xs text-slate-500">${escapeHtml(a.email)}${a.bootstrap ? " · bootstrap (config.js)" : ""}</div>
+          </div>
+          ${a.bootstrap || a.email?.toLowerCase() === currentUser?.email?.toLowerCase()
+            ? ""
+            : `<button class="text-xs font-medium text-red-600 hover:underline" data-remove-admin="${escapeHtml(a.id)}">Retirer</button>`}
+        </li>`).join("");
+      ul.querySelectorAll("[data-remove-admin]").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          if (!confirm("Retirer cet administrateur ?")) return;
+          await deleteDoc(doc(db, "admins", btn.dataset.removeAdmin));
+          await loadAdmins();
+          toast("Administrateur retiré");
+        });
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  $("#add-admin-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const status = $("#add-admin-status");
+    status.textContent = "";
+    const email = form.email.value.trim().toLowerCase();
+    const name = form.name.value.trim();
+    if (!email) return;
+    try {
+      // Doc id is the email (lowercased) — same key Firestore rules check on sign-in.
+      await setDoc(doc(db, "admins", email), {
+        email, name, addedAt: serverTimestamp(), addedBy: currentUser?.email || null,
+      }, { merge: true });
+      form.reset();
+      status.textContent = "Ajouté. Demandez-leur de se connecter avec ce courriel.";
+      await loadAdmins();
+      toast("Administrateur ajouté");
+    } catch (err) {
+      status.textContent = "Erreur: " + err.message;
+    }
+  });
+</script>
+
+</body>
+</html>
