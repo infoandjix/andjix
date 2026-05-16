@@ -41,13 +41,7 @@ export async function POST(req: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.LEAD_EMAIL_TO;
   const from = process.env.LEAD_EMAIL_FROM;
-
-  if (!apiKey || !to || !from) {
-    return Response.json(
-      { ok: false, error: "lead email not configured" },
-      { status: 500 },
-    );
-  }
+  const resendConfigured = Boolean(apiKey && to && from);
 
   const segmentLabel = SEGMENT_LABELS[segment ?? "unknown"]?.[lang] ?? segment ?? "Non précisé";
 
@@ -122,18 +116,20 @@ export async function POST(req: Request) {
     }
   }
 
-  try {
-    const resend = new Resend(apiKey);
-    await resend.emails.send({
-      from,
-      to,
-      replyTo: email,
-      subject,
-      text,
-    });
-    return Response.json({ ok: true });
-  } catch (err) {
-    const message = err instanceof Error ? err.message : "send failed";
-    return Response.json({ ok: false, error: message }, { status: 500 });
+  if (resendConfigured) {
+    try {
+      const resend = new Resend(apiKey!);
+      await resend.emails.send({
+        from: from!,
+        to: to!,
+        replyTo: email,
+        subject,
+        text,
+      });
+    } catch (err) {
+      console.error("[lead] resend send failed", err);
+    }
   }
+
+  return Response.json({ ok: true });
 }
