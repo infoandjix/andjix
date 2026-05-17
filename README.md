@@ -1,11 +1,10 @@
 # Andjix
 
-Two-system stack for Andjix Consulting Inc. (Ottawa, Canada). Owned by André Djomamessi (`info.andjix@gmail.com`).
+Three-system stack for Andjix Consulting Inc. (Ottawa, Canada). Owned by André Djomamessi (`info.andjix@gmail.com`).
 
+- **`site/`** — Static bilingual marketing site (FR/EN, HTML + CSS + vanilla JS, i18n via JSON). Deploys to https://andjix.ca.
 - **`ai/`** — Next.js 16 bot powered by Anthropic Claude, Firebase Auth + Firestore, Resend, Calendly webhook, Make.com integration. Deploys to https://ai.andjix.ca.
 - **`admin/`** — Static admin dashboard (Firebase web SDK + Tailwind CDN). Prospects, bookings, conversations, settings. Deploys to https://admin.andjix.ca.
-
-Marketing site (https://andjix.ca) lives in a separate repo (`giovannielabs/giovannielabs.ai`) and is NOT in this project.
 
 ## Start here, depending on who you are
 
@@ -21,7 +20,7 @@ Marketing site (https://andjix.ca) lives in a separate repo (`giovannielabs/giov
 | Asset | Where |
 |---|---|
 | GitHub repo | `infoandjix/andjix` (this repo) |
-| Vercel projects | `andjix-ai` + `andjix-admin` (Hobby plan, owned by `info.andjix@gmail.com`) |
+| Vercel projects | `andjix-site` + `andjix-ai` + `andjix-admin` (Hobby plan, owned by `info.andjix@gmail.com`) |
 | Firebase project | `andjix-site` (Montréal `northamerica-northeast1`, PIPEDA-compliant) |
 | CRM | Airtable base `Andjix Consulting - CRM` (Prospects, Bookings, Dossiers Fiscaux, Arrivants, Placement Personnel) |
 | Workflow automation | Make.com (Webhook → Airtable + Gmail scenarios) |
@@ -37,7 +36,7 @@ Marketing site (https://andjix.ca) lives in a separate repo (`giovannielabs/giov
 
 ## Deploys
 
-Both Vercel projects auto-deploy on push to `main`. `andjix-ai` uses Root Directory `ai`, `andjix-admin` uses `admin`.
+All three Vercel projects auto-deploy on push to `main`. `andjix-site` uses Root Directory `site`, `andjix-ai` uses `ai`, `andjix-admin` uses `admin`.
 
 ## Firebase rules
 

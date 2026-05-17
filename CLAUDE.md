@@ -8,14 +8,13 @@ Project context and conventions for Claude Code agents working on the Andjix cod
 
 ## What this repo is
 
-Two-system stack for Andjix Consulting Inc. (Ottawa, Canada). André Djomamessi is the owner.
+Three-system stack for Andjix Consulting Inc. (Ottawa, Canada). André Djomamessi is the owner.
 
 | Folder | What it is | Live URL |
 |---|---|---|
+| `site/` | Static bilingual marketing site (HTML + CSS + vanilla JS, FR/EN via i18n JSON) | https://andjix.ca |
 | `ai/` | Next.js 16 App Router bot — Anthropic Claude, Firebase Auth + Firestore, Resend, Calendly webhook, Make.com integration | https://ai.andjix.ca |
 | `admin/` | Static HTML dashboard (Firebase web SDK, Tailwind CDN) for André's day-to-day operations | https://admin.andjix.ca |
-
-The marketing site (`https://andjix.ca`) lives in a different repo (`giovannielabs/giovannielabs.ai`) and is NOT in this project. Don't touch it from here.
 
 ---
 
