@@ -143,7 +143,6 @@ export async function POST(req: NextRequest) {
           };
           if (authed.email) profileUpdate.email = authed.email;
           if (authed.displayName) profileUpdate.displayName = authed.displayName;
-          if (authed.photoURL) profileUpdate.photoURL = authed.photoURL;
           if (authed.provider) profileUpdate.signInProvider = authed.provider;
           batch.set(
             adminDb().collection("users").doc(uid),

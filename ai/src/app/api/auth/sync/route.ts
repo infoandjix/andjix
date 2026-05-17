@@ -19,7 +19,6 @@ export async function POST(req: NextRequest) {
   };
   if (authed.email) profile.email = authed.email;
   if (authed.displayName) profile.displayName = authed.displayName;
-  if (authed.photoURL) profile.photoURL = authed.photoURL;
   if (authed.provider) profile.signInProvider = authed.provider;
 
   const ref = adminDb().collection("users").doc(authed.uid);
