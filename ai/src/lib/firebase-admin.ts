@@ -55,10 +55,22 @@ export async function getUidFromRequest(req: Request): Promise<string | null> {
 
 export async function getAuthedRequest(
   req: Request,
-): Promise<{ uid: string; email: string | null } | null> {
+): Promise<{
+  uid: string;
+  email: string | null;
+  displayName: string | null;
+  photoURL: string | null;
+  provider: string | null;
+} | null> {
   const auth = req.headers.get("authorization") ?? "";
   const token = auth.startsWith("Bearer ") ? auth.slice(7) : null;
   const decoded = await verifyIdToken(token);
   if (!decoded?.uid) return null;
-  return { uid: decoded.uid, email: decoded.email ?? null };
+  return {
+    uid: decoded.uid,
+    email: decoded.email ?? null,
+    displayName: (decoded.name as string | undefined) ?? null,
+    photoURL: (decoded.picture as string | undefined) ?? null,
+    provider: decoded.firebase?.sign_in_provider ?? null,
+  };
 }

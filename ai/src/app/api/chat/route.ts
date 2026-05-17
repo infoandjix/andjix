@@ -1,7 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest } from "next/server";
 import { ANDJIX_SYSTEM_PROMPT } from "@/lib/system-prompt";
-import { adminDb, getUidFromRequest } from "@/lib/firebase-admin";
+import { adminDb, getAuthedRequest } from "@/lib/firebase-admin";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -75,7 +75,8 @@ export async function POST(req: NextRequest) {
     return new Response("first message must be user", { status: 400 });
   }
 
-  const uid = await getUidFromRequest(req);
+  const authed = await getAuthedRequest(req);
+  const uid = authed?.uid ?? null;
 
   const [siteConfig, profileContext] = await Promise.all([
     loadSiteConfig(),
@@ -127,16 +128,26 @@ export async function POST(req: NextRequest) {
 
         // Persist both the user's message and the assistant reply for signed-in users.
         // Use distinct timestamps so `orderBy("createdAt")` returns user before assistant.
-        if (uid && lastUser?.role === "user" && cleanedAssistant) {
+        if (uid && authed && lastUser?.role === "user" && cleanedAssistant) {
           const col = adminDb().collection("users").doc(uid).collection("messages");
           const userTs = new Date().toISOString();
           const assistantTs = new Date(Date.now() + 1).toISOString();
           const batch = adminDb().batch();
           batch.set(col.doc(), { role: "user", content: lastUser.content, createdAt: userTs });
           batch.set(col.doc(), { role: "assistant", content: cleanedAssistant, createdAt: assistantTs });
+          // Enrich the user profile doc on every chat so the admin dashboard
+          // shows their email / displayName / photo from the verified token.
+          // `email` is the source of truth — only set if present and never overwritten by user payload.
+          const profileUpdate: Record<string, unknown> = {
+            lastActiveAt: assistantTs,
+          };
+          if (authed.email) profileUpdate.email = authed.email;
+          if (authed.displayName) profileUpdate.displayName = authed.displayName;
+          if (authed.photoURL) profileUpdate.photoURL = authed.photoURL;
+          if (authed.provider) profileUpdate.signInProvider = authed.provider;
           batch.set(
             adminDb().collection("users").doc(uid),
-            { lastActiveAt: assistantTs },
+            profileUpdate,
             { merge: true },
           );
           await batch.commit();

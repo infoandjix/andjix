@@ -146,7 +146,7 @@ export async function POST(req: Request) {
           name: safeName,
           email: safeEmail,
           phone: safePhone,
-          segment: segment ?? null,
+          segment: segment ?? "unknown",
           segmentLabel,
           need: safeNeed,
           lang,
