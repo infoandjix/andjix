@@ -9,11 +9,16 @@ const ALLOWED_ORIGINS = new Set([
   "https://ai.andjix.ca",
 ]);
 
-function corsHeaders(req: Request) {
+function corsHeaders(req: Request): Record<string, string> {
   const origin = req.headers.get("origin") ?? "";
-  const allow = ALLOWED_ORIGINS.has(origin) ? origin : "https://andjix.ca";
+  if (!ALLOWED_ORIGINS.has(origin)) {
+    // No origin header (server-to-server) or unknown origin: no ACAO.
+    // Browsers from unknown origins will fail the CORS check.
+    return {};
+  }
   return {
-    "Access-Control-Allow-Origin": allow,
+    "Access-Control-Allow-Origin": origin,
+    "Vary": "Origin",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Max-Age": "86400",
@@ -25,6 +30,7 @@ export async function OPTIONS(req: Request) {
 }
 
 type LeadPayload = {
+  source?: string;
   name?: string;
   email?: string;
   phone?: string;
@@ -33,6 +39,8 @@ type LeadPayload = {
   conversation?: Array<{ role: string; content: string }>;
   lang?: "fr" | "en";
 };
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const SEGMENT_LABELS: Record<string, { fr: string; en: string }> = {
   newcomer: { fr: "Nouveau arrivant", en: "Newcomer" },
@@ -51,7 +59,7 @@ export async function POST(req: Request) {
     return Response.json({ ok: false, error: "invalid json" }, { status: 400, headers: cors });
   }
 
-  const { name, email, phone, segment, need, conversation, lang = "fr" } = body;
+  const { source, name, email, phone, segment, need, conversation, lang = "fr" } = body;
 
   if (!name || !email) {
     return Response.json(
@@ -59,6 +67,18 @@ export async function POST(req: Request) {
       { status: 400, headers: cors },
     );
   }
+  if (!EMAIL_RE.test(email)) {
+    return Response.json(
+      { ok: false, error: "invalid email" },
+      { status: 400, headers: cors },
+    );
+  }
+  // Cap field sizes to prevent abuse / runaway tokens / Firestore doc size.
+  const safeName = name.slice(0, 200);
+  const safeEmail = email.slice(0, 200);
+  const safePhone = phone?.slice(0, 40) ?? null;
+  const safeNeed = need?.slice(0, 4000) ?? null;
+  const safeSource = (source ?? "bot").slice(0, 60);
 
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.LEAD_EMAIL_TO;
@@ -72,18 +92,19 @@ export async function POST(req: Request) {
     .join("\n\n");
 
   const subject = lang === "fr"
-    ? `Nouveau lead Andjix : ${name} (${segmentLabel})`
-    : `New Andjix lead: ${name} (${segmentLabel})`;
+    ? `Nouveau lead Andjix : ${safeName} (${segmentLabel})`
+    : `New Andjix lead: ${safeName} (${segmentLabel})`;
 
   const text = [
-    `Nom : ${name}`,
-    `Courriel : ${email}`,
-    phone ? `Téléphone : ${phone}` : null,
+    `Nom : ${safeName}`,
+    `Courriel : ${safeEmail}`,
+    safePhone ? `Téléphone : ${safePhone}` : null,
     `Segment : ${segmentLabel}`,
     `Langue : ${lang}`,
+    `Source : ${safeSource}`,
     "",
     "Besoin / résumé :",
-    need || "(non précisé)",
+    safeNeed || "(non précisé)",
     "",
     "=".repeat(20),
     "Conversation :",
@@ -92,28 +113,28 @@ export async function POST(req: Request) {
     .filter(Boolean)
     .join("\n");
 
-  // Persist to Firestore for the admin dashboard. Best-effort — if Firebase
-  // isn't configured yet, we still send the email.
+  const createdAt = new Date().toISOString();
+
+  // Persist to Firestore for the admin dashboard. Best-effort.
   try {
     await adminDb()
       .collection("leads")
       .add({
-        name,
-        email,
-        phone: phone ?? null,
+        source: safeSource,
+        name: safeName,
+        email: safeEmail,
+        phone: safePhone,
         segment: segment ?? null,
-        need: need ?? null,
+        need: safeNeed,
         lang,
         transcript: transcript || null,
-        createdAt: new Date().toISOString(),
+        createdAt,
       });
   } catch (err) {
     console.error("[lead] firestore write failed", err);
   }
 
-  // Forward to Make.com so the lead lands in Airtable and triggers the
-  // confirmation + internal-notification emails (Scenario A). Best-effort —
-  // failure here does not block the Resend email.
+  // Forward to Make.com (Scenario A: Airtable + Gmail). Best-effort with 3s timeout.
   const makeWebhook = process.env.MAKE_LEAD_WEBHOOK_URL;
   if (makeWebhook) {
     try {
@@ -121,17 +142,18 @@ export async function POST(req: Request) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          source: "bot",
-          name,
-          email,
-          phone: phone ?? null,
+          source: safeSource,
+          name: safeName,
+          email: safeEmail,
+          phone: safePhone,
           segment: segment ?? null,
           segmentLabel,
-          need: need ?? null,
+          need: safeNeed,
           lang,
           transcript: transcript || null,
-          createdAt: new Date().toISOString(),
+          createdAt,
         }),
+        signal: AbortSignal.timeout(3000),
       });
     } catch (err) {
       console.error("[lead] make.com webhook failed", err);
@@ -144,7 +166,7 @@ export async function POST(req: Request) {
       await resend.emails.send({
         from: from!,
         to: to!,
-        replyTo: email,
+        replyTo: safeEmail,
         subject,
         text,
       });

@@ -1,7 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest } from "next/server";
 import { ANDJIX_SYSTEM_PROMPT } from "@/lib/system-prompt";
-import { adminDb, verifyIdToken } from "@/lib/firebase-admin";
+import { adminDb, getUidFromRequest } from "@/lib/firebase-admin";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -14,13 +14,6 @@ type IncomingMessage = {
   role: "user" | "assistant";
   content: string;
 };
-
-async function getUid(req: NextRequest): Promise<string | null> {
-  const auth = req.headers.get("authorization") ?? "";
-  const token = auth.startsWith("Bearer ") ? auth.slice(7) : null;
-  const decoded = await verifyIdToken(token);
-  return decoded?.uid ?? null;
-}
 
 async function loadSiteConfig(): Promise<string | null> {
   try {
@@ -47,7 +40,7 @@ async function loadProfileContext(uid: string): Promise<string | null> {
       newcomer: "nouveau arrivant au Canada",
       individual: "particulier",
       self_employed: "travailleur autonome",
-      pme: "PME / entreprise",
+      sme: "PME / entreprise",
       other: "autre",
     };
     lines.push(`Profil: ${labels[p.segment] ?? p.segment}`);
@@ -82,7 +75,7 @@ export async function POST(req: NextRequest) {
     return new Response("first message must be user", { status: 400 });
   }
 
-  const uid = await getUid(req);
+  const uid = await getUidFromRequest(req);
 
   const [siteConfig, profileContext] = await Promise.all([
     loadSiteConfig(),
@@ -103,8 +96,13 @@ export async function POST(req: NextRequest) {
         const response = client.messages.stream({
           model: MODEL,
           max_tokens: 2048,
-          cache_control: { type: "ephemeral" },
-          system: systemPrompt,
+          system: [
+            {
+              type: "text",
+              text: systemPrompt,
+              cache_control: { type: "ephemeral" },
+            },
+          ],
           messages,
         });
 
@@ -128,15 +126,17 @@ export async function POST(req: NextRequest) {
         const cleanedAssistant = fullText.replace(/\[BOOK\]/g, "").trim();
 
         // Persist both the user's message and the assistant reply for signed-in users.
+        // Use distinct timestamps so `orderBy("createdAt")` returns user before assistant.
         if (uid && lastUser?.role === "user" && cleanedAssistant) {
           const col = adminDb().collection("users").doc(uid).collection("messages");
-          const now = new Date().toISOString();
+          const userTs = new Date().toISOString();
+          const assistantTs = new Date(Date.now() + 1).toISOString();
           const batch = adminDb().batch();
-          batch.set(col.doc(), { role: "user", content: lastUser.content, createdAt: now });
-          batch.set(col.doc(), { role: "assistant", content: cleanedAssistant, createdAt: now });
+          batch.set(col.doc(), { role: "user", content: lastUser.content, createdAt: userTs });
+          batch.set(col.doc(), { role: "assistant", content: cleanedAssistant, createdAt: assistantTs });
           batch.set(
             adminDb().collection("users").doc(uid),
-            { lastActiveAt: now },
+            { lastActiveAt: assistantTs },
             { merge: true },
           );
           await batch.commit();

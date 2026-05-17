@@ -57,10 +57,9 @@ service cloud.firestore {
 
     // ── Site config (Calendly URL, KB notes, etc.) ─────────
     match /config/{docId} {
-      // Public read so the bot's chat route can fetch it without auth
-      // (the bot uses the admin SDK anyway, but this simplifies if/when
-      // we want to read it client-side from the public site too).
-      allow read: if true;
+      // Admin reads via dashboard + bot reads via admin SDK (bypasses rules).
+      // No public read — kbNotes can be sensitive (rates, promos, internal notes).
+      allow read: if isAdmin();
       allow write: if isAdmin();
     }
   }

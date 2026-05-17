@@ -1,18 +1,11 @@
 import { NextRequest } from "next/server";
-import { adminDb, verifyIdToken } from "@/lib/firebase-admin";
+import { adminDb, getUidFromRequest } from "@/lib/firebase-admin";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-async function getUid(req: NextRequest): Promise<string | null> {
-  const auth = req.headers.get("authorization") ?? "";
-  const token = auth.startsWith("Bearer ") ? auth.slice(7) : null;
-  const decoded = await verifyIdToken(token);
-  return decoded?.uid ?? null;
-}
-
 export async function GET(req: NextRequest) {
-  const uid = await getUid(req);
+  const uid = await getUidFromRequest(req);
   if (!uid) return new Response("unauthorized", { status: 401 });
 
   const snap = await adminDb()
@@ -36,14 +29,21 @@ export async function GET(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  const uid = await getUid(req);
+  const uid = await getUidFromRequest(req);
   if (!uid) return new Response("unauthorized", { status: 401 });
 
   const ref = adminDb().collection("users").doc(uid).collection("messages");
   const snap = await ref.get();
-  const batch = adminDb().batch();
-  snap.docs.forEach((d) => batch.delete(d.ref));
-  await batch.commit();
 
-  return Response.json({ ok: true, deleted: snap.size });
+  // Firestore batches cap at 500 ops. Chunk to 400 for safety headroom.
+  const BATCH_SIZE = 400;
+  let deleted = 0;
+  for (let i = 0; i < snap.docs.length; i += BATCH_SIZE) {
+    const batch = adminDb().batch();
+    snap.docs.slice(i, i + BATCH_SIZE).forEach((d) => batch.delete(d.ref));
+    await batch.commit();
+    deleted += Math.min(BATCH_SIZE, snap.docs.length - i);
+  }
+
+  return Response.json({ ok: true, deleted });
 }

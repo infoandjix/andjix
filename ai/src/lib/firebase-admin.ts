@@ -45,3 +45,20 @@ export async function verifyIdToken(token: string | undefined | null) {
     return null;
   }
 }
+
+export async function getUidFromRequest(req: Request): Promise<string | null> {
+  const auth = req.headers.get("authorization") ?? "";
+  const token = auth.startsWith("Bearer ") ? auth.slice(7) : null;
+  const decoded = await verifyIdToken(token);
+  return decoded?.uid ?? null;
+}
+
+export async function getAuthedRequest(
+  req: Request,
+): Promise<{ uid: string; email: string | null } | null> {
+  const auth = req.headers.get("authorization") ?? "";
+  const token = auth.startsWith("Bearer ") ? auth.slice(7) : null;
+  const decoded = await verifyIdToken(token);
+  if (!decoded?.uid) return null;
+  return { uid: decoded.uid, email: decoded.email ?? null };
+}
