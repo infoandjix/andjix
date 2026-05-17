@@ -45,6 +45,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const unsub = onAuthStateChanged(firebaseAuth(), (u) => {
       setUser(u);
       setLoading(false);
+      // Mirror sign-in to Firestore so admin dashboard sees the user
+      // immediately, before any chat. Best-effort — silent failure is fine.
+      if (u) {
+        u.getIdToken()
+          .then((token) =>
+            fetch("/api/auth/sync", {
+              method: "POST",
+              headers: { Authorization: `Bearer ${token}` },
+            }),
+          )
+          .catch(() => {});
+      }
     });
     return () => unsub();
   }, [configured]);
