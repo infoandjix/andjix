@@ -81,7 +81,7 @@ function extractText(html: string, maxLength = 2500): string {
 
 // ── HTTP fetch ───────────────────────────────────────────────────────────────
 
-async function fetchPage(url: string, timeoutMs = 5_000): Promise<string | null> {
+async function fetchPage(url: string, timeoutMs = 8_000): Promise<string | null> {
   try {
     const res = await fetch(url, {
       signal: AbortSignal.timeout(timeoutMs),
@@ -158,8 +158,8 @@ async function handleSync(req: NextRequest): Promise<Response> {
   }> = [];
   const compactParts: string[] = [];
 
-  // Stay well within Vercel's 60-second function limit
-  const BUDGET_MS = 50_000;
+  // Stay within Vercel's 60-second function limit (leave 5s buffer for Firestore writes)
+  const BUDGET_MS = 55_000;
   const startTime = Date.now();
 
   for (const page of ARC_PAGES) {
@@ -195,9 +195,6 @@ async function handleSync(req: NextRequest): Promise<Response> {
     );
 
     results.push({ topic: page.topic, title: page.title, status: "ok", chars: content.length });
-
-    // Polite delay between requests (avoid hammering canada.ca)
-    await new Promise((r) => setTimeout(r, 250));
   }
 
   const successCount = results.filter((r) => r.status === "ok").length;
