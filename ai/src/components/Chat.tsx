@@ -77,33 +77,6 @@ export default function Chat() {
   const t = STRINGS[lang];
   const { user, configured, signOut } = useAuth();
 
-  // Load conversation history when the user signs in.
-  useEffect(() => {
-    if (!user) return;
-    let cancelled = false;
-    (async () => {
-      try {
-        const token = await user.getIdToken();
-        const res = await fetch("/api/messages", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        if (!res.ok) return;
-        const data = (await res.json()) as { messages: Message[] };
-        if (cancelled) return;
-        if (Array.isArray(data.messages) && data.messages.length > 0) {
-          setMessages(
-            data.messages.map((m) => ({ role: m.role, content: m.content })),
-          );
-        }
-      } catch {
-        // ignore — empty history is fine
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [user]);
-
   useEffect(() => {
     const stored = typeof window !== "undefined" ? localStorage.getItem("andjix.lang") : null;
     if (stored === "fr" || stored === "en") setLang(stored);
@@ -232,7 +205,7 @@ export default function Chat() {
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto">
         <div className="mx-auto max-w-3xl px-4 py-6 md:py-10">
-          {showWelcome && <Welcome strings={t} onPick={(text) => send(text)} disabled={streaming} />}
+          {showWelcome && <Welcome strings={t} onPick={(text) => setInput(text)} disabled={streaming} />}
 
           <div className="space-y-4">
             {messages.map((m, i) => (
