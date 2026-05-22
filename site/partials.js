@@ -20,12 +20,11 @@
       <span></span><span></span><span></span>
     </button>
     <div class="nav-links" data-nav-panel>
-      <a href="services-particuliers.html"${active('services-particuliers.html')} data-i18n="nav.individuals">Particuliers</a>
-      <a href="services-pme.html"${active('services-pme.html')} data-i18n="nav.sme">PME</a>
+      <a href="services-particuliers.html#impots"${active('services-particuliers.html')} data-i18n="nav.fiscalite">Fiscalité</a>
+      <a href="services-particuliers.html#emploi" data-i18n="nav.emploi">Emploi</a>
+      <a href="services-particuliers.html#nouveaux-arrivants" data-i18n="nav.arrivants">Nouveaux Arrivants</a>
       <a href="ia.html"${active('ia.html')} data-i18n="nav.ai">Andjix IA</a>
-      <a href="ressources.html"${active('ressources.html')} data-i18n="nav.resources">Ressources</a>
       <a href="about.html"${active('about.html')} data-i18n="nav.about">À propos</a>
-      <a href="contact.html"${active('contact.html')} data-i18n="nav.contact">Contact</a>
       <button class="lang-toggle" aria-label="Changer de langue" data-lang-toggle>
         <span data-lang-current>EN</span>
       </button>
@@ -46,25 +45,26 @@
             <div style="font-size: 0.8125rem; color: var(--text-muted); letter-spacing: 0.08em;">OTTAWA · CANADA</div>
           </div>
         </div>
-        <p class="footer-tag" data-i18n="footer.tag">L'intégration réussie pour les nouveaux arrivants et les PME d'Ottawa.</p>
+        <p class="footer-tag" data-i18n="footer.tag">Accompagnement fiscal, professionnel et administratif à Ottawa et Gatineau. Bilingue FR/EN.</p>
       </div>
       <div>
-        <h5 data-i18n="footer.h_individuals">Particuliers</h5>
+        <h5 data-i18n="footer.h_services">Nos 4 services</h5>
         <div class="footer-links">
-          <a href="services-particuliers.html#impots" data-i18n="footer.l_taxes">Déclaration d'impôts</a>
-          <a href="services-particuliers.html#nouveaux-arrivants" data-i18n="footer.l_arrival">Accueil nouveaux arrivants</a>
-          <a href="services-particuliers.html#emploi" data-i18n="footer.l_placement">Placement et emploi</a>
-          <a href="services-particuliers.html#conseil" data-i18n="footer.l_admin">Conseil administratif</a>
-          <a href="services-particuliers.html#forfaits" data-i18n="footer.l_packages">Forfaits 3 à 6 mois</a>
+          <a href="services-particuliers.html#impots" data-i18n="nav.fiscalite">Fiscalité</a>
+          <a href="services-particuliers.html#emploi" data-i18n="nav.emploi">Emploi</a>
+          <a href="services-particuliers.html#nouveaux-arrivants" data-i18n="nav.arrivants">Nouveaux Arrivants</a>
+          <a href="ia.html" data-i18n="footer.l_bot">Andjix IA</a>
         </div>
       </div>
       <div>
-        <h5 data-i18n="footer.h_sme">PME</h5>
+        <h5 data-i18n="footer.h_profiles">Votre profil</h5>
         <div class="footer-links">
-          <a href="services-pme.html#automatisation" data-i18n="footer.l_automation">Automatisation</a>
-          <a href="services-pme.html#constitution" data-i18n="footer.l_incorp">Constitution d'entreprise</a>
-          <a href="ia.html" data-i18n="footer.l_bot">Andjix IA</a>
-          <a href="ressources.html" data-i18n="footer.l_resources">Ressources</a>
+          <a href="services-particuliers.html#nouveaux-arrivants" data-i18n="audience.p1_title">Résident permanent</a>
+          <a href="services-particuliers.html#nouveaux-arrivants" data-i18n="audience.p2_title">Réfugié et personne protégée</a>
+          <a href="services-particuliers.html#nouveaux-arrivants" data-i18n="audience.p3_title">Étudiant international</a>
+          <a href="services-particuliers.html#emploi" data-i18n="audience.p4_title">Travailleur temporaire</a>
+          <a href="services-particuliers.html#nouveaux-arrivants" data-i18n="audience.p5_title">Familles de nouveaux arrivants</a>
+          <a href="services-particuliers.html#emploi" data-i18n="audience.p6_title">Employeurs et recruteurs</a>
         </div>
       </div>
       <div>

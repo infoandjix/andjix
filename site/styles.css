@@ -1506,3 +1506,36 @@ html, body { overflow-x: hidden; }
   .svc-anchor-nav a { padding: 8px 14px; font-size: 0.8125rem; }
   .svc-anchor-nav-label { display: none; }
 }
+
+/* ===== Refonte mai 2026 — 4 piliers + 6 profils ===== */
+.features-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.profiles-grid-6 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 56px;
+}
+.feature-card a.feature-link {
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  text-decoration: none;
+}
+.feature-card a.feature-link:hover { text-decoration: underline; }
+@media (max-width: 960px) {
+  .features-4 { grid-template-columns: repeat(2, 1fr); }
+  .profiles-grid-6 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .features-4 { grid-template-columns: 1fr; }
+  .profiles-grid-6 { grid-template-columns: 1fr; }
+}
