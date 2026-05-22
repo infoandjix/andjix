@@ -236,6 +236,50 @@
           <span id="settings-status" class="text-xs text-slate-500"></span>
         </div>
       </form>
+
+      <!-- ARC Knowledge Base Sync -->
+      <div class="mt-8 max-w-2xl rounded-xl border border-slate-200 bg-white p-6">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h2 class="display font-semibold text-brand-deep">Base de connaissances ARC</h2>
+            <p class="mt-1 text-sm text-slate-500">
+              Synchronise Andjix IA avec les pages officielles de l'Agence du revenu du Canada (canada.ca).
+              Le contenu est injecté automatiquement lors des questions fiscales.
+            </p>
+          </div>
+          <span id="arc-status-badge" class="hidden badge text-xs shrink-0"></span>
+        </div>
+
+        <div id="arc-meta" class="mt-4 grid grid-cols-3 gap-3 text-center text-sm">
+          <div class="rounded-lg bg-slate-50 p-3">
+            <div id="arc-last-sync" class="font-semibold text-slate-700">—</div>
+            <div class="mt-0.5 text-xs text-slate-400">Dernière sync</div>
+          </div>
+          <div class="rounded-lg bg-slate-50 p-3">
+            <div id="arc-page-count" class="font-semibold text-slate-700">—</div>
+            <div class="mt-0.5 text-xs text-slate-400">Pages ARC indexées</div>
+          </div>
+          <div class="rounded-lg bg-slate-50 p-3">
+            <div class="font-semibold text-slate-700">Lundi 9h UTC</div>
+            <div class="mt-0.5 text-xs text-slate-400">Mise à jour auto</div>
+          </div>
+        </div>
+
+        <div id="arc-results" class="mt-4 hidden max-h-48 overflow-y-auto rounded-lg bg-slate-50 p-3 text-xs text-slate-600 font-mono"></div>
+
+        <div class="mt-5 flex items-center gap-3">
+          <button
+            id="arc-sync-btn"
+            class="rounded-full bg-brand px-5 py-2 text-sm font-medium text-white transition hover:bg-brand-deep disabled:opacity-50"
+          >
+            Synchroniser maintenant
+          </button>
+          <span id="arc-sync-status" class="text-xs text-slate-500"></span>
+        </div>
+        <p class="mt-2 text-xs text-slate-400">
+          La synchronisation complète prend ~30 secondes. Elle est aussi déclenchée automatiquement chaque semaine.
+        </p>
+      </div>
     </section>
 
     <!-- Admins -->
@@ -447,6 +491,7 @@
       loadLeads(),
       loadBookings(),
       loadSettings(),
+      loadArcStatus(),
       loadAdmins(),
     ]);
   }
@@ -775,6 +820,77 @@
       toast("Administrateur ajouté");
     } catch (err) {
       status.textContent = "Erreur: " + err.message;
+    }
+  });
+
+  // ── ARC Knowledge Base ──────────────────────────────────────────────────
+  async function loadArcStatus() {
+    try {
+      const snap = await getDoc(doc(db, "config", "arc"));
+      if (!snap.exists()) return;
+      const d = snap.data();
+
+      const badge = $("#arc-status-badge");
+      if (d.status === "ok") {
+        badge.textContent = "Synchronisé";
+        badge.className = "badge bg-green-100 text-green-700";
+      } else if (d.status === "syncing") {
+        badge.textContent = "En cours…";
+        badge.className = "badge bg-amber-100 text-amber-700";
+      } else {
+        badge.textContent = "Erreur";
+        badge.className = "badge bg-red-100 text-red-700";
+      }
+      badge.classList.remove("hidden");
+
+      $("#arc-last-sync").textContent = d.lastSync ? fmtDate(d.lastSync) : "—";
+      $("#arc-page-count").textContent = d.pageCount != null
+        ? `${d.pageCount} / ${d.totalPages || "??"}`
+        : "—";
+
+      if (Array.isArray(d.results) && d.results.length > 0) {
+        const resultsDiv = $("#arc-results");
+        resultsDiv.innerHTML = d.results.map((r) =>
+          `<div class="flex gap-2"><span class="${r.status === "ok" ? "text-green-600" : "text-red-500"}">${r.status === "ok" ? "✓" : "✗"}</span><span>${escapeHtml(r.title)}</span>${r.chars ? `<span class="ml-auto text-slate-400">${r.chars} car.</span>` : ""}</div>`
+        ).join("");
+        resultsDiv.classList.remove("hidden");
+      }
+    } catch (e) {
+      console.error("[arc-status]", e);
+    }
+  }
+
+  $("#arc-sync-btn").addEventListener("click", async () => {
+    const btn = $("#arc-sync-btn");
+    const status = $("#arc-sync-status");
+    if (!currentUser) { toast("Vous devez être connecté", "error"); return; }
+
+    btn.disabled = true;
+    btn.textContent = "Synchronisation…";
+    status.textContent = "Récupération des pages ARC en cours (≈30 s)…";
+
+    try {
+      const token = await currentUser.getIdToken();
+      const res = await fetch("https://ai.andjix.ca/api/arc-sync", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`${res.status} — ${text}`);
+      }
+
+      const data = await res.json();
+      status.textContent = `Terminé : ${data.synced}/${data.total} pages indexées.`;
+      toast(`ARC synchronisé : ${data.synced} pages`);
+      await loadArcStatus();
+    } catch (err) {
+      status.textContent = "Erreur : " + err.message;
+      toast("Échec de la synchronisation ARC", "error");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Synchroniser maintenant";
     }
   });
 </script>

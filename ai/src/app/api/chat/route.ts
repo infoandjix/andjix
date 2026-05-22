@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest } from "next/server";
 import { ANDJIX_SYSTEM_PROMPT } from "@/lib/system-prompt";
 import { adminDb, getAuthedRequest } from "@/lib/firebase-admin";
+import { isTaxRelated, loadArcKB, buildArcSection } from "@/lib/arc-knowledge";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -78,14 +79,21 @@ export async function POST(req: NextRequest) {
   const authed = await getAuthedRequest(req);
   const uid = authed?.uid ?? null;
 
-  const [siteConfig, profileContext] = await Promise.all([
+  // Detect tax-related question before fetching ARC KB (avoids unnecessary read)
+  const lastUserMessage = messages[messages.length - 1]?.content ?? "";
+  const taxQuestion = isTaxRelated(lastUserMessage);
+
+  const [siteConfig, profileContext, arcKB] = await Promise.all([
     loadSiteConfig(),
     uid ? loadProfileContext(uid) : Promise.resolve(null),
+    taxQuestion ? loadArcKB() : Promise.resolve(null),
   ]);
 
   const systemParts: string[] = [ANDJIX_SYSTEM_PROMPT];
   if (siteConfig) systemParts.push(siteConfig);
   if (profileContext) systemParts.push(profileContext);
+  // Inject ARC knowledge only when the question is tax-related (saves tokens + cost)
+  if (arcKB) systemParts.push(buildArcSection(arcKB));
   const systemPrompt = systemParts.join("\n\n---\n");
 
   const lastUser = messages[messages.length - 1];
