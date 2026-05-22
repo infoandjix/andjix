@@ -426,7 +426,7 @@ function Bubble({ role, content }: { role: "user" | "assistant"; content: string
 
 function FormattedText({ content }: { content: string }) {
   const lines = content.split("\n");
-  const blocks: Array<{ type: "p" | "ul" | "ol" | "h"; items: string[] }> = [];
+  const blocks: Array<{ type: "p" | "ul" | "ol" | "h"; items: string[]; start?: number }> = [];
   for (const raw of lines) {
     const line = raw.trimEnd();
     const bullet = /^\s*[-*•]\s+(.*)$/.exec(line);
@@ -438,7 +438,9 @@ function FormattedText({ content }: { content: string }) {
       else blocks.push({ type: "ul", items: [bullet[1]] });
     } else if (numbered) {
       if (last && last.type === "ol") last.items.push(numbered[2]);
-      else blocks.push({ type: "ol", items: [numbered[2]] });
+      // Store the actual number so <ol start={n}> continues correctly
+      // even when bullet sub-lists break the numbered block.
+      else blocks.push({ type: "ol", items: [numbered[2]], start: parseInt(numbered[1], 10) });
     } else if (heading) {
       blocks.push({ type: "h", items: [heading[1]] });
     } else if (line.trim() === "") {
@@ -467,7 +469,7 @@ function FormattedText({ content }: { content: string }) {
         }
         if (b.type === "ol") {
           return (
-            <ol key={i} className="ml-5 list-decimal space-y-1.5 marker:font-semibold marker:text-[var(--color-andjix-blue-deep)]">
+            <ol key={i} start={b.start ?? 1} className="ml-5 list-decimal space-y-1.5 marker:font-semibold marker:text-[var(--color-andjix-blue-deep)]">
               {b.items.map((it, j) => (
                 <li key={j}>{renderInline(it)}</li>
               ))}
