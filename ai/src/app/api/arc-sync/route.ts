@@ -81,7 +81,7 @@ function extractText(html: string, maxLength = 2500): string {
 
 // ── HTTP fetch ───────────────────────────────────────────────────────────────
 
-async function fetchPage(url: string, timeoutMs = 12_000): Promise<string | null> {
+async function fetchPage(url: string, timeoutMs = 5_000): Promise<string | null> {
   try {
     const res = await fetch(url, {
       signal: AbortSignal.timeout(timeoutMs),
@@ -153,12 +153,22 @@ async function handleSync(req: NextRequest): Promise<Response> {
   const results: Array<{
     topic: string;
     title: string;
-    status: "ok" | "error";
+    status: "ok" | "error" | "skipped";
     chars: number;
   }> = [];
   const compactParts: string[] = [];
 
+  // Stay well within Vercel's 60-second function limit
+  const BUDGET_MS = 50_000;
+  const startTime = Date.now();
+
   for (const page of ARC_PAGES) {
+    // Stop if we're running low on time — save what we have
+    if (Date.now() - startTime > BUDGET_MS) {
+      results.push({ topic: page.topic, title: page.title, status: "skipped", chars: 0 });
+      continue;
+    }
+
     const html = await fetchPage(page.url);
 
     if (!html) {
