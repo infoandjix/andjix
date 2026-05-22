@@ -77,9 +77,32 @@ export default function Chat() {
   const t = STRINGS[lang];
   const { user, configured, signOut } = useAuth();
 
-  // Note: conversation history is saved to Firestore for André's admin dashboard
-  // but is intentionally NOT reloaded on sign-in — each session starts fresh
-  // with the welcome screen and service chips.
+  // Load conversation history when the user signs in.
+  useEffect(() => {
+    if (!user) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const token = await user.getIdToken();
+        const res = await fetch("/api/messages", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) return;
+        const data = (await res.json()) as { messages: Message[] };
+        if (cancelled) return;
+        if (Array.isArray(data.messages) && data.messages.length > 0) {
+          setMessages(
+            data.messages.map((m) => ({ role: m.role, content: m.content })),
+          );
+        }
+      } catch {
+        // ignore — empty history is fine
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [user]);
 
   useEffect(() => {
     const stored = typeof window !== "undefined" ? localStorage.getItem("andjix.lang") : null;
@@ -209,7 +232,7 @@ export default function Chat() {
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto">
         <div className="mx-auto max-w-3xl px-4 py-6 md:py-10">
-          {showWelcome && <Welcome strings={t} onPick={(text) => setInput(text)} disabled={streaming} />}
+          {showWelcome && <Welcome strings={t} onPick={(text) => send(text)} disabled={streaming} />}
 
           <div className="space-y-4">
             {messages.map((m, i) => (
@@ -426,7 +449,7 @@ function Bubble({ role, content }: { role: "user" | "assistant"; content: string
 
 function FormattedText({ content }: { content: string }) {
   const lines = content.split("\n");
-  const blocks: Array<{ type: "p" | "ul" | "ol" | "h"; items: string[]; start?: number }> = [];
+  const blocks: Array<{ type: "p" | "ul" | "ol" | "h"; items: string[] }> = [];
   for (const raw of lines) {
     const line = raw.trimEnd();
     const bullet = /^\s*[-*•]\s+(.*)$/.exec(line);
@@ -438,9 +461,7 @@ function FormattedText({ content }: { content: string }) {
       else blocks.push({ type: "ul", items: [bullet[1]] });
     } else if (numbered) {
       if (last && last.type === "ol") last.items.push(numbered[2]);
-      // Store the actual number so <ol start={n}> continues correctly
-      // even when bullet sub-lists break the numbered block.
-      else blocks.push({ type: "ol", items: [numbered[2]], start: parseInt(numbered[1], 10) });
+      else blocks.push({ type: "ol", items: [numbered[2]] });
     } else if (heading) {
       blocks.push({ type: "h", items: [heading[1]] });
     } else if (line.trim() === "") {
@@ -469,7 +490,7 @@ function FormattedText({ content }: { content: string }) {
         }
         if (b.type === "ol") {
           return (
-            <ol key={i} start={b.start ?? 1} className="ml-5 list-decimal space-y-1.5 marker:font-semibold marker:text-[var(--color-andjix-blue-deep)]">
+            <ol key={i} className="ml-5 list-decimal space-y-1.5 marker:font-semibold marker:text-[var(--color-andjix-blue-deep)]">
               {b.items.map((it, j) => (
                 <li key={j}>{renderInline(it)}</li>
               ))}
