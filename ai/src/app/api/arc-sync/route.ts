@@ -212,11 +212,30 @@ async function handleSync(req: NextRequest): Promise<Response> {
   });
 }
 
+// ── CORS headers (admin.andjix.ca → ai.andjix.ca cross-origin call) ──────────
+
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "https://admin.andjix.ca",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Authorization, Content-Type",
+};
+
+function withCors(res: Response): Response {
+  const headers = new Headers(res.headers);
+  for (const [k, v] of Object.entries(CORS_HEADERS)) headers.set(k, v);
+  return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
+}
+
+// Preflight handler
+export async function OPTIONS() {
+  return new Response(null, { status: 204, headers: CORS_HEADERS });
+}
+
 // Both GET (Vercel cron) and POST (admin panel manual trigger) are supported.
 export async function GET(req: NextRequest) {
-  return handleSync(req);
+  return withCors(await handleSync(req));
 }
 
 export async function POST(req: NextRequest) {
-  return handleSync(req);
+  return withCors(await handleSync(req));
 }
