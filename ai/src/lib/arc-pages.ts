@@ -49,13 +49,13 @@ export const ARC_PAGES: ArcPageConfig[] = [
   {
     topic: "travailleurs-autonomes",
     title: "Travailleurs autonomes — déclaration",
-    url: "https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/travailleur-autonome/declaration.html",
+    url: "https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/travailleur-autonome.html",
     keywords: ["travailleur autonome", "self-employed", "t2125", "revenus d'entreprise", "uber", "lyft"],
   },
   {
     topic: "tps-tvh",
     title: "TPS/TVH pour les entreprises",
-    url: "https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/taxe-produits-services-taxe-harmonisee-tps-tvh.html",
+    url: "https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/taxe-produits-services-taxe-harmonisee-tps-tvh/inscrire-tps-tvh.html",
     keywords: ["tps", "tvh", "gst", "hst", "taxe vente", "inscription tps", "30 000"],
   },
   {
@@ -73,37 +73,37 @@ export const ARC_PAGES: ArcPageConfig[] = [
   {
     topic: "reer",
     title: "REER — Régime enregistré d'épargne-retraite",
-    url: "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/tout-sur-reer-reerr-fonds-revenu-retraite.html",
+    url: "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/reer-et-autre-regime-enregistre.html",
     keywords: ["reer", "rrsp", "retraite", "cotisation reer", "droits reer"],
   },
   {
     topic: "celi",
     title: "CELI — Compte d'épargne libre d'impôt",
-    url: "https://www.canada.ca/fr/agence-revenu/services/formulaires-publications/publications/rc4466/guide-compte-epargne-libre-impot-celi-particuliers.html",
+    url: "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/compte-d-epargne-libre-d-impot.html",
     keywords: ["celi", "tfsa", "épargne libre", "droits celi", "plafond celi"],
   },
   {
     topic: "frais-medicaux",
     title: "Crédit d'impôt pour frais médicaux",
-    url: "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/fixez-votre-declaration/details-declarations/credits-deductions/credit-impot-frais-medicaux.html",
+    url: "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/fixez-votre-declaration/details-declarations/credits-deductions/depenses-medicales-admissibles.html",
     keywords: ["frais médicaux", "médical", "médicaments", "dentiste", "optométriste"],
   },
   {
     topic: "t2-societes",
     title: "Déclaration de revenus des sociétés (T2)",
-    url: "https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/societes/declaration-de-revenus-societes.html",
+    url: "https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/societes.html",
     keywords: ["t2", "société", "corporation", "impôt sociétés", "entreprise incorporée"],
   },
   {
     topic: "frais-scolarite",
     title: "Montant pour frais de scolarité",
-    url: "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/fixez-votre-declaration/details-declarations/credits-deductions/frais-scolarite-deductibles.html",
+    url: "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/fixez-votre-declaration/details-declarations/credits-deductions/frais-scolarite.html",
     keywords: ["frais scolarité", "tuition", "étudiant", "t2202", "formation"],
   },
   {
     topic: "dons",
     title: "Dons de bienfaisance",
-    url: "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/fixez-votre-declaration/details-declarations/credits-deductions/dons-bienfaisance-autres.html",
+    url: "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/fixez-votre-declaration/details-declarations/credits-deductions/dons-bienfaisance.html",
     keywords: ["don", "bienfaisance", "charity", "reçu officiel", "organisme"],
   },
   {
@@ -121,13 +121,13 @@ export const ARC_PAGES: ArcPageConfig[] = [
   {
     topic: "nouveaux-residents",
     title: "Nouveaux résidents — fiscalité canadienne",
-    url: "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/frequemment-posees/particuliers/je-viens-d-immigrer-canada-dois-je-produire-declaration-revenues-canadienne.html",
+    url: "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/nouveaux-arrivants-canada-impots.html",
     keywords: ["nouveau résident", "immigrant", "arrivée canada", "première déclaration", "résidence fiscale"],
   },
   {
     topic: "t4",
     title: "T4 — État de la rémunération payée",
-    url: "https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/retenues-paie/feuillets-releves/t4-etat-de-la-remuneration-payee.html",
+    url: "https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/retenues-paie/feuillets-releves/t4-etat-remuneration-payee.html",
     keywords: ["t4", "feuillet t4", "rémunération", "employeur feuillet"],
   },
   {
@@ -139,13 +139,13 @@ export const ARC_PAGES: ArcPageConfig[] = [
   {
     topic: "depenses-bureau",
     title: "Dépenses de bureau à domicile (télétravail)",
-    url: "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/fixez-votre-declaration/details-declarations/credits-deductions/frais-de-bureau-a-domicile-des-employes.html",
+    url: "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/fixez-votre-declaration/details-declarations/credits-deductions/employes-frais-de-bureau-domicile.html",
     keywords: ["télétravail", "bureau domicile", "work from home", "t2200", "dépenses emploi"],
   },
   {
     topic: "acomptes",
     title: "Acomptes provisionnels pour particuliers",
-    url: "https://www.canada.ca/fr/agence-revenu/services/paiements-arc/acomptes-provisionnels/particuliers/acomptes-provisionnels-particuliers-introduction.html",
+    url: "https://www.canada.ca/fr/agence-revenu/services/paiements-arc/acomptes-provisionnels.html",
     keywords: ["acompte provisionnel", "quarterly payment", "instalment", "paiement trimestriel"],
   },
 ];

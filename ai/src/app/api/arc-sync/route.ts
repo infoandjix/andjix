@@ -81,14 +81,17 @@ function extractText(html: string, maxLength = 2500): string {
 
 // ── HTTP fetch ───────────────────────────────────────────────────────────────
 
-async function fetchPage(url: string, timeoutMs = 10_000): Promise<string | null> {
+async function fetchPage(url: string, timeoutMs = 12_000): Promise<string | null> {
   try {
     const res = await fetch(url, {
       signal: AbortSignal.timeout(timeoutMs),
       headers: {
-        "User-Agent": "Andjix-Bot/1.0 (andjix.ca; info.andjix@gmail.com)",
+        // Use a realistic browser UA — canada.ca blocks identified bots
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
         "Accept-Language": "fr-CA,fr;q=0.9,en-CA;q=0.8",
-        Accept: "text/html",
+        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Cache-Control": "no-cache",
       },
     });
     if (!res.ok) return null;
