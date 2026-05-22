@@ -77,32 +77,9 @@ export default function Chat() {
   const t = STRINGS[lang];
   const { user, configured, signOut } = useAuth();
 
-  // Load conversation history when the user signs in.
-  useEffect(() => {
-    if (!user) return;
-    let cancelled = false;
-    (async () => {
-      try {
-        const token = await user.getIdToken();
-        const res = await fetch("/api/messages", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        if (!res.ok) return;
-        const data = (await res.json()) as { messages: Message[] };
-        if (cancelled) return;
-        if (Array.isArray(data.messages) && data.messages.length > 0) {
-          setMessages(
-            data.messages.map((m) => ({ role: m.role, content: m.content })),
-          );
-        }
-      } catch {
-        // ignore — empty history is fine
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [user]);
+  // Note: conversation history is saved to Firestore for André's admin dashboard
+  // but is intentionally NOT reloaded on sign-in — each session starts fresh
+  // with the welcome screen and service chips.
 
   useEffect(() => {
     const stored = typeof window !== "undefined" ? localStorage.getItem("andjix.lang") : null;
