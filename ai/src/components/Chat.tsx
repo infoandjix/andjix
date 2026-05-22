@@ -209,7 +209,7 @@ export default function Chat() {
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto">
         <div className="mx-auto max-w-3xl px-4 py-6 md:py-10">
-          {showWelcome && <Welcome strings={t} onPick={(text) => send(text)} disabled={streaming} />}
+          {showWelcome && <Welcome strings={t} onPick={(text) => setInput(text)} disabled={streaming} />}
 
           <div className="space-y-4">
             {messages.map((m, i) => (
