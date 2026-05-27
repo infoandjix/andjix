@@ -7,7 +7,7 @@
  */
 window.ANDJIX = {
   // Calendly — single scheduling URL for "Réserver une consultation"
-  calendly: "https://calendly.com/info-andjix/30min",
+  calendly: "https://calendly.com/info-andjix/entretien-candidat-placement",
 
   // Typeform — one form per service line. Replace REPLACE_ME with the form's
   // public URL (https://andjix.typeform.com/to/XXXXXXXX).
