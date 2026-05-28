@@ -28,7 +28,7 @@
   "intro": {
     "eyebrow": "Your tax situation is unique",
     "title": "Generic software doesn't know your reality.",
-    "lede": "TurboTax doesn't know you arrived in June. It ignores your foreign income, your tax treaty, and your first-year credits. Andjix does. Every return is prepared by an advisor who understands the immigrant reality in Ottawa.",
+    "lede": "Generic software doesn't know you arrived in June. It ignores your foreign income, your tax treaty, and your first-year credits. Andjix does. Every return is prepared by an advisor who understands the immigrant reality in Ottawa.",
     "stat1_label": "newcomers per year in Ontario",
     "stat1_desc": "A meaningful share settles in Ottawa with complex tax situations that standard software handles poorly.",
     "stat2_label": "immigrant tax situations mastered",
@@ -59,7 +59,7 @@
   "rupture": {
     "eyebrow": "Why Andjix",
     "title": "Where generic software and generalists stop, Andjix begins.",
-    "lede": "TurboTax and general-practice accountants are built for the \"typical\" Canadian taxpayer. Immigrants have different situations — and deserve an expert who knows it.",
+    "lede": "Generic software and general-practice accountants are built for the \"typical\" Canadian taxpayer. Immigrants have different situations — and deserve an expert who knows it.",
     "h_classic": "Generic tools / General accountant",
     "h_andjix": "Andjix — Immigrant specialist",
     "row1_classic": "Built for the typical taxpayer — not for first-year residents or foreign income situations.",

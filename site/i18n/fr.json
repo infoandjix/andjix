@@ -28,7 +28,7 @@
   "intro": {
     "eyebrow": "Votre situation fiscale est unique",
     "title": "Les logiciels génériques ne connaissent pas votre réalité.",
-    "lede": "TurboTax ne sait pas que vous êtes arrivé en juin. Il ignore vos revenus étrangers, votre traité fiscal et vos crédits de première année. Andjix, si. Chaque déclaration est préparée par un conseiller qui connaît la réalité des immigrants à Ottawa.",
+    "lede": "Les logiciels génériques ne savent pas que vous êtes arrivé en juin. Ils ignorent vos revenus étrangers, votre traité fiscal et vos crédits de première année. Andjix, si. Chaque déclaration est préparée par un conseiller qui connaît la réalité des immigrants à Ottawa.",
     "stat1_label": "nouveaux arrivants par an en Ontario",
     "stat1_desc": "Une part importante s'installe à Ottawa avec des situations fiscales complexes que les outils standard gèrent mal.",
     "stat2_label": "situations fiscales immigrants maîtrisées",
@@ -59,7 +59,7 @@
   "rupture": {
     "eyebrow": "Pourquoi Andjix",
     "title": "Là où les logiciels et les généralistes s'arrêtent, Andjix commence.",
-    "lede": "TurboTax et les comptables généralistes sont conçus pour le contribuable canadien « typique ». Les immigrants ont des situations différentes — et méritent un expert qui le sait.",
+    "lede": "Les logiciels génériques et les comptables généralistes sont conçus pour le contribuable canadien « typique ». Les immigrants ont des situations différentes — et méritent un expert qui le sait.",
     "h_classic": "Outils génériques / CPA généraliste",
     "h_andjix": "Andjix — Spécialiste immigrants",
     "row1_classic": "Conçu pour le contribuable typique — pas pour la première année au Canada ni les revenus étrangers.",
