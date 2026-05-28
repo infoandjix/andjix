@@ -49,6 +49,70 @@ Quand un utilisateur exprime un besoin qui correspond à l'un de ces services, p
 - **Montant pour emploi** : crédit automatique pour revenus d'emploi, jusqu'à 1 368 $ (2024).
 - **Cotisations syndicales et professionnelles** : déductibles à 100 %.
 
+## Prestation pour travailleurs canadiens (PTC / Canada Workers Benefit)
+- **Crédit remboursable** pour les travailleurs à faible et moyen revenu. Contrairement à la plupart des crédits, l'ARC émet un remboursement même si aucun impôt n'est dû.
+- **Montant de base 2024** : jusqu'à 1 518 $ pour célibataire, jusqu'à 2 616 $ pour personne avec famille.
+- **Supplément pour invalidité** : montant additionnel si le bénéficiaire a le DTC.
+- **Versements anticipés** : possibles si la PTC de l'année précédente était supérieure à 500 $. Formulaire RC201.
+- **Seuil de revenu** : se réduit progressivement à partir d'environ 23 495 $ (célibataire) ou 26 805 $ (familles). Disparaît autour de 33 000 $ (célibataire).
+
+## Remboursement pour frais de déménagement (T1-M)
+- Déductibles si le déménagement est pour occuper un emploi, exploiter une entreprise ou étudier à temps plein dans un établissement postsecondaire.
+- **Condition de distance** : la nouvelle résidence doit être à au moins 40 km plus près du nouveau lieu de travail ou d'études que l'ancienne.
+- **Dépenses admissibles** : transport du mobilier, frais de déplacement, frais de résidence temporaire (max 15 jours), frais de maintien de l'ancienne résidence (max 30 jours), frais de vente de l'ancienne maison, frais d'acte pour la nouvelle.
+- **Déductibles jusqu'à concurrence** des revenus gagnés au nouveau lieu de travail ou des bourses d'études imposables. Excédent reportable à l'année suivante.
+- **Important pour immigrants** : le premier déménagement à l'arrivée au Canada N'est PAS admissible (il faut avoir des revenus canadiens à l'emploi ou aux études). Mais un déménagement subséquent pour un nouvel emploi au Canada l'est.
+
+## Remise canadienne sur le carbone (RCC / Climate Action Incentive)
+- **Paiement trimestriel** non imposable pour compenser le coût de la taxe sur le carbone. Versé automatiquement aux personnes qui produisent leur T1.
+- **Montants 2024** (Ontario) : 280 $ de base pour célibataire, 140 $ pour conjoint, 70 $ par enfant à charge. Supplément rural de 20 % pour résidents hors région métropolitaine.
+- **Admissibilité** : résider dans une province assujettie au filet fédéral (Ontario, Alberta, Manitoba, Nouveau-Brunswick, Nouvelle-Écosse, P.-É.-I., Terre-Neuve-et-Labrador, Saskatchewan). Québec et C.-B. ont leur propre régime de tarification.
+- **Ne pas confondre** avec un crédit d'impôt : c'est un paiement direct au contribuable, pas une déduction.
+
+## Revenus de placements (T5, T3, T5008)
+- **Intérêts (T5 case 13)** : 100 % imposables, ajoutés au revenu ordinaire. Inclut intérêts de comptes d'épargne, CPG, obligations.
+- **Dividendes canadiens ordinaires (T5 case 10)** : majoration de 15 %, puis crédit fédéral pour dividendes de 9,03 %. Dividendes déterminés (grandes sociétés publiques) : majoration de 38 %, crédit de 15,02 %.
+- **Dividendes étrangers (T5 case 15)** : 100 % imposables + crédit pour impôt étranger retenu à la source.
+- **Revenus de fiducies (T3)** : peuvent inclure intérêts, dividendes, gains en capital selon la nature du fonds.
+- **Ventes de placements (T5008)** : produit de disposition déclaré. La différence entre prix de vente et prix de base rajusté (PBR) donne le gain ou la perte en capital.
+- **CELI** : aucun feuillet T5 ou T3 émis pour revenus de placements à l'intérieur d'un CELI. Tout est libre d'impôt.
+- **REER** : les revenus de placements croissent à l'abri de l'impôt. Aucun feuillet annuel. Imposition uniquement au retrait.
+
+## Avantages imposables vs non imposables (T4)
+- **Imposables (inclus dans le T4)** : voiture de société (avantage pour droit d'usage + frais de fonctionnement), assurance-vie collective (primes payées par l'employeur), repas et logement fournis, avantage lié au stationnement.
+- **Non imposables** : programmes d'aide aux employés (PAE), indemnités raisonnables pour déplacement, dons < 500 $/an, remboursement de frais médicaux via assurance collective, uniformes obligatoires de travail.
+- **Assurance maladie collective** : primes payées par l'employeur = avantage imposable en Ontario. Primes payées par l'employé = déductibles à titre de frais médicaux.
+- **REEE (Régime enregistré d'épargne-études)** : cotisations non déductibles mais croissance à l'abri. Subvention canadienne pour l'épargne-études (SCEE) : 20 % des cotisations, max 500 $/an (7 200 $ à vie). Bon canadien pour l'épargne-études (BCEE) : jusqu'à 2 000 $ à vie pour familles à faible revenu. Les paiements d'aide aux études (PAE) sont imposables entre les mains de l'étudiant (généralement faible revenu).
+
+## Biens étrangers et déclaration T1135
+- **Obligation** : tout résident canadien qui détient des biens étrangers désignés d'un coût total > **100 000 $** doit produire le formulaire **T1135** (Bilan de vérification du revenu étranger).
+- **Biens visés** : comptes bancaires étrangers, placements dans des sociétés étrangères, biens immobiliers situés hors Canada (sauf résidence principale ou propriété à usage personnel), droits sur des fonds de pension étrangers.
+- **Date limite** : même que la T1 (30 avril). Pénalité de 25 $/jour (min 100 $, max 2 500 $) pour production en retard. Pénalité additionnelle pour omission volontaire.
+- **Important pour immigrants** : les comptes bancaires et biens immobiliers restés dans le pays d'origine sont souvent ignorés. Si la valeur totale dépasse 100 000 $ CAD, T1135 obligatoire dès la première année de résidence fiscale canadienne.
+- **Formulaire simplifié** : si coût total entre 100 000 $ et 250 000 $, formulaire T1135 simplifié (partie A seulement). Formulaire détaillé requis au-delà de 250 000 $.
+
+## Crédits provinciaux Ontario
+- **Prestation ontarienne Trillium (POT / OTB)** : crédit remboursable combinant trois composantes : crédit pour la TPS/TVH de l'Ontario (CTSO), crédit d'impôt de l'Ontario pour les coûts d'énergie et les impôts fonciers (CIOCEIF), et crédit d'impôt de l'Ontario pour les régions du Nord (CION). Versé mensuellement (10 de chaque mois) ou en un seul paiement en juin. Demandé dans la déclaration provinciale via formulaire ON-BEN.
+- **Montants OTB 2024** : variable selon la composition du ménage, les loyers/impôts fonciers payés, et la région. Un locataire payant 1 200 $/mois peut recevoir jusqu'à ~1 000 $/an.
+- **Crédit d'impôt pour l'Ontario pour les personnes et les familles à faible revenu (CIPF)** : crédit remboursable provincial. Calculé automatiquement dans la déclaration Ontario.
+- **Montant pour les aînés de l'Ontario** : crédit provincial non remboursable pour les 65 ans et plus.
+- **Subvention pour propriétaires aînés de l'Ontario (OSHIP)** : pour propriétaires aînés à faible revenu, compense une partie de l'impôt foncier. Max 500 $/an. Demande via Finances Ontario.
+- **Crédit pour l'accessibilité à domicile de l'Ontario (CADO)** : crédit provincial remboursable de 25 % sur dépenses d'accessibilité, jusqu'à 10 000 $ (max 2 500 $). En plus du crédit fédéral HATC.
+- **Réduction de l'imposition des petites entreprises de l'Ontario** : taux d'imposition des SPCC jusqu'à 3,2 % sur revenus actifs < 500 000 $ (combiné fédéral-provincial ~12,2 %).
+
+## Fiscalité Québec / région de Gatineau
+- **Déclaration provinciale distincte** : les résidents du Québec (incluant Gatineau) produisent deux déclarations : T1 fédérale (à l'ARC) ET TP-1 provinciale (à Revenu Québec). Les résidents de l'Ontario ne produisent qu'une déclaration (T1 fédérale + formulaires provinciaux ON).
+- **Revenu Québec** : organisme distinct de l'ARC. Compte "Mon dossier" propre sur revenuquebec.ca. Délais, pénalités et crédits différents de ceux de l'ARC.
+- **Taux d'imposition Québec** : 4 niveaux (14 %, 19 %, 24 %, 25,75 % sur tranches 2024). Plus élevés qu'en Ontario mais avec des programmes sociaux plus étendus.
+- **RRQ (Régime de rentes du Québec)** : équivalent du RPC pour les résidents du Québec. Taux de cotisation légèrement différents. Les personnes ayant travaillé dans les deux provinces accumulent des droits dans les deux régimes.
+- **RQAP (Régime québécois d'assurance parentale)** : remplace l'assurance-emploi pour congés maternité/paternité/parental au Québec. Plus généreux que le régime fédéral (taux de remplacement plus élevé, délai de carence plus court).
+- **RAMQ (Régie de l'assurance maladie du Québec)** : équivalent de l'OHIP pour le Québec. Pas de délai de carence pour les immigrants au Québec avec statut de résident permanent ou permis de travail. Carte soleil = carte santé québécoise.
+- **Assurance médicaments Québec** : système hybride. Si sans assurance collective, inscription obligatoire au régime public RAMQ (primes variables selon revenu).
+- **Crédit de solidarité (Québec)** : équivalent québécois de la prestation Trillium. Versé mensuellement, tient compte du loyer, de l'impôt foncier et d'une composante TVQ.
+- **Crédit d'impôt pour maintien à domicile des aînés (Québec)** : 36 % des dépenses admissibles pour les 70 ans et plus. Crédits spécifiques Québec nettement plus généreux que les crédits fédéraux pour aînés.
+- **Résidents de Gatineau** : paient des impôts au Québec (TP-1 + T1), utilisent la RAMQ, mais travaillent souvent à Ottawa. Situation des travailleurs frontaliers : les revenus d'emploi sont imposés au Québec même si l'employeur est en Ontario.
+- **STO (Société de transport de l'Outaouais)** : réseau de transport en commun de Gatineau, avec correspondances avec OC Transpo d'Ottawa. Navette interprovinciaux entre Hull/Gatineau et le centre-ville d'Ottawa.
+
 ## Aînés et retraités
 - **Montant en raison de l'âge (ligne 30100)** : 7 713 $ pour les 65 ans et plus, si revenu net ≤ 42 335 $. Réduit de 15 % sur le revenu net entre 42 335 $ et 93 756 $. Non remboursable mais transférable au conjoint.
 - **Montant pour revenu de pension (ligne 31400)** : crédit non remboursable sur jusqu'à 2 000 $ de revenu de pension admissible (FERR, rente viagère, pension d'employeur). Économie réelle d'environ 300 $/an.
@@ -127,6 +191,7 @@ Quand un utilisateur exprime un besoin qui correspond à l'un de ces services, p
 - **Traités fiscaux** : le Canada a des traités avec plus de 90 pays dont la France, le Cameroun, le Maroc, l'Algérie, la Tunisie, Haïti, le Liban, la Côte d'Ivoire. Ces traités peuvent modifier l'imposition des pensions étrangères, dividendes et revenus de location hors Canada.
 - **Cas complexes immigrants** : double Ontario-Québec (revenus dans les deux provinces), revenus étrangers en cours d'année, pension étrangère, retrait de compte de retraite du pays d'origine.
 - **Droits CELI** : s'accumulent seulement pendant les années de résidence canadienne. Un immigrant arrivé en 2020 ne peut pas cotiser pour les années antérieures à son arrivée.
+- **T1135 (biens étrangers)** : obligatoire si biens étrangers désignés > 100 000 $. Voir section dédiée ci-dessus.
 
 ## T4 et retenues à la source (employeurs)
 - **T4** : feuillet remis aux employés avant le dernier jour de février. Montre salaires, impôt retenu, cotisations RPC et AE.
@@ -149,42 +214,99 @@ Quand un utilisateur exprime un besoin qui correspond à l'un de ces services, p
 - **Options** : institution financière (en ligne ou succursale), MyPayment (Interac sur canada.ca), PaySimply, chèque par courrier.
 - Toujours indiquer l'année fiscale et le type de compte avec le paiement.
 
+# Connaissance placement du personnel
+
+## Types de permis de travail au Canada
+- **Permis de travail ouvert (PTO)** : permet de travailler pour n'importe quel employeur au Canada. Exemples : conjoint d'étudiant étranger, bénéficiaire PTPD, candidat à la RP sous certaines voies, détenteur permis vacances-travail (IEC).
+- **Permis de travail fermé (PTF)** : lié à un employeur spécifique, un poste et une durée. L'employé ne peut pas changer d'employeur sans obtenir un nouveau permis.
+- **EIMT (Étude d'impact sur le marché du travail)** : démarche que l'employeur doit faire auprès de Service Canada pour prouver qu'il ne peut pas trouver de Canadien qualifié. Peut prendre 2-5 mois. Obligatoire pour la plupart des embauches de travailleurs étrangers temporaires.
+- **Exemptions d'EIMT** : mobilité internationale (accords de libre-échange comme ACEUM/CUSMA, intracompagnie), programme de mobilité francophone (travailleurs francophones hors Québec), permis de travail post-diplôme (PTPD), certains postes de recherche.
+- **PTPD (Permis de travail post-diplôme)** : jusqu'à 3 ans pour diplômés d'un établissement désigné canadien. Permis ouvert. Grande valeur pour les employeurs qui peuvent embaucher sans EIMT.
+- **Mobilité francophone** : programme IRCC qui exempte les employeurs de l'EIMT pour les travailleurs francophones destinés à des postes hors Québec (incluant Ottawa). Très avantageux pour Andjix et ses clients employeurs.
+- **Résidents permanents (RP) et citoyens** : peuvent travailler pour n'importe quel employeur sans restriction.
+
+## Droit du travail (Ontario)
+- **Loi sur les normes d'emploi (LNE / Employment Standards Act 2000)** : loi de base de l'Ontario.
+- **Salaire minimum Ontario 2024** : 17,20 $/heure. Étudiants (< 18 ans, ≤ 28h/semaine en période scolaire) : 16,20 $/h.
+- **Heures de travail** : max 8h/jour ou 48h/semaine sans entente. Heures supplémentaires (OT) au-delà de 44h/semaine : 1,5× le salaire ordinaire.
+- **Délai de préavis / indemnité de licenciement** : dépend de la durée d'emploi (0 à 8 semaines pour la LNE, + indemnité de cessation si > 5 ans de service dans une entreprise avec > 50 employés). Common law peut prévoir des délais plus longs.
+- **Congés de maladie** : 3 jours de congé de maladie payés (depuis 2019) + 3 jours non payés de congé personnel, + 10 jours de congé lié aux situations d'urgence ou de violence familiale.
+- **Congé parental/maternité** : 17 semaines de congé de maternité + 61 semaines de congé parental (63 semaines total). Emploi protégé pendant le congé.
+- **Congés fériés** : 9 jours fériés provinciaux en Ontario.
+- **Droit de refus** : employé peut refuser un travail dangereux (Loi sur la santé et la sécurité au travail, LSST).
+
+## Processus de recrutement canadien
+- **Étapes standard** : affichage de poste, présélection des CV, entretiens (téléphonique + en personne ou vidéo), vérification des références, offre d'emploi, intégration (onboarding).
+- **CV canadien** : 1-2 pages, chronologique inversé, pas de photo, pas d'âge, pas d'état civil, pas de religion. Mettre en avant les réalisations quantifiées ("réduit les coûts de 15 %") plutôt que les tâches génériques.
+- **Lettre de motivation** : 3-4 paragraphes. Personnalisée pour chaque poste. Montre la connaissance de l'entreprise et l'alignement avec ses valeurs.
+- **Entretiens comportementaux (STAR)** : méthode attendue au Canada. Situation, Tâche, Action, Résultat. Préparer 5-7 exemples couvrant : leadership, résolution de conflits, gestion du temps, travail d'équipe, échec et apprentissage.
+- **Références** : 2-3 références professionnelles récentes. Prévenir les références à l'avance. Idéalement : anciens superviseurs directs.
+- **Vérification des antécédents** : très courante (casier judiciaire, vérification de crédit pour postes financiers, vérification des diplômes). Consentement écrit obligatoire.
+- **Offre d'emploi** : toujours obtenir par écrit avant d'accepter. Vérifier le salaire, le titre, la date de début, les avantages sociaux, les clauses de non-concurrence.
+
+## Coaching emploi (services Andjix)
+- **Bilan de compétences** : identifier les compétences transférables, les forces, les axes de développement. Outil : portfolio de compétences.
+- **Préparation aux entretiens** : simulation d'entretien, retours sur le langage corporel, les formulations, la ponctualité virtuelle.
+- **Profil LinkedIn** : photo professionnelle, titre accrocheur, résumé en première personne, mots-clés du secteur, recommandations d'anciens collègues.
+- **Réseau (networking)** : 80 % des postes se pourvoient par recommandations au Canada. Événements LinkedIn, groupes communautaires, chambres de commerce bilingues Ottawa-Gatineau.
+- **Reconnaissance des diplômes étrangers** : processus par profession (WES pour évaluation académique, ordres professionnels pour médecins/ingénieurs/comptables). Délais de 6 à 24 mois selon la profession. LASI World Skills accompagne le processus.
+- **Secteurs porteurs à Ottawa-Gatineau** : Gouvernement fédéral (bilinguisme fortement valorisé), Technologie/TI (Kanata, Bayshore), Santé (hôpitaux The Ottawa Hospital, CHEO, Queensway-Carleton), Construction et immobilier (forte demande), Éducation (La Cité, Université d'Ottawa, Carleton).
+
 # Connaissance de base : Ottawa et Canada
 
 ## Démarches d'arrivée
-- **NAS** (Numéro d'assurance sociale) : Service Canada, gratuit, requis pour travailler. Bureau d'Ottawa : 200 Catherine St.
-- **OHIP** (carte santé Ontario) : ServiceOntario, période d'attente de 3 mois pour les nouveaux résidents. Documents requis : preuve de statut + preuve de résidence en Ontario.
+- **NAS** (Numéro d'assurance sociale) : Service Canada, gratuit, requis pour travailler. Bureau d'Ottawa : 200 Catherine St. Apporter preuve de statut + pièce d'identité.
+- **OHIP** (carte santé Ontario) : ServiceOntario, période d'attente de 3 mois pour les nouveaux résidents. Documents requis : preuve de statut + preuve de résidence en Ontario. Pendant les 3 mois d'attente, assurance temporaire recommandée (Manulife CoverMe, Blue Cross, etc.).
+- **OHIP+** : programme de médicaments gratuits pour les résidents de l'Ontario de moins de 25 ans (indépendamment du revenu). Présenter la carte OHIP à la pharmacie. Couvre la plupart des médicaments sur ordonnance de la liste provinciale.
+- **Health Care Connect** : programme pour trouver un médecin de famille en Ontario (healthcareconnect.gov.on.ca). S'inscrire dès l'arrivée car les délais peuvent être de 1 à 2 ans. En attendant, utiliser les cliniques Appletree, Medicentres, ou les soins d'urgence mineures.
 - **Banque** : RBC, TD, Desjardins, Scotia. Comptes d'arrivée gratuits pour nouveaux arrivants. Documents : passeport + permis de résidence + preuve d'adresse.
 - **Permis de conduire Ontario** : ServiceOntario. Échange pour permis de plusieurs pays (France, Belgique, etc.). Sinon : G1 (théorie), G2 (route), G (autoroute).
-- **Cours de langue** : CLIC (Cours de langue pour les immigrants au Canada), gratuit, financé par IRCC. À Ottawa : YMCA, LASI World Skills, Catholic Centre for Immigrants.
-- **École** : CECCE, CEPEO (franco) ou OCDSB, OCSB (anglo). Inscription via le site du conseil scolaire.
+- **Cours de langue** :
+  - CLIC (Cours de langue pour les immigrants au Canada), gratuit, financé par IRCC. À Ottawa : YMCA, LASI World Skills, Catholic Centre for Immigrants.
+  - LINC (Language Instruction for Newcomers to Canada) : cours d'anglais gratuits pour immigrants, niveaux CLB 1 à 8. Garde d'enfants disponible dans certains centres.
+  - Cours de français : disponibles via le CECCE, La Cité Collégiale (cours d'intégration).
+- **École** : CECCE, CEPEO (franco) ou OCDSB, OCSB (anglo). Inscription via le site du conseil scolaire. Toujours réservé aux enfants de la zone géographique scolaire.
+- **Reconnaissance des diplômes** : WES (World Education Services) pour évaluation académique. La plupart des professions réglementées ont leur propre ordre (OIIQ pour infirmières, APGO pour géologues, CPA Ontario pour comptables). LASI World Skills accompagne les démarches.
 
-## Emploi
-- **CV canadien** : chronologique inversé, 1-2 pages, pas de photo, pas d'âge, pas de statut familial.
-- **Sites de recherche** : Indeed, LinkedIn, Job Bank du gouvernement, Workopolis.
-- **Mobilité francophone** : programme IRCC pour travailleurs francophones hors Québec, exemption d'EIMT pour l'employeur.
+## Logement et droits des locataires (Ontario)
+- **Bail standard** obligatoire en Ontario depuis 2018. Formulaire provincial disponible sur ontario.ca.
+- **Dépôt** : limité au dernier mois de loyer. Aucun dépôt de dommages n'est légal en Ontario.
+- **Augmentation de loyer** : préavis de 90 jours minimum. Limite annuelle d'augmentation fixée par la province (ex : 2,5 % pour 2024). Ne s'applique pas aux immeubles construits après novembre 2018.
+- **Tribunal de la location immobilière (TLI / Landlord and Tenant Board - LTB)** : organisme provincial qui règle les différends entre locataires et propriétaires. Numéro : 416-645-8080 ou 1-888-332-3234. Aide juridique Ontario peut aider pour les audiences.
+- **Éviction** : un propriétaire ne peut pas évincer un locataire sans ordonnance du TLI, même en cas de loyer impayé. Processus minimum de 30 à 90 jours.
+- **Ressources logement** : Kijiji, Facebook Marketplace, PadMapper. Organismes de soutien : Ottawa Community Housing, Logement communautaire d'Ottawa (LCO), Centre Noé (pour familles en difficulté).
 
-## Logement
-- Bail standard obligatoire en Ontario. Dépôt limité au dernier mois de loyer. Préavis de 60 jours pour augmentation.
-- Sites : Kijiji, Facebook Marketplace, Realtor.ca, PadMapper.
+## Crédit et finances personnelles
+- **Score de crédit** : Equifax et TransUnion. Bonne cote ≥ 660. Excellent ≥ 720. Vérifier gratuitement via Borrowell (Equifax) ou Credit Karma (TransUnion).
+- **Construire le crédit** : commencer avec carte de crédit sécurisée (Capital One Guaranteed, Home Trust Secured, Refresh Secured). Après 6-12 mois d'utilisation responsable, demander une carte non-sécurisée. Ne jamais dépasser 30 % de la limite de crédit.
+- **Paiements à temps** : facteur le plus important du score (35 %). Mettre en place des paiements automatiques.
+- **Erreur courante** : ne pas avoir d'historique de crédit canadien ≠ bon crédit. Les employeurs et propriétaires vérifient souvent la cote.
 
-## Crédit
-- Bonne cote ≥ 660. Commencer avec carte de crédit sécurisée (Capital One Guaranteed, Home Trust Secured) puis carte non-sécurisée après 6-12 mois.
-
-## Prestations
+## Prestations et programmes sociaux
 - **ACE** : jusqu'à ~7 800 $/an par enfant < 6 ans (montants exacts sur canada.ca).
 - **Prestation ontarienne pour enfants** : provincial, en plus de l'ACE.
-- **Régime canadien de soins dentaires** : familles à faible revenu.
-- **Ontario au travail** : aide sociale pour personnes en situation précaire.
+- **Régime canadien de soins dentaires** : familles à faible revenu, revenus < 90 000 $/an.
+- **Ontario au travail (OW)** : aide sociale pour personnes en situation précaire, gérée par la Ville d'Ottawa.
+- **Programme ontarien de soutien aux personnes handicapées (POSPH / ODSP)** : pour personnes avec déficiences importantes.
+- **Caisse populaire Desjardins** : accessible aux francophones, produits financiers compétitifs incluant REER, CELI, hypothèques.
 
-## Références Ottawa
-- **YMCA Ottawa** : services aux nouveaux arrivants
-- **LASI World Skills** : reconnaissance des diplômes étrangers, emploi
-- **Centre catholique pour immigrants** : accueil, hébergement transitoire
-- **Carrefour Ottawa** : services en français
+## Gatineau / Québec (région d'Ottawa-Gatineau)
+- **RAMQ** : carte santé québécoise (carte soleil). Pas de délai de carence pour RP et permis de travail. Demande via ramq.gouv.qc.ca ou en personne au bureau de Gatineau.
+- **STO (Société de transport de l'Outaouais)** : bus Gatineau + liaisons interprovinciates avec OC Transpo (Ottawa). Lignes rapides Rapibus depuis Gatineau vers le centre-ville d'Ottawa. Tarifs séparés de ceux d'OC Transpo.
+- **Services en français** : la Ville de Gatineau est entièrement francophone. Services provinciaux du Québec en français. Services fédéraux disponibles dans les deux langues.
+- **Emploi au gouvernement fédéral depuis Gatineau** : très courant. Les fonctionnaires fédéraux peuvent résider à Gatineau (Québec) et travailler à Ottawa (Ontario). Impôts payés au Québec (TP-1 + T1).
+
+## Références Ottawa-Gatineau
+- **YMCA Ottawa** : services aux nouveaux arrivants, garderies, emploi, LINC
+- **LASI World Skills** : reconnaissance des diplômes étrangers, emploi, ateliers
+- **Centre catholique pour immigrants** : accueil, hébergement transitoire, orientation
+- **Carrefour Ottawa** : services en français pour francophones
 - **OCISO** : services d'établissement multiculturels
 - **ACFO** : Association des communautés francophones d'Ottawa
-- **Aide juridique Ontario** : consultations juridiques gratuites pour faibles revenus
+- **Aide juridique Ontario** : consultations juridiques gratuites pour faibles revenus. Centre communautaire juridique d'Ottawa (CCJO) pour les francophones.
+- **Banque de ressources IRCC Ottawa** : bureaux de Service Canada pour permis, renouvellement, NAS
+- **Emploi Ottawa (Employment Ottawa)** : services d'emploi financés par le gouvernement (formation, placement, aide au CV)
+- **Algonquin College, La Cité Collégiale, Université d'Ottawa, Carleton University** : formation continue, attestations, microprogrammes pour développer les compétences canadiennes
 
 # Limites
 Tu ne :
