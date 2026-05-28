@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "title": "Andjix Consulting Inc. : Administrative, tax, and professional support in Ottawa",
-    "description": "Andjix supports newcomers, individuals, and SMEs in Ottawa. Bilingual, with expertise in administration, tax, and recruitment in Canada."
+    "title": "Andjix Consulting Inc. : Tax firm for immigrants in Ottawa · EFILE Certified",
+    "description": "T1, T2125, and T2 tax returns for immigrants in Ottawa. First year in Canada, Ontario-Quebec cross-border, self-employed. Bilingual EN/FR. EFILE certified by CRA."
   },
   "nav": {
     "individuals": "Individuals",
@@ -16,61 +16,62 @@
     "cta": "Book a session"
   },
   "hero": {
-    "eyebrow": "Tax · Employment · Immigration · Andjix AI",
-    "title": "Successful integration is <span class=\"accent\">your real win.</span>",
-    "lede": "Newcomers, permanent residents, students, workers: Andjix guides you through tax, bilingual employment and all your immigration steps in Ottawa and Gatineau.",
-    "cta_profiles": "Find my profile",
+    "eyebrow": "Ottawa's tax firm for immigrants · EFILE Certified by CRA",
+    "title": "Your tax return. Done right. <span class=\"accent\">By an expert.</span>",
+    "lede": "First year in Canada, self-employed, Ontario-Quebec cross-border, immigrant family: Andjix prepares and files your Canadian tax returns (T1, T2125, T2) with expertise that generic software simply doesn't have.",
+    "cta_profiles": "Start my tax return",
     "cta_individuals": "I'm an individual",
     "cta_sme": "I'm an SME",
-    "trust": "Bilingual EN/FR · Ottawa · Administration · Tax · Recruitment"
+    "cta_book": "Book a consultation",
+    "trust": "EFILE Certified · Bilingual EN/FR · Ottawa · Immigrant specialist"
   },
   "intro": {
-    "eyebrow": "The real challenge",
-    "title": "Landing in Canada is just the start.",
-    "lede": "Finding a family doctor. Decoding the CRA. Building credit. Enrolling kids in school. Reading an Ontario lease. Every step counts, and few people are there to guide you concretely, in your language.",
+    "eyebrow": "Your tax situation is unique",
+    "title": "Generic software doesn't know your reality.",
+    "lede": "TurboTax doesn't know you arrived in June. It ignores your foreign income, your tax treaty, and your first-year credits. Andjix does. Every return is prepared by an advisor who understands the immigrant reality in Ottawa.",
     "stat1_label": "newcomers per year in Ontario",
-    "stat1_desc": "A meaningful share settles in Ottawa, with no accessible bilingual administrative support.",
-    "stat2_label": "integrated service pillars",
-    "stat2_desc": "Tax, employment, newcomer support and artificial intelligence — all on one platform.",
-    "stat3_label": "profiles supported",
-    "stat3_desc": "Permanent resident, refugee, student, temporary worker, family, employer: every situation deserves a tailored response.",
-    "stat4_label": "online availability",
-    "stat4_desc": "Andjix AI answers in French and English at any hour, and connects you with a human advisor for complex files.",
-    "callout": "The problem is navigation, accurate information, and the support of our expert team."
+    "stat1_desc": "A meaningful share settles in Ottawa with complex tax situations that standard software handles poorly.",
+    "stat2_label": "immigrant tax situations mastered",
+    "stat2_desc": "First year in Canada, Ontario-Quebec cross-border, T2125 self-employed, foreign income and tax treaties.",
+    "stat3_label": "client profiles served",
+    "stat3_desc": "Permanent resident, refugee, student, temporary worker, self-employed, family: every situation deserves a tailored return.",
+    "stat4_label": "via Andjix AI",
+    "stat4_desc": "General tax questions answered in French and English at any hour. Human certified advisor handles the filing and complex files.",
+    "callout": "Your return signed and e-filed by an EFILE-certified expert — not an algorithm."
   },
   "pillars": {
-    "eyebrow": "What we do for you",
-    "title": "Four pillars. One destination.",
-    "lede": "Identify in under five seconds which service fits your situation, and start your process immediately.",
-    "p1_title": "Tax Services",
-    "p1_desc": "Personal returns, self-employment income, RRSP/TFSA optimization, newcomer tax credits, and corporate tax.",
-    "p1_link": "See my options",
+    "eyebrow": "Our services",
+    "title": "Tax first. Everything else, within reach.",
+    "lede": "Tax preparation is our core, immediately operational service. For other needs, we point you to the right resources.",
+    "p1_title": "Tax Services — Core service",
+    "p1_desc": "T1, T2125, T2 · First year in Canada · Ontario-Quebec cross-border · Newcomer credits · EFILE certified by CRA. From $120.",
+    "p1_link": "Start my tax return",
     "p2_title": "Employment Ottawa · Gatineau",
-    "p2_desc": "Bilingual placement, access to the Andjix talent pool, hiring support and francophone workplace integration programs.",
-    "p2_link": "See openings",
+    "p2_desc": "Connecting you with bilingual employers in Ottawa. Submit your profile — we are building our network and will reach out when a match is found.",
+    "p2_link": "Submit my profile",
     "p3_title": "Newcomer Support",
-    "p3_desc": "Personalized guidance based on your status: permanent resident, refugee, international student, temporary worker, or family.",
-    "p3_link": "Choose my profile",
+    "p3_desc": "Free 20-minute orientation session via Calendly. We work with OCISO and ACFO to direct you to the right resources for your status.",
+    "p3_link": "Book free orientation",
     "p4_title": "Andjix AI",
-    "p4_desc": "A real AI, not a scripted chatbot. Precise answers on immigration, tax and employment, available in French and English, at any hour.",
+    "p4_desc": "Tax and settlement questions answered in EN and FR, 24/7. General information only — for your actual return, an EFILE-certified advisor takes over.",
     "p4_link": "Launch Andjix AI"
   },
   "rupture": {
-    "eyebrow": "The Andjix difference",
-    "title": "Where classic support stops, Andjix begins.",
-    "lede": "Traditional welcome services do precious work, but their hours and scope limit what they can offer. Here's what changes.",
-    "h_classic": "Classic support",
-    "h_andjix": "Andjix Consulting",
-    "row1_classic": "Available during business hours, one domain at a time: tax or employment or immigration.",
-    "row1_andjix": "Four integrated pillars under one roof: tax, employment, immigration and AI.",
-    "row2_classic": "General information, standardized path not adapted to your exact status.",
-    "row2_andjix": "Personalized diagnosis based on your exact profile (status, family situation, income).",
-    "row3_classic": "Referrals to other organizations, no structured follow-through.",
-    "row3_andjix": "Structured 3-to-6-month support until full independence.",
-    "row4_classic": "No tax support or connection to the local job market.",
-    "row4_andjix": "Expertise in administration, CRA tax, bilingual recruitment and immigration steps.",
-    "row5_classic": "Limited French service, often unavailable evenings and weekends.",
-    "row5_andjix": "Bilingual EN/FR, any hour via Andjix AI, in your language, from home."
+    "eyebrow": "Why Andjix",
+    "title": "Where generic software and generalists stop, Andjix begins.",
+    "lede": "TurboTax and general-practice accountants are built for the \"typical\" Canadian taxpayer. Immigrants have different situations — and deserve an expert who knows it.",
+    "h_classic": "Generic tools / General accountant",
+    "h_andjix": "Andjix — Immigrant specialist",
+    "row1_classic": "Built for the typical taxpayer — not for first-year residents or foreign income situations.",
+    "row1_andjix": "Specialized: first year in Canada, foreign income, tax treaties, Ontario-Quebec cross-border.",
+    "row2_classic": "$80 to $200 with no real support. You fill it in yourself, you face the CRA alone.",
+    "row2_andjix": "$120 to $295 depending on your situation — an advisor prepares, signs, and takes responsibility.",
+    "row3_classic": "No knowledge of your first-year credits, Canada Child Benefit, Trillium or T1135.",
+    "row3_andjix": "Full command of newcomer credits, moving deductions and CRA-specific immigrant forms.",
+    "row4_classic": "No professional EFILE signature — if the CRA audits, you handle it alone.",
+    "row4_andjix": "Return signed and e-filed via EFILE — professional accountability engaged on your file.",
+    "row5_classic": "Business hours only, no local Ottawa-Gatineau knowledge.",
+    "row5_andjix": "Bilingual EN/FR, Andjix AI available 24/7, full command of both Ontario and Quebec tax regimes."
   },
   "audience": {
     "eyebrow": "Your profile",
@@ -105,9 +106,9 @@
     "feature3": "Booked sessions with our expert team"
   },
   "band": {
-    "title": "Start your free diagnosis.",
-    "lede": "A few questions, clear direction, and an in-depth session with our expert team when it matters.",
-    "cta": "Launch Andjix AI"
+    "title": "Start your tax return today.",
+    "lede": "Three minutes to fill in your intake form. Our team gets back to you within 24 business hours.",
+    "cta": "Get started now"
   },
   "about_teaser": {
     "eyebrow": "About",

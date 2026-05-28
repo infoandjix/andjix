@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "title": "Andjix Consulting Inc. : Accompagnement administratif, fiscal et professionnel à Ottawa",
-    "description": "Andjix accompagne nouveaux arrivants, particuliers et PME d'Ottawa. Bilingue, expertise en administration, fiscalité et recrutement au Canada."
+    "title": "Andjix Consulting Inc. : Firme fiscale spécialisée immigrants à Ottawa · Certifiée EFILE",
+    "description": "Déclarations T1, T2125 et T2 pour immigrants à Ottawa. Première année au Canada, double Ontario-Québec, travailleurs autonomes. Bilingue FR/EN. Certifié EFILE ARC."
   },
   "nav": {
     "individuals": "Particuliers",
@@ -16,61 +16,62 @@
     "cta": "Prendre rendez-vous"
   },
   "hero": {
-    "eyebrow": "Fiscalité · Emploi · Immigration · Andjix IA",
-    "title": "L'intégration réussie, <span class=\"accent\">votre vraie victoire.</span>",
-    "lede": "Nouveaux arrivants, résidents permanents, étudiants, travailleurs : Andjix vous accompagne en fiscalité, en emploi bilingue et dans toutes vos démarches d'immigration à Ottawa et Gatineau.",
-    "cta_profiles": "Trouver mon profil",
+    "eyebrow": "La firme fiscale des immigrants à Ottawa · Certifiée EFILE ARC",
+    "title": "Votre déclaration d'impôts. Bien faite. <span class=\"accent\">Par un expert.</span>",
+    "lede": "Première année au Canada, travailleur autonome, double Ontario-Québec, famille immigrante : Andjix prépare et transmet vos déclarations fiscales (T1, T2125, T2) avec une expertise que les logiciels grand public n'ont pas.",
+    "cta_profiles": "Démarrer ma déclaration",
     "cta_individuals": "Je suis un particulier",
     "cta_sme": "Je suis une PME",
-    "trust": "Bilingue FR/EN · Ottawa · Administration · Fiscalité · Recrutement"
+    "cta_book": "Réserver une consultation",
+    "trust": "Certifié EFILE ARC · Bilingue FR/EN · Ottawa · Spécialiste immigrants"
   },
   "intro": {
-    "eyebrow": "Le vrai défi",
-    "title": "Arriver au Canada n'est que le début.",
-    "lede": "Trouver un médecin de famille. Comprendre l'ARC. Bâtir un crédit. Inscrire les enfants à l'école. Décoder un bail ontarien. Chaque démarche compte, et peu de personnes vous accompagnent concrètement, dans votre langue.",
+    "eyebrow": "Votre situation fiscale est unique",
+    "title": "Les logiciels génériques ne connaissent pas votre réalité.",
+    "lede": "TurboTax ne sait pas que vous êtes arrivé en juin. Il ignore vos revenus étrangers, votre traité fiscal et vos crédits de première année. Andjix, si. Chaque déclaration est préparée par un conseiller qui connaît la réalité des immigrants à Ottawa.",
     "stat1_label": "nouveaux arrivants par an en Ontario",
-    "stat1_desc": "Une part importante s'installe à Ottawa, sans accompagnement administratif bilingue accessible.",
-    "stat2_label": "piliers de services intégrés",
-    "stat2_desc": "Fiscalité, emploi, accueil des nouveaux arrivants et intelligence artificielle, réunis en une seule plateforme.",
-    "stat3_label": "profils accompagnés",
-    "stat3_desc": "Résident permanent, réfugié, étudiant, travailleur temporaire, famille, employeur : chaque situation mérite une réponse sur mesure.",
-    "stat4_label": "disponibilité en ligne",
-    "stat4_desc": "Andjix IA répond en français et en anglais à toute heure, et oriente vers un conseiller humain pour les dossiers complexes.",
-    "callout": "Le problème, c'est la navigation, l'information juste et l'intervention de notre équipe d'experts."
+    "stat1_desc": "Une part importante s'installe à Ottawa avec des situations fiscales complexes que les outils standard gèrent mal.",
+    "stat2_label": "situations fiscales immigrants maîtrisées",
+    "stat2_desc": "Première année au Canada, double Ontario-Québec, T2125 autonome, revenus étrangers et traités fiscaux.",
+    "stat3_label": "profils de clients servis",
+    "stat3_desc": "Résident permanent, réfugié, étudiant, travailleur temporaire, autonome, famille : chaque situation mérite une déclaration sur mesure.",
+    "stat4_label": "disponibilité via Andjix IA",
+    "stat4_desc": "Questions fiscales générales répondues en français et en anglais à toute heure. Conseiller humain pour la signature et les dossiers complexes.",
+    "callout": "Votre déclaration signée et transmise par un expert certifié EFILE — pas un algorithme."
   },
   "pillars": {
-    "eyebrow": "Ce que nous faisons pour vous",
-    "title": "Quatre piliers. Une seule destination.",
-    "lede": "Identifiez en moins de cinq secondes le service qui correspond à votre situation, et commencez votre démarche immédiatement.",
-    "p1_title": "Fiscalité",
-    "p1_desc": "Déclarations personnelles, revenus de travailleur autonome, optimisation REER/CELI, crédits pour nouveaux arrivants et impôts d'entreprise.",
-    "p1_link": "Voir mes options",
+    "eyebrow": "Nos services",
+    "title": "La fiscalité en premier. Le reste, à portée de main.",
+    "lede": "La préparation fiscale est notre service principal et directement opérationnel. Pour les autres besoins, nous vous orientons vers les bonnes ressources.",
+    "p1_title": "Fiscalité — Service principal",
+    "p1_desc": "T1, T2125, T2 · Première année au Canada · Double Ontario-Québec · Crédits immigrants · Certifié EFILE ARC. À partir de 120 $.",
+    "p1_link": "Démarrer ma déclaration",
     "p2_title": "Emploi Ottawa · Gatineau",
-    "p2_desc": "Placement bilingue, accès au vivier de talents Andjix, soutien à l'embauche et programmes d'intégration en milieu de travail francophone.",
-    "p2_link": "Voir les postes",
+    "p2_desc": "Mise en relation avec des employeurs bilingues à Ottawa. Déposez votre profil — nous constituons notre réseau et vous contacterons dès qu'une opportunité correspond.",
+    "p2_link": "Déposer mon profil",
     "p3_title": "Accueil Nouveaux Arrivants",
-    "p3_desc": "Accompagnement personnalisé selon votre statut : résident permanent, réfugié, étudiant international, travailleur temporaire ou famille.",
-    "p3_link": "Choisir mon profil",
+    "p3_desc": "Séance d'orientation gratuite (20 min via Calendly). Nous travaillons avec OCISO et ACFO pour vous diriger vers les ressources adaptées à votre statut.",
+    "p3_link": "Réserver l'orientation gratuite",
     "p4_title": "Andjix IA",
-    "p4_desc": "Une vraie IA, pas un chatbot scripté. Réponses précises sur l'immigration, la fiscalité et l'emploi, disponibles en français et en anglais, à toute heure.",
+    "p4_desc": "Questions fiscales et d'établissement répondues en FR et EN, 24h/24. Information générale — pour votre déclaration, un conseiller humain certifié EFILE prend le relais.",
     "p4_link": "Lancer Andjix IA"
   },
   "rupture": {
-    "eyebrow": "La rupture Andjix",
-    "title": "Là où l'accompagnement classique s'arrête, Andjix commence.",
-    "lede": "Les services d'accueil classiques font un travail précieux, mais leurs horaires et leur cadre limitent ce qu'ils peuvent offrir. Voici ce qui change.",
-    "h_classic": "Accompagnement classique",
-    "h_andjix": "Andjix Consulting",
-    "row1_classic": "Disponible aux heures de bureau, un seul domaine à la fois : fiscal ou emploi ou immigration.",
-    "row1_andjix": "Quatre piliers intégrés sous un seul toit : fiscalité, emploi, immigration et IA.",
-    "row2_classic": "Information générale, parcours standardisé non adapté à votre statut exact.",
-    "row2_andjix": "Diagnostic personnalisé selon votre profil exact (statut, situation familiale, revenus).",
-    "row3_classic": "Orientation vers d'autres organismes, sans suivi structuré dans le temps.",
-    "row3_andjix": "Suivi structuré sur 3 à 6 mois jusqu'à l'autonomie complète.",
-    "row4_classic": "Pas de prise en charge fiscale ni de connexion avec le marché de l'emploi local.",
-    "row4_andjix": "Expertise en administration, fiscalité ARC, recrutement bilingue et démarches d'immigration.",
-    "row5_classic": "Service en français limité ou indisponible le soir et la fin de semaine.",
-    "row5_andjix": "Bilingue FR/EN, à toute heure via Andjix IA, dans votre langue, depuis chez vous."
+    "eyebrow": "Pourquoi Andjix",
+    "title": "Là où les logiciels et les généralistes s'arrêtent, Andjix commence.",
+    "lede": "TurboTax et les comptables généralistes sont conçus pour le contribuable canadien « typique ». Les immigrants ont des situations différentes — et méritent un expert qui le sait.",
+    "h_classic": "Outils génériques / CPA généraliste",
+    "h_andjix": "Andjix — Spécialiste immigrants",
+    "row1_classic": "Conçu pour le contribuable typique — pas pour la première année au Canada ni les revenus étrangers.",
+    "row1_andjix": "Spécialisé : 1re année au Canada, revenus étrangers, traités fiscaux, double Ontario-Québec.",
+    "row2_classic": "Entre 80 $ et 200 $ sans accompagnement réel. Vous remplissez vous-même, vous assumez seul.",
+    "row2_andjix": "Entre 120 $ et 295 $ selon votre situation — un conseiller prépare, signe et assume la responsabilité.",
+    "row3_classic": "Aucune connaissance de vos crédits de première année, de l'ACE, du Trillium ou du T1135.",
+    "row3_andjix": "Maîtrise des crédits immigrants, des déductions d'établissement et des formulaires spécifiques ARC.",
+    "row4_classic": "Pas de signature professionnelle certifiée EFILE — en cas de vérification ARC, vous gérez seul.",
+    "row4_andjix": "Déclaration signée et transmise via EFILE — responsabilité professionnelle engagée sur votre dossier.",
+    "row5_classic": "Disponible uniquement aux heures de bureau, sans connaissance locale Ottawa-Gatineau.",
+    "row5_andjix": "Bilingue FR/EN, Andjix IA disponible 24/7, et maîtrise complète des deux régimes fiscal ON et QC."
   },
   "audience": {
     "eyebrow": "Votre profil",
@@ -105,9 +106,9 @@
     "feature3": "Rendez-vous avec notre équipe d'experts"
   },
   "band": {
-    "title": "Commencez votre diagnostic, gratuitement.",
-    "lede": "Quelques questions, une orientation claire, et un rendez-vous pour consultation approfondie quand c'est nécessaire.",
-    "cta": "Lancer Andjix IA"
+    "title": "Commencez votre déclaration d'impôts.",
+    "lede": "Trois minutes pour remplir votre formulaire de prise en charge. Notre équipe revient vers vous dans les 24 heures ouvrables.",
+    "cta": "Démarrer maintenant"
   },
   "about_teaser": {
     "eyebrow": "À propos",
