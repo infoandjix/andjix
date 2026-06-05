@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Matching Placement — Andjix Admin</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+/* ── Reset & Variables ────────────────────────────────────────────────────── */
+:root {
+  --blue:       #1E88E5;
+  --blue-deep:  #0B3D91;
+  --blue-soft:  #E3F2FD;
+  --green:      #16A34A;
+  --green-soft: rgba(22,163,74,.1);
+  --amber:      #D97706;
+  --amber-soft: rgba(217,119,6,.1);
+  --red:        #DC2626;
+  --red-soft:   rgba(220,38,38,.1);
+  --bg:         #F0F5FC;
+  --surface:    #FFFFFF;
+  --border:     #DCE6F2;
+  --border-soft:#EAF2FA;
+  --text:       #0F172A;
+  --text-quiet: #6B7280;
+  --text-muted: #9CA3AF;
+  --radius:     16px;
+  --radius-sm:  10px;
+  --shadow:     0 4px 16px rgba(11,61,145,.07), 0 1px 3px rgba(11,61,145,.04);
+  --shadow-lg:  0 12px 32px rgba(11,61,145,.12);
+  --gradient:   linear-gradient(135deg, #4FC3F7 0%, #1E88E5 55%, #0B3D91 100%);
+  --dur:        200ms;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3 { font-family: 'Sora', sans-serif; line-height: 1.2; }
+
+/* ── Layout ──────────────────────────────────────────────────────────────── */
+.page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px 80px; }
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.admin-header {
+  background: var(--gradient);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(11,61,145,.2);
+}
+.admin-header-logo {
+  color: #fff;
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.admin-header-logo svg { opacity: .9; }
+.admin-header-sep { width: 1px; height: 22px; background: rgba(255,255,255,.3); }
+.admin-header-title { color: rgba(255,255,255,.9); font-size: .875rem; font-weight: 500; }
+.admin-header-badge {
+  margin-left: auto;
+  background: rgba(255,255,255,.18);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 100px;
+  padding: 3px 12px;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+}
+
+/* ── Page title bar ───────────────────────────────────────────────────────── */
+.page-title-bar {
+  padding: 36px 0 24px;
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 32px;
+}
+.page-title-bar h1 { font-size: 1.75rem; font-weight: 700; color: var(--blue-deep); margin-bottom: 6px; }
+.page-title-bar p  { color: var(--text-quiet); font-size: .9375rem; }
+
+/* ── Cards ───────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  box-shadow: var(--shadow);
+}
+
+/* ── Control panel ───────────────────────────────────────────────────────── */
+.control-panel {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.control-group { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 240px; }
+.control-group label {
+  font-size: .8125rem;
+  font-weight: 600;
+  color: var(--text-quiet);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.control-group select {
+  appearance: none;
+  background: var(--bg-soft, #F6FAFE) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 40px 10px 14px;
+  font-size: .9375rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color var(--dur);
+  background-color: #fff;
+}
+.control-group select:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(30,136,229,.15); }
+.control-group select:disabled { opacity: .5; cursor: not-allowed; }
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: var(--radius-sm);
+  font-family: 'Inter', sans-serif;
+  font-size: .9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all var(--dur);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.btn-primary { background: var(--gradient); color: #fff; box-shadow: 0 4px 12px rgba(30,136,229,.3); }
+.btn-primary:hover  { box-shadow: 0 6px 20px rgba(30,136,229,.4); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-success { background: #16A34A; color: #fff; box-shadow: 0 4px 12px rgba(22,163,74,.25); }
+.btn-success:hover  { background: #15803D; box-shadow: 0 6px 20px rgba(22,163,74,.35); transform: translateY(-1px); }
+.btn-success:active { transform: translateY(0); }
+.btn-success:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.btn-ghost  { background: transparent; color: var(--blue); border: 1.5px solid var(--border); }
+.btn-ghost:hover { border-color: var(--blue); background: var(--blue-soft); }
+
+/* ── Employer preview card ───────────────────────────────────────────────── */
+.emp-preview {
+  background: linear-gradient(135deg, rgba(30,136,229,.05), rgba(11,61,145,.04));
+  border: 1.5px solid rgba(30,136,229,.2);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  display: none;
+  margin-bottom: 28px;
+}
+.emp-preview.visible { display: block; }
+.emp-preview-header  { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.emp-preview-icon {
+  width: 48px; height: 48px;
+  background: var(--blue-soft);
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--blue); flex-shrink: 0;
+}
+.emp-preview-name { font-family: 'Sora', sans-serif; font-size: 1.1875rem; font-weight: 700; color: var(--blue-deep); margin-bottom: 2px; }
+.emp-preview-secteur { font-size: .875rem; color: var(--text-quiet); }
+.emp-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 4px;
+}
+.emp-meta-item { font-size: .8125rem; color: var(--text); }
+.emp-meta-label { color: var(--text-quiet); font-weight: 500; margin-bottom: 2px; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
+
+/* ── Status / loader ─────────────────────────────────────────────────────── */
+.status-bar {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-radius: var(--radius-sm);
+  font-size: .9375rem;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+.status-bar.visible { display: flex; }
+.status-bar.loading { background: var(--blue-soft); color: var(--blue-deep); border: 1px solid rgba(30,136,229,.2); }
+.status-bar.error   { background: var(--red-soft); color: var(--red); border: 1px solid rgba(220,38,38,.2); }
+.status-bar.success { background: var(--green-soft); color: #14532D; border: 1px solid rgba(22,163,74,.2); }
+.spinner {
+  width: 18px; height: 18px; border: 2.5px solid currentColor;
+  border-top-color: transparent; border-radius: 50%;
+  animation: spin .7s linear infinite; flex-shrink: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Results section ─────────────────────────────────────────────────────── */
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.results-count {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--blue-deep);
+}
+.results-count span { color: var(--blue); }
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* ── Candidate match card ────────────────────────────────────────────────── */
+.match-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--dur), transform var(--dur);
+}
+.match-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+
+.match-card-score-bar {
+  height: 5px;
+  background: var(--border-soft);
+}
+.match-card-score-fill {
+  height: 100%;
+  border-radius: 100px;
+  transition: width .6s cubic-bezier(.22,1,.36,1);
+}
+
+.match-card-body { padding: 20px 22px; }
+
+.match-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.match-card-initials {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700; font-size: .9375rem;
+  color: #fff;
+  flex-shrink: 0;
+  background: var(--gradient);
+}
+.match-card-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+.match-card-poste { font-size: .8125rem; color: var(--text-quiet); }
+
+.score-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  flex-shrink: 0;
+}
+.score-badge-num {
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.score-badge-denom { font-size: .7rem; color: var(--text-quiet); font-weight: 600; }
+
+.match-card-criteria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.criteria-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: .75rem;
+  font-weight: 600;
+}
+.criteria-2 { background: rgba(30,136,229,.1); color: #1565C0; }
+.criteria-1 { background: rgba(22,163,74,.1); color: #15803D; }
+
+.match-card-info {
+  border-top: 1px solid var(--border-soft);
+  padding-top: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.match-info-item { font-size: .8125rem; }
+.match-info-label { color: var(--text-muted); font-size: .75rem; font-weight: 500; margin-bottom: 1px; }
+.match-info-val { color: var(--text); font-weight: 500; }
+
+.match-card-contact {
+  border-top: 1px solid var(--border-soft);
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+  flex-wrap: wrap;
+}
+.match-card-contact a {
+  color: var(--blue);
+  text-decoration: none;
+  font-size: .8125rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.match-card-contact a:hover { text-decoration: underline; }
+.contact-sep { color: var(--border); }
+
+/* ── Empty state ─────────────────────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 64px 32px;
+  color: var(--text-quiet);
+  display: none;
+}
+.empty-state.visible { display: block; }
+.empty-state-icon {
+  width: 64px; height: 64px;
+  background: var(--border-soft);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--text-muted);
+}
+.empty-state h3 { font-size: 1.125rem; color: var(--text); margin-bottom: 8px; }
+.empty-state p  { font-size: .9375rem; }
+
+/* ── Score colors ────────────────────────────────────────────────────────── */
+.score-4 .match-card-score-fill { background: #F59E0B; }
+.score-4 .score-badge-num       { color: #B45309; }
+.score-5 .match-card-score-fill { background: var(--blue); }
+.score-5 .score-badge-num       { color: var(--blue); }
+.score-6 .match-card-score-fill { background: #7C3AED; }
+.score-6 .score-badge-num       { color: #7C3AED; }
+.score-7 .match-card-score-fill { background: var(--green); }
+.score-7 .score-badge-num       { color: var(--green); }
+
+/* ── Section separator ───────────────────────────────────────────────────── */
+.section-sep { margin: 40px 0; border: none; border-top: 1px solid var(--border-soft); }
+
+/* ── Toast notification ──────────────────────────────────────────────────── */
+.toast {
+  position: fixed; bottom: 28px; right: 28px;
+  background: #0F172A;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: var(--radius-sm);
+  font-size: .9375rem;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  transform: translateY(80px);
+  opacity: 0;
+  transition: transform .35s cubic-bezier(.22,1,.36,1), opacity .35s;
+  z-index: 1000;
+  max-width: 380px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.toast.toast-success { background: #14532D; }
+.toast.toast-error   { background: #7F1D1D; }
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .control-panel   { flex-direction: column; }
+  .results-header  { flex-direction: column; align-items: flex-start; }
+  .card            { padding: 20px; }
+  .emp-preview     { padding: 18px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════════════════════════ -->
+<header class="admin-header">
+  <div class="admin-header-logo">
+    <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+      <rect width="32" height="32" rx="8" fill="rgba(255,255,255,.2)"/>
+      <path d="M8 24L16 8L24 24" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M11 19h10" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    Andjix
+  </div>
+  <div class="admin-header-sep"></div>
+  <div class="admin-header-title">Matching Placement</div>
+  <div class="admin-header-badge">ADMIN</div>
+</header>
+
+<!-- ══ PAGE ════════════════════════════════════════════════════════════════ -->
+<div class="page-wrap">
+
+  <!-- Title -->
+  <div class="page-title-bar">
+    <h1>Moteur de matching</h1>
+    <p>Sélectionnez un employeur actif pour trouver les meilleurs candidats disponibles (score ≥ 4/7).</p>
+  </div>
+
+  <!-- ── Control panel ──────────────────────────────────────────────────── -->
+  <div class="card" style="margin-bottom: 24px;">
+    <div class="control-panel">
+
+      <div class="control-group">
+        <label for="emp-select">Employeur actif</label>
+        <select id="emp-select" disabled>
+          <option value="">Chargement des employeurs…</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary" id="btn-match" disabled>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        Lancer le matching
+      </button>
+
+      <button class="btn btn-ghost" id="btn-reload" title="Recharger les données Airtable">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+        </svg>
+        Rafraîchir
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ── Status bar ─────────────────────────────────────────────────────── -->
+  <div class="status-bar" id="status-bar">
+    <div class="spinner" id="status-spinner"></div>
+    <span id="status-text"></span>
+  </div>
+
+  <!-- ── Employer preview ───────────────────────────────────────────────── -->
+  <div class="emp-preview" id="emp-preview">
+    <div class="emp-preview-header">
+      <div class="emp-preview-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="7" width="20" height="14" rx="2"/>
+          <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+        </svg>
+      </div>
+      <div>
+        <div class="emp-preview-name" id="prev-nom">—</div>
+        <div class="emp-preview-secteur" id="prev-secteur">—</div>
+      </div>
+    </div>
+    <div class="emp-meta-grid">
+      <div class="emp-meta-item">
+        <div class="emp-meta-label">Poste recherché</div>
+        <div id="prev-poste">—</div>
+      </div>
+      <div class="emp-meta-item">
+        <div class="emp-meta-label">Langues requises</div>
+        <div id="prev-langues">—</div>
+      </div>
+      <div class="emp-meta-item">
+        <div class="emp-meta-label">Salaire offert</div>
+        <div id="prev-salaire">—</div>
+      </div>
+      <div class="emp-meta-item">
+        <div class="emp-meta-label">Type de contrat</div>
+        <div id="prev-contrat">—</div>
+      </div>
+      <div class="emp-meta-item">
+        <div class="emp-meta-label">Délai recrutement</div>
+        <div id="prev-delai">—</div>
+      </div>
+      <div class="emp-meta-item">
+        <div class="emp-meta-label">Localisation</div>
+        <div id="prev-local">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Results section ────────────────────────────────────────────────── -->
+  <div id="results-section" style="display:none;">
+    <hr class="section-sep" />
+    <div class="results-header">
+      <div class="results-count" id="results-count">
+        <span id="count-num">0</span> candidat(s) matchés
+      </div>
+      <button class="btn btn-success" id="btn-notify" style="display:none;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Envoyer le récapitulatif à André
+      </button>
+    </div>
+
+    <!-- No results state -->
+    <div class="empty-state" id="empty-state">
+      <div class="empty-state-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+      <h3>Aucun match pour cet employeur</h3>
+      <p>Aucun candidat disponible n'atteint le seuil de 4/7 pour ce profil.<br>
+         Vérifiez les critères de l'employeur ou attendez de nouveaux candidats.</p>
+    </div>
+
+    <!-- Match cards grid -->
+    <div class="results-grid" id="results-grid"></div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- ══ TOAST ════════════════════════════════════════════════════════════════ -->
+<div class="toast" id="toast">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="toast-icon">
+    <polyline points="20 6 9 17 4 12"/>
+  </svg>
+  <span id="toast-msg"></span>
+</div>
+
+<!-- Scripts : config → matching → init -->
+<script src="placement-config.js"></script>
+<script src="matching.js"></script>
+<script>
+/* ════════════════════════════════════════════════════════════════════════════
+   admin-matching.html — contrôleur UI
+   ════════════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  // ── État de l'application ────────────────────────────────────────────────
+  let allEmployeurs = [];
+  let lastMatches   = [];
+  let currentEmployeur = null;
+
+  // ── Éléments DOM ─────────────────────────────────────────────────────────
+  const empSelect      = document.getElementById('emp-select');
+  const btnMatch       = document.getElementById('btn-match');
+  const btnReload      = document.getElementById('btn-reload');
+  const btnNotify      = document.getElementById('btn-notify');
+  const statusBar      = document.getElementById('status-bar');
+  const statusSpinner  = document.getElementById('status-spinner');
+  const statusText     = document.getElementById('status-text');
+  const empPreview     = document.getElementById('emp-preview');
+  const resultsSection = document.getElementById('results-section');
+  const resultsGrid    = document.getElementById('results-grid');
+  const emptyState     = document.getElementById('empty-state');
+  const countNum       = document.getElementById('count-num');
+
+  // ── Helpers UI ───────────────────────────────────────────────────────────
+  function showStatus(msg, type = 'loading') {
+    statusBar.className = `status-bar visible ${type}`;
+    statusSpinner.style.display = (type === 'loading') ? 'block' : 'none';
+    statusText.textContent = msg;
+  }
+  function hideStatus() {
+    statusBar.className = 'status-bar';
+  }
+
+  let toastTimer;
+  function showToast(msg, type = 'neutral') {
+    const toast = document.getElementById('toast');
+    const icon  = document.getElementById('toast-icon');
+    document.getElementById('toast-msg').textContent = msg;
+    toast.className = `toast toast-${type} show`;
+    // Swap icon for error
+    if (type === 'error') {
+      icon.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>';
+    } else {
+      icon.innerHTML = '<polyline points="20 6 9 17 4 12"/>';
+    }
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.classList.remove('show'); }, 4000);
+  }
+
+  function arr(v) { return Array.isArray(v) ? v : []; }
+  function str(v) { return v ? String(v) : '—'; }
+
+  // ── Score color class ─────────────────────────────────────────────────────
+  function scoreClass(score) {
+    if (score >= 7) return 'score-7';
+    if (score >= 6) return 'score-6';
+    if (score >= 5) return 'score-5';
+    return 'score-4';
+  }
+
+  // ── Initiales candidat ────────────────────────────────────────────────────
+  function initials(prenom, nom) {
+    return ((prenom || '').charAt(0) + (nom || '').charAt(0)).toUpperCase() || '??';
+  }
+
+  // ── Render employer preview ───────────────────────────────────────────────
+  function renderEmployeurPreview(record) {
+    const f = record.fields || {};
+    document.getElementById('prev-nom').textContent     = str(f['Nom entreprise']);
+    document.getElementById('prev-secteur').textContent = str(f['Secteur']);
+    document.getElementById('prev-poste').textContent   = str(f['Postes recherchés']);
+    document.getElementById('prev-langues').textContent = arr(f['Langues requises']).join(', ') || '—';
+    document.getElementById('prev-salaire').textContent = str(f['Salaire offert']);
+    document.getElementById('prev-contrat').textContent = arr(f['Type contrat']).join(', ') || '—';
+    document.getElementById('prev-delai').textContent   = str(f['Délai recrutement']);
+    document.getElementById('prev-local').textContent   = str(f['Localisation']);
+    empPreview.classList.add('visible');
+  }
+
+  // ── Render one match card ─────────────────────────────────────────────────
+  function renderMatchCard(matchItem) {
+    const { candidat, score, criteresMatchés } = matchItem;
+    const f = candidat.fields || {};
+    const prenom = f['Prénom'] || '';
+    const nom    = f['Nom'] || '';
+    const pct    = Math.round((score / 7) * 100);
+    const sc     = scoreClass(score);
+    const email  = f['Courriel'] || '';
+    const tel    = f['Téléphone'] || '';
+
+    // Build criteria tags
+    const tagsHTML = criteresMatchés.map(c => {
+      const cls = c.pts === 2 ? 'criteria-2' : 'criteria-1';
+      return `<span class="criteria-tag ${cls}">+${c.pts} ${c.critere}</span>`;
+    }).join('');
+
+    // Build contact line
+    const contactHTML = [
+      email ? `<a href="mailto:${email}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>${email}</a>` : '',
+      email && tel ? '<span class="contact-sep">·</span>' : '',
+      tel ? `<a href="tel:${tel}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.86 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>${tel}</a>` : '',
+    ].filter(Boolean).join('');
+
+    const card = document.createElement('div');
+    card.className = `match-card ${sc}`;
+    card.innerHTML = `
+      <div class="match-card-score-bar">
+        <div class="match-card-score-fill" style="width:0" data-pct="${pct}"></div>
+      </div>
+      <div class="match-card-body">
+        <div class="match-card-top">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="match-card-initials">${initials(prenom, nom)}</div>
+            <div>
+              <div class="match-card-name">${prenom} ${nom}</div>
+              <div class="match-card-poste">${str(f['Poste recherché'])}</div>
+            </div>
+          </div>
+          <div class="score-badge">
+            <div class="score-badge-num">${score}</div>
+            <div class="score-badge-denom">/ 7 pts</div>
+          </div>
+        </div>
+        <div class="match-card-criteria">${tagsHTML}</div>
+        <div class="match-card-info">
+          <div class="match-info-item">
+            <div class="match-info-label">Disponibilité</div>
+            <div class="match-info-val">${str(f['Disponibilité'])}</div>
+          </div>
+          <div class="match-info-item">
+            <div class="match-info-label">Salaire souhaité</div>
+            <div class="match-info-val">${str(f['Salaire souhaité'])}</div>
+          </div>
+          <div class="match-info-item">
+            <div class="match-info-label">Statut immigration</div>
+            <div class="match-info-val">${str(f['Statut immigration'])}</div>
+          </div>
+          <div class="match-info-item">
+            <div class="match-info-label">Expérience</div>
+            <div class="match-info-val">${str(f['Niveau expérience'])}</div>
+          </div>
+        </div>
+      </div>
+      ${contactHTML ? `<div class="match-card-contact">${contactHTML}</div>` : ''}
+    `;
+    return card;
+  }
+
+  // ── Animate score bars after render ──────────────────────────────────────
+  function animateScoreBars() {
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.match-card-score-fill').forEach(el => {
+        const pct = el.dataset.pct;
+        setTimeout(() => { el.style.width = pct + '%'; }, 80);
+      });
+    });
+  }
+
+  // ── Load employers ────────────────────────────────────────────────────────
+  async function loadEmployeurs() {
+    empSelect.disabled = true;
+    btnMatch.disabled  = true;
+    btnReload.disabled = true;
+    showStatus('Chargement des employeurs depuis Airtable…', 'loading');
+
+    try {
+      allEmployeurs = await AndjixMatching.fetchEmployeurs();
+      empSelect.innerHTML = '<option value="">— Sélectionner un employeur —</option>';
+      allEmployeurs.forEach(rec => {
+        const opt = document.createElement('option');
+        opt.value = rec.id;
+        opt.textContent = rec.fields['Nom entreprise'] || rec.id;
+        empSelect.appendChild(opt);
+      });
+      empSelect.disabled = false;
+      btnReload.disabled = false;
+      hideStatus();
+      if (allEmployeurs.length === 0) {
+        showStatus('Aucun employeur actif trouvé dans Airtable.', 'error');
+      }
+    } catch (err) {
+      showStatus(`Erreur Airtable : ${err.message}`, 'error');
+      btnReload.disabled = false;
+      console.error('[Andjix Matching] loadEmployeurs:', err);
+    }
+  }
+
+  // ── Run matching ──────────────────────────────────────────────────────────
+  async function runMatching() {
+    if (!currentEmployeur) return;
+
+    btnMatch.disabled  = true;
+    btnNotify.style.display = 'none';
+    resultsSection.style.display = 'none';
+    resultsGrid.innerHTML = '';
+    emptyState.classList.remove('visible');
+
+    showStatus('Chargement des candidats disponibles…', 'loading');
+
+    try {
+      const candidats = await AndjixMatching.fetchCandidatsDisponibles();
+      showStatus(`${candidats.length} candidats disponibles — calcul du matching…`, 'loading');
+
+      // Small delay so the "calcul" message is visible
+      await new Promise(r => setTimeout(r, 300));
+
+      lastMatches = AndjixMatching.matchCandidats(currentEmployeur, candidats);
+
+      resultsSection.style.display = 'block';
+      countNum.textContent = lastMatches.length;
+      hideStatus();
+
+      if (lastMatches.length === 0) {
+        emptyState.classList.add('visible');
+      } else {
+        lastMatches.forEach(m => {
+          resultsGrid.appendChild(renderMatchCard(m));
+        });
+        animateScoreBars();
+        btnNotify.style.display = 'inline-flex';
+      }
+
+    } catch (err) {
+      showStatus(`Erreur : ${err.message}`, 'error');
+      console.error('[Andjix Matching] runMatching:', err);
+    } finally {
+      btnMatch.disabled = false;
+    }
+  }
+
+  // ── Send notification ─────────────────────────────────────────────────────
+  async function sendNotification() {
+    if (!currentEmployeur || !lastMatches.length) return;
+
+    btnNotify.disabled = true;
+    btnNotify.innerHTML = `
+      <div class="spinner" style="width:16px;height:16px;border-width:2px;"></div>
+      Envoi en cours…
+    `;
+
+    try {
+      await AndjixMatching.sendMatchAlert(currentEmployeur, lastMatches);
+      showToast(`Récapitulatif envoyé à info.andjix@gmail.com (${lastMatches.length} match(s))`, 'success');
+    } catch (err) {
+      showToast(`Erreur EmailJS : ${err.message}`, 'error');
+      console.error('[Andjix Matching] sendNotification:', err);
+    } finally {
+      btnNotify.disabled = false;
+      btnNotify.innerHTML = `
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Envoyer le récapitulatif à André
+      `;
+    }
+  }
+
+  // ── Event listeners ───────────────────────────────────────────────────────
+  empSelect.addEventListener('change', () => {
+    const id = empSelect.value;
+    currentEmployeur = allEmployeurs.find(r => r.id === id) || null;
+    btnMatch.disabled = !currentEmployeur;
+    resultsSection.style.display = 'none';
+    btnNotify.style.display = 'none';
+    lastMatches = [];
+
+    if (currentEmployeur) {
+      renderEmployeurPreview(currentEmployeur);
+    } else {
+      empPreview.classList.remove('visible');
+    }
+  });
+
+  btnMatch.addEventListener('click', runMatching);
+  btnReload.addEventListener('click', () => {
+    empPreview.classList.remove('visible');
+    resultsSection.style.display = 'none';
+    btnNotify.style.display = 'none';
+    empSelect.value = '';
+    btnMatch.disabled = true;
+    currentEmployeur = null;
+    lastMatches = [];
+    loadEmployeurs();
+  });
+  btnNotify.addEventListener('click', sendNotification);
+
+  // ── Boot ──────────────────────────────────────────────────────────────────
+  if (!window.PLACEMENT_CONFIG) {
+    showStatus('placement-config.js non chargé. Vérifiez que le fichier existe et que les clés sont renseignées.', 'error');
+  } else {
+    loadEmployeurs();
+  }
+
+})();
+</script>
+</body>
+</html>

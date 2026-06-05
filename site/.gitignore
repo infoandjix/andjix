@@ -1,1 +1,3 @@
 .vercel
+# Clés API privées — NE JAMAIS COMMITER
+placement-config.js
