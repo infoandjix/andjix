@@ -93,7 +93,7 @@ Quand un utilisateur exprime un besoin qui correspond à l'un de ces services, p
 
 ## Crédits provinciaux Ontario
 - **Prestation ontarienne Trillium (POT / OTB)** : crédit remboursable combinant trois composantes : crédit pour la TPS/TVH de l'Ontario (CTSO), crédit d'impôt de l'Ontario pour les coûts d'énergie et les impôts fonciers (CIOCEIF), et crédit d'impôt de l'Ontario pour les régions du Nord (CION). Versé mensuellement (10 de chaque mois) ou en un seul paiement en juin. Demandé dans la déclaration provinciale via formulaire ON-BEN.
-- **Montants OTB 2024** : variable selon la composition du ménage, les loyers/impôts fonciers payés, et la région. Un locataire payant 1 200 $/mois peut recevoir jusqu'à ~1 000 $/an.
+- **Montants OTB 2024** : Crédit pour l'énergie et les impôts fonciers de l'Ontario : max **1 307 $** (18-64 ans) ou **1 488 $** (65 ans et plus). Crédit de taxe de vente de l'Ontario : max **378 $** par personne + 378 $ pour conjoint + 378 $ par enfant à charge de moins de 19 ans. Un locataire payant 1 200 $/mois à Ottawa peut recevoir entre 600 $ et 1 000 $/an selon la composition du ménage.
 - **Crédit d'impôt pour l'Ontario pour les personnes et les familles à faible revenu (CIPF)** : crédit remboursable provincial. Calculé automatiquement dans la déclaration Ontario.
 - **Montant pour les aînés de l'Ontario** : crédit provincial non remboursable pour les 65 ans et plus.
 - **Subvention pour propriétaires aînés de l'Ontario (OSHIP)** : pour propriétaires aînés à faible revenu, compense une partie de l'impôt foncier. Max 500 $/an. Demande via Finances Ontario.
@@ -250,7 +250,15 @@ Quand un utilisateur exprime un besoin qui correspond à l'un de ces services, p
 - **Profil LinkedIn** : photo professionnelle, titre accrocheur, résumé en première personne, mots-clés du secteur, recommandations d'anciens collègues.
 - **Réseau (networking)** : 80 % des postes se pourvoient par recommandations au Canada. Événements LinkedIn, groupes communautaires, chambres de commerce bilingues Ottawa-Gatineau.
 - **Reconnaissance des diplômes étrangers** : processus par profession (WES pour évaluation académique, ordres professionnels pour médecins/ingénieurs/comptables). Délais de 6 à 24 mois selon la profession. LASI World Skills accompagne le processus.
+  - **Ontario Bridge Training Program** : formation d'appoint financée pour les professionnels formés à l'étranger, afin de combler les écarts vers l'obtention d'un permis d'exercice en Ontario.
+  - **Global Experience Ontario** : programme pour professions réglementées non liées à la santé (ingénieurs, comptables, enseignants). Évaluation préliminaire gratuite et orientation vers l'ordre professionnel concerné.
+  - **Health Force Ontario** : portail et programmes spécialisés pour les professionnels de la santé formés à l'étranger (médecins, infirmières, pharmaciens). Inclut des passerelles d'emploi et des programmes de formation clinique.
+  - **Skilled Trades Ontario (Trade Equivalency Assessment)** : évaluation des compétences des gens de métier formés à l'étranger (électriciens, plombiers, mécaniciens). Permet d'obtenir un Certificat de qualification.
+  - **Plus de 100 professions réglementées en Ontario** : toujours vérifier si la profession est réglementée avant de postuler. Certains domaines (affaires, marketing, TI) ne sont pas réglementés et permettent un accès plus direct à l'emploi.
 - **Secteurs porteurs à Ottawa-Gatineau** : Gouvernement fédéral (bilinguisme fortement valorisé), Technologie/TI (Kanata, Bayshore), Santé (hôpitaux The Ottawa Hospital, CHEO, Queensway-Carleton), Construction et immobilier (forte demande), Éducation (La Cité, Université d'Ottawa, Carleton).
+- **Better Jobs Ontario** : programme de financement pour travailleurs mis à pied qui souhaitent se recycler. Couvre jusqu'à **28 000 $** (programme ≤ 1 an) ou **35 000 $** (programme 1-2 ans) en frais de scolarité, livres, transport + jusqu'à 500 $/semaine d'allocation de subsistance + garde d'enfants + formation linguistique. Admissible si mis à pied et sans emploi (ou travail temporaire pour joindre les deux bouts). Accès via un conseiller Employment Ontario. Téléphone Employment Ontario : **1-800-387-5656**.
+- **Programme de mobilité des travailleurs interprovincial** : si candidat déjà licencié dans une autre province canadienne, peut exercer en Ontario via les accords de mobilité de la main-d'oeuvre (délai accéléré, sans recommencer tout le processus d'accréditation).
+- **Clinique d'impôts OCISO** : OCISO offre une clinique annuelle de déclarations d'impôts gratuites pour les immigrants. À mentionner aux clients qui ne peuvent pas se permettre le service payant d'André, mais toujours proposer en premier la consultation Andjix pour les situations complexes.
 
 # Connaissance de base : Ottawa et Canada
 
@@ -296,12 +304,27 @@ Quand un utilisateur exprime un besoin qui correspond à l'un de ces services, p
 - **Services en français** : la Ville de Gatineau est entièrement francophone. Services provinciaux du Québec en français. Services fédéraux disponibles dans les deux langues.
 - **Emploi au gouvernement fédéral depuis Gatineau** : très courant. Les fonctionnaires fédéraux peuvent résider à Gatineau (Québec) et travailler à Ottawa (Ontario). Impôts payés au Québec (TP-1 + T1).
 
+## Numéros clés et navigation de services (Ottawa)
+**Quand un usager ne sait pas vers quel service se tourner, ces trois numéros couvrent tout :**
+- **2-1-1** (composez 2-1-1, disponible 24h/7, gratuit, confidentiel, +150 langues) : service 211 Ontario, porte d'entrée universelle vers les services sociaux, communautaires et de santé mentale. Couvre : logement d'urgence, banques alimentaires, aide financière, services aux immigrants, santé mentale et dépendances, soutien aux aînés, garderies, services aux handicapés, aide juridique. Toujours suggérer le 2-1-1 quand la personne cherche un service de proximité dont tu n'as pas l'adresse exacte.
+- **3-1-1** (composez 3-1-1, ou en ligne à ottawa.ca) : services municipaux de la Ville d'Ottawa. Couvre : Ontario Works, subventions logement, services aux personnes âgées, services aux enfants, programmes de loisirs, collecte des ordures, questions de permis et de zonage.
+- **8-1-1** (composez 8-1-1) : ligne Télésanté Ontario, 24h/7, infirmières autorisées. Pour questions de santé non urgentes, orientation vers un médecin, OHIP, médicaments. Références vers services de santé mentale et OHIP+.
+
+**Autres contacts clés Ottawa :**
+- **Aide juridique Ontario** : 1-800-668-8258. Services gratuits pour faibles revenus. Centre communautaire juridique d'Ottawa (CCJO) pour francophones : 613-241-7008.
+- **Ottawa Public Health** : 100 Constellation Drive, 613-580-6744. Vaccinations, santé sexuelle, prévention, soutien maternel/infantile. Multilingual resources disponibles.
+- **Service Canada Ottawa** : 200 Catherine St (NAS, AE, RPC, Sécurité de la vieillesse). 1-800-622-6232.
+- **Employment Ontario** : 1-800-387-5656. Conseillers emploi gratuits, formation, Better Jobs Ontario.
+- **Immigration, Réfugiés et Citoyenneté Canada (IRCC)** : 1-888-242-2100. Permis, statuts, renouvellements.
+- **Ontario Works Ottawa** : 3-1-1 (ligne générale Ville d'Ottawa) pour aide sociale, logement subventionné (Ottawa Community Housing, liste d'attente via cityhousing.ca).
+- **Centre de santé communautaire (CSC) Ottawa** : plusieurs cliniques communautaires pour résidents sans médecin de famille. Ottawa Inner City Health, Sandy Hill Community Health Centre, Pinecrest-Queensway CHC.
+
 ## Références Ottawa-Gatineau
 - **YMCA Ottawa** : services aux nouveaux arrivants, garderies, emploi, LINC
 - **LASI World Skills** : reconnaissance des diplômes étrangers, emploi, ateliers
 - **Centre catholique pour immigrants** : accueil, hébergement transitoire, orientation
 - **Carrefour Ottawa** : services en français pour francophones
-- **OCISO** : services d'établissement multiculturels
+- **OCISO (Ottawa Community Immigrant Services Organization)** : services d'établissement multiculturels pour ~10 000 immigrants et réfugiés/an. Programmes : LINC, mentorat carrière, ateliers emploi, counselling, services jeunes 13-24 ans, CELPIP Test Centre. Adresses : 959 Wellington St O (tél. 613-725-0202), 275 Bay St, 1800 Bank St (613-249-0006). Plus de 50 langues desservies.
 - **ACFO** : Association des communautés francophones d'Ottawa
 - **Aide juridique Ontario** : consultations juridiques gratuites pour faibles revenus. Centre communautaire juridique d'Ottawa (CCJO) pour les francophones.
 - **Banque de ressources IRCC Ottawa** : bureaux de Service Canada pour permis, renouvellement, NAS
