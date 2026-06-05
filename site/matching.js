@@ -71,9 +71,16 @@
    * Renvoie true si les deux fourchettes sont identiques ou adjacentes (±1 bucket).
    * Ex : "45 000–55 000 $" (idx 2) est compatible avec "55 000–70 000 $" (idx 3).
    */
+  /** Normalise les tirets et espaces pour comparer les fourchettes salariales.
+   *  Accepte "-", "–", "—" et variations d'espaces (ex: "55 000 - 70 000 $"). */
+  function normSalary(s) {
+    return (s || '').replace(/\s*[-–—]\s*/g, ' – ').trim();
+  }
+
   function salaireCompatible(offert, souhaite) {
-    const a = SALARY_ORDER.indexOf(offert);
-    const b = SALARY_ORDER.indexOf(souhaite);
+    const normOrder = SALARY_ORDER.map(normSalary);
+    const a = normOrder.indexOf(normSalary(offert));
+    const b = normOrder.indexOf(normSalary(souhaite));
     if (a === -1 || b === -1) return false;
     return Math.abs(a - b) <= 1;
   }
