@@ -805,8 +805,9 @@ h1,h2,h3 { font-family: 'Sora', sans-serif; line-height: 1.2; }
       await AndjixMatching.sendMatchAlert(currentEmployeur, lastMatches);
       showToast(`Récapitulatif envoyé à info.andjix@gmail.com (${lastMatches.length} match(s))`, 'success');
     } catch (err) {
-      showToast(`Erreur EmailJS : ${err.message}`, 'error');
-      console.error('[Andjix Matching] sendNotification:', err);
+      const detail = err.message || err.text || (err.status ? `HTTP ${err.status}` : JSON.stringify(err));
+      showToast(`Erreur EmailJS : ${detail}`, 'error');
+      console.error('[Andjix Matching] sendNotification — détail complet :', err);
     } finally {
       btnNotify.disabled = false;
       btnNotify.innerHTML = `

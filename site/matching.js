@@ -351,6 +351,8 @@
 
     const params = {
       to_email:           cfg.to,
+      name:               'Andjix Placement',      // requis si {{name}} dans le template EmailJS
+      email:              cfg.to,                  // requis si {{email}} dans Reply-To
       employeur_nom:      ef['Nom entreprise']    || 'N/A',
       employeur_secteur:  ef['Secteur']            || 'N/A',
       employeur_poste:    ef['Postes recherchés']  || 'N/A',
