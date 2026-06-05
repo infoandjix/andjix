@@ -361,10 +361,20 @@
                           }),
     };
 
-    // Initialisation EmailJS (idempotente)
-    emailjs.init(cfg.userId);
+    // Initialisation EmailJS — compatible v3 (string) et v4 (objet)
+    try {
+      emailjs.init({ publicKey: cfg.userId });   // v4 syntax
+    } catch (_) {
+      try { emailjs.init(cfg.userId); } catch (_2) {}  // v3 fallback
+    }
 
-    return emailjs.send(cfg.serviceId, cfg.templateId, params);
+    // Passe aussi la publicKey dans les options send() — requis en v4 strict
+    return emailjs.send(
+      cfg.serviceId,
+      cfg.templateId,
+      params,
+      { publicKey: cfg.userId }
+    );
   }
 
 
