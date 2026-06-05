@@ -11,7 +11,7 @@ const STRINGS = {
     lede: "Laissez vos coordonnées. André vous rappelle dans les 24 heures ouvrables.",
     name: "Nom complet",
     email: "Courriel",
-    phone: "Téléphone (optionnel)",
+    phone: "Téléphone",
     segment: "Vous êtes",
     segments: {
       newcomer: "Nouveau arrivant au Canada",
@@ -33,7 +33,7 @@ const STRINGS = {
     lede: "Leave your details. André will get back to you within 24 business hours.",
     name: "Full name",
     email: "Email",
-    phone: "Phone (optional)",
+    phone: "Phone",
     segment: "You are",
     segments: {
       newcomer: "New to Canada",
@@ -101,7 +101,7 @@ export default function LeadModal({
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim() || submitting) return;
+    if (!name.trim() || !email.trim() || !phone.trim() || submitting) return;
     setSubmitting(true);
     setError(null);
     try {
@@ -181,7 +181,7 @@ export default function LeadModal({
             <div className="space-y-3">
               <Field label={t.name} value={name} onChange={setName} required />
               <Field label={t.email} type="email" value={email} onChange={setEmail} required />
-              <Field label={t.phone} type="tel" value={phone} onChange={setPhone} />
+              <Field label={t.phone} type="tel" value={phone} onChange={setPhone} required />
 
               <div>
                 <label className="mb-1 block text-xs font-medium text-[var(--color-andjix-text-muted)]">
@@ -227,7 +227,7 @@ export default function LeadModal({
               </button>
               <button
                 type="submit"
-                disabled={submitting || !name.trim() || !email.trim()}
+                disabled={submitting || !name.trim() || !email.trim() || !phone.trim()}
                 className="rounded-full bg-[var(--color-andjix-blue)] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[var(--color-andjix-blue-deep)] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {submitting ? t.submitting : t.submit}
