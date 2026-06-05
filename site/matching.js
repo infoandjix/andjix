@@ -325,58 +325,59 @@
     if (!cfg || !cfg.userId || cfg.userId === 'REPLACE_ME') {
       throw new Error('EmailJS non configuré dans placement-config.js');
     }
-    if (typeof emailjs === 'undefined') {
-      throw new Error('SDK EmailJS non chargé (vérifier la balise <script> dans admin-matching.html)');
-    }
 
     const ef = employeur.fields || {};
 
     // Construction de la liste de matchs en texte brut
     const matchList = matches.map((m, i) => {
       const cf = m.candidat.fields || {};
-      const prenom = cf['Prénom'] || '';
-      const nom    = cf['Nom'] || '';
+      const prenom  = cf['Prénom'] || '';
+      const nom     = cf['Nom'] || '';
       const criteres = m.criteresMatchés.map(c => `${c.critere} (+${c.pts})`).join(', ');
-      const poste  = cf['Poste recherché'] || 'N/A';
-      const dispo  = cf['Disponibilité'] || 'N/A';
-      const mail   = cf['Courriel'] || '';
-      const tel    = cf['Téléphone'] || '';
+      const poste   = cf['Poste recherché'] || 'N/A';
+      const dispo   = cf['Disponibilité'] || 'N/A';
+      const mail    = cf['Courriel'] || '';
+      const tel     = cf['Téléphone'] || '';
       return (
-        `${i + 1}. ${prenom} ${nom} — Score ${m.score}/7\n` +
-        `   Critères : ${criteres}\n` +
-        `   Poste ciblé : ${poste} | Disponible : ${dispo}\n` +
-        `   Contact : ${mail}${tel ? ' · ' + tel : ''}`
+        `${i + 1}. ${prenom} ${nom} - Score ${m.score}/7\n` +
+        `   Criteres : ${criteres}\n` +
+        `   Poste : ${poste} | Disponible : ${dispo}\n` +
+        `   Contact : ${mail}${tel ? ' - ' + tel : ''}`
       );
     }).join('\n\n');
 
-    const params = {
-      to_email:           cfg.to,
-      name:               'Andjix Placement',      // requis si {{name}} dans le template EmailJS
-      email:              cfg.to,                  // requis si {{email}} dans Reply-To
-      employeur_nom:      ef['Nom entreprise']    || 'N/A',
-      employeur_secteur:  ef['Secteur']            || 'N/A',
-      employeur_poste:    ef['Postes recherchés']  || 'N/A',
-      match_count:        String(matches.length),
-      match_list:         matchList,
-      date_matching:      new Date().toLocaleDateString('fr-CA', {
-                            year: 'numeric', month: 'long', day: 'numeric',
-                          }),
+    const templateParams = {
+      to_email:          cfg.to,
+      name:              'Andjix Placement',
+      email:             cfg.to,
+      employeur_nom:     ef['Nom entreprise']   || 'N/A',
+      employeur_secteur: ef['Secteur']           || 'N/A',
+      employeur_poste:   ef['Postes recherchés'] || 'N/A',
+      match_count:       String(matches.length),
+      match_list:        matchList,
+      date_matching:     new Date().toLocaleDateString('fr-CA', {
+                           year: 'numeric', month: 'long', day: 'numeric',
+                         }),
     };
 
-    // Initialisation EmailJS — compatible v3 (string) et v4 (objet)
-    try {
-      emailjs.init({ publicKey: cfg.userId });   // v4 syntax
-    } catch (_) {
-      try { emailjs.init(cfg.userId); } catch (_2) {}  // v3 fallback
+    // Appel direct à l'API REST EmailJS — indépendant du SDK et de sa version
+    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        service_id:      cfg.serviceId,
+        template_id:     cfg.templateId,
+        user_id:         cfg.userId,
+        template_params: templateParams,
+      }),
+    });
+
+    if (!response.ok) {
+      const text = await response.text().catch(() => `HTTP ${response.status}`);
+      throw new Error(`EmailJS API ${response.status} : ${text}`);
     }
 
-    // Passe aussi la publicKey dans les options send() — requis en v4 strict
-    return emailjs.send(
-      cfg.serviceId,
-      cfg.templateId,
-      params,
-      { publicKey: cfg.userId }
-    );
+    return response.text();
   }
 
 
