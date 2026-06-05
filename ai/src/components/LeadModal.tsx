@@ -71,7 +71,18 @@ export default function LeadModal({
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || "";
+  const [calendlyUrl, setCalendlyUrl] = useState("");
+
+  // Fetch Calendly URL from Firestore at runtime so the admin can update it
+  // via admin.andjix.ca → Paramètres without requiring a redeploy.
+  useEffect(() => {
+    fetch("/api/config")
+      .then((r) => r.json())
+      .then((d: { calendlyUrl?: string | null }) => {
+        if (d.calendlyUrl) setCalendlyUrl(d.calendlyUrl);
+      })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     if (!need && conversation.length > 0) {
