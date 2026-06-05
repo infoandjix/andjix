@@ -25,12 +25,12 @@
    * définies dans Airtable (champs "Salaire offert" et "Salaire souhaité").
    */
   const SALARY_ORDER = [
-    '< 35 000 $',
-    '35 000 – 45 000 $',
-    '45 000 – 55 000 $',
-    '55 000 – 70 000 $',
-    '70 000 – 90 000 $',
-    '> 90 000 $',
+    'Salaire minimum (~17,20 $/h)',
+    '17 $ – 20 $/h',
+    '20 $ – 25 $/h',
+    '25 $ – 30 $/h',
+    '30 $+ /h',
+    'À discuter',
   ];
 
   /**
@@ -38,10 +38,10 @@
    * Doit correspondre aux options du champ "Délai recrutement" dans Airtable.
    */
   const DELAI_JOURS = {
-    'ASAP (< 2 semaines)': 14,
-    '1 mois':              30,
-    '2-3 mois':            75,
-    'Flexible (> 3 mois)': 120,
+    'Immédiat (dès que possible)': 7,
+    'Dans les 2 semaines':         14,
+    'Dans le mois':                30,
+    'Planification future':        120,
   };
 
   /**
@@ -49,11 +49,10 @@
    * Doit correspondre aux options du champ "Disponibilité" dans Airtable.
    */
   const DISPO_JOURS = {
-    'Immédiatement':       0,
-    'Dans les 2 semaines': 14,
-    'Dans le mois':        30,
-    'Dans 2 à 3 mois':    75,
-    'Plus de 3 mois':      120,
+    'Immédiate':            0,
+    'Dans les 2 semaines':  14,
+    'Dans 1 mois':          30,
+    "Dans plus d'1 mois":   75,
   };
 
 
@@ -135,6 +134,8 @@
     const empC = (contratsEmployeur || []).map(norm);
     const canC = (contratsCandidat  || []).map(norm);
     if (!empC.length || !canC.length) return false;
+    // "Flexible" côté candidat = accepte tout type de contrat
+    if (canC.includes('flexible')) return true;
     return empC.some(c => canC.includes(c));
   }
 

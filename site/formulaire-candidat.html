@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andjix — Inscription Candidat</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #f0f4f1; min-height: 100vh; }
+  .header { background: #0a1628; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: #d4a84b; letter-spacing: 1px; }
+  .logo span { font-family: 'DM Sans', sans-serif; font-size: 11px; color: #a09080; display: block; letter-spacing: 2px; text-transform: uppercase; }
+  .header-tag { background: #1d9e75; color: #fff; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; }
+  .container { max-width: 680px; margin: 40px auto; padding: 0 20px 60px; }
+  .intro { background: #0a1628; border-left: 4px solid #1d9e75; padding: 20px 24px; border-radius: 2px; margin-bottom: 32px; }
+  .intro h1 { font-family: 'Playfair Display', serif; font-size: 22px; color: #f0ece3; margin-bottom: 8px; }
+  .intro p { font-size: 13px; color: #a09080; line-height: 1.6; font-weight: 300; }
+  .section { background: #fff; border-radius: 4px; padding: 24px; margin-bottom: 20px; border: 1px solid #dde8e2; }
+  .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #1d9e75; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid #e8f2ee; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .form-row.single { grid-template-columns: 1fr; }
+  .form-group { display: flex; flex-direction: column; }
+  label { font-size: 12px; color: #3a5248; margin-bottom: 6px; font-weight: 500; }
+  label span { color: #1d9e75; }
+  input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+    border: 1px solid #c8ddd5; border-radius: 3px; padding: 10px 12px; font-size: 13px;
+    font-family: 'DM Sans', sans-serif; color: #1a2a25; background: #f7faf8; outline: none; transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus { border-color: #1d9e75; background: #fff; }
+  textarea { resize: vertical; min-height: 80px; }
+  .checkbox-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  .checkbox-item { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+  .checkbox-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: #1d9e75; cursor: pointer; }
+  .checkbox-item label { font-size: 13px; color: #1a2a25; margin: 0; cursor: pointer; font-weight: 400; }
+  .radio-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  .radio-item { display: flex; align-items: center; gap: 6px; }
+  .radio-item input[type="radio"] { accent-color: #1d9e75; }
+  .radio-item label { font-size: 13px; color: #1a2a25; margin: 0; font-weight: 400; }
+  .highlight-box { background: #e8f5ef; border: 1px solid #9fd4b8; border-radius: 3px; padding: 14px 16px; margin-bottom: 16px; font-size: 12.5px; color: #0f6e56; line-height: 1.6; }
+  .highlight-box strong { font-weight: 600; }
+  .submit-section { text-align: center; margin-top: 10px; }
+  .btn-submit { background: #1d9e75; color: #fff; border: none; padding: 14px 48px; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border-radius: 2px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; }
+  .btn-submit:hover:not(:disabled) { background: #0f6e56; }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+  .note { font-size: 11px; color: #7a9a8a; margin-top: 10px; }
+  .footer-bar { background: #0a1628; text-align: center; padding: 14px; font-size: 11px; color: #a09080; margin-top: 40px; }
+  .footer-bar span { color: #d4a84b; }
+  .success-box { background: #0a1628; border-left: 4px solid #1d9e75; padding: 48px 32px; border-radius: 4px; text-align: center; max-width: 500px; margin: 0 auto; }
+  .success-icon { font-size: 52px; margin-bottom: 16px; }
+  .success-box h2 { font-family: 'Playfair Display', serif; color: #f0ece3; font-size: 26px; margin-bottom: 12px; }
+  .success-box p { color: #a09080; font-size: 14px; line-height: 1.7; }
+  .success-contact { color: #1d9e75; margin-top: 20px; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div><div class="logo">ANDJIX <span>Consulting Inc.</span></div></div>
+  <div class="header-tag">Espace Candidats</div>
+</div>
+
+<div class="container" id="main-container">
+
+  <div class="intro">
+    <h1>Inscris-toi une fois, on travaille pour toi.</h1>
+    <p>Remplis ce formulaire et rejoins notre base de données. Dès qu'un employeur correspond à ton profil, nous te contactons directement — gratuitement et sans intermédiaire.</p>
+  </div>
+
+  <form id="candidat-form" novalidate>
+
+    <div class="section">
+      <div class="section-title">Informations personnelles</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom <span>*</span></label>
+          <input type="text" name="prenom" placeholder="Ton prénom" required>
+        </div>
+        <div class="form-group">
+          <label>Nom <span>*</span></label>
+          <input type="text" name="nom" placeholder="Ton nom de famille" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Courriel <span>*</span></label>
+          <input type="email" name="courriel" placeholder="exemple@gmail.com" required>
+        </div>
+        <div class="form-group">
+          <label>Téléphone / WhatsApp <span>*</span></label>
+          <input type="tel" name="telephone" placeholder="613-XXX-XXXX" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ville de résidence <span>*</span></label>
+          <input type="text" name="ville" placeholder="Ex. : Ottawa, Gatineau" required>
+        </div>
+        <div class="form-group">
+          <label>Statut au Canada <span>*</span></label>
+          <select name="statut" required>
+            <option value="">— Sélectionner —</option>
+            <option>Citoyen canadien</option>
+            <option>Résident permanent</option>
+            <option>Permis de travail ouvert</option>
+            <option>Permis de travail fermé</option>
+            <option>Permis d'études avec autorisation de travail</option>
+            <option>Demandeur d'asile</option>
+            <option>Autre</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Profil professionnel</div>
+      <div class="highlight-box">
+        <strong>Conseil :</strong> Plus ton profil est complet, meilleures sont tes chances d'être contacté rapidement.
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Secteur(s) d'intérêt <span>*</span></label>
+          <div class="checkbox-group">
+            <div class="checkbox-item"><input type="checkbox" name="secteurs" value="Restauration" id="s_resto"><label for="s_resto">Restauration</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="secteurs" value="Hôtellerie" id="s_hotel"><label for="s_hotel">Hôtellerie</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="secteurs" value="Construction" id="s_const"><label for="s_const">Construction</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="secteurs" value="Santé / Services aux personnes" id="s_sante"><label for="s_sante">Santé</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="secteurs" value="Commerce de détail" id="s_comm"><label for="s_comm">Commerce</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="secteurs" value="Transport / Logistique" id="s_trans"><label for="s_trans">Transport</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="secteurs" value="Autre" id="s_autre"><label for="s_autre">Autre</label></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Langues parlées <span>*</span></label>
+          <div class="checkbox-group">
+            <div class="checkbox-item"><input type="checkbox" name="langues" value="Français" id="l_fr"><label for="l_fr">Français</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="langues" value="Anglais" id="l_en"><label for="l_en">Anglais</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="langues" value="Bilingue FR/EN" id="l_bi"><label for="l_bi">Bilingue FR/EN</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="langues" value="Espagnol" id="l_es"><label for="l_es">Espagnol</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="langues" value="Arabe" id="l_ar"><label for="l_ar">Arabe</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="langues" value="Autre" id="l_autre"><label for="l_autre">Autre</label></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row single">
+        <div class="form-group">
+          <label>Poste(s) recherché(s) <span>*</span></label>
+          <input type="text" name="poste" placeholder="Ex. : Cuisinier, Commis de salle, Réceptionniste…" required>
+        </div>
+      </div>
+      <div class="form-row single">
+        <div class="form-group">
+          <label>Compétences principales</label>
+          <textarea name="competences" placeholder="Ex. : 3 ans d'expérience en cuisine africaine, maîtrise de la caisse, permis de conduire classe G…"></textarea>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Niveau d'expérience</label>
+          <select name="niveau">
+            <option value="">— Sélectionner —</option>
+            <option>Débutant (moins d'1 an)</option>
+            <option>Intermédiaire (1–3 ans)</option>
+            <option>Expérimenté (3–5 ans)</option>
+            <option>Senior (5+ ans)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Diplôme / Formation</label>
+          <input type="text" name="formation" placeholder="Ex. : DEP Cuisine, DEC Gestion hôtelière…">
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Disponibilité et attentes</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Disponibilité <span>*</span></label>
+          <select name="disponibilite" required>
+            <option value="">— Sélectionner —</option>
+            <option>Immédiate</option>
+            <option>Dans les 2 semaines</option>
+            <option>Dans 1 mois</option>
+            <option>Dans plus d'1 mois</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Type de contrat souhaité</label>
+          <div class="checkbox-group" style="margin-top:8px">
+            <div class="checkbox-item"><input type="checkbox" name="contrat" value="Temps plein" id="c_tp"><label for="c_tp">Temps plein</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="contrat" value="Temps partiel" id="c_tpa"><label for="c_tpa">Temps partiel</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="contrat" value="Flexible" id="c_flex"><label for="c_flex">Flexible</label></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Salaire souhaité</label>
+          <select name="salaire">
+            <option value="">— Sélectionner —</option>
+            <option>Salaire minimum (~17,20 $/h)</option>
+            <option>17 $ – 20 $/h</option>
+            <option>20 $ – 25 $/h</option>
+            <option>25 $ – 30 $/h</option>
+            <option>30 $+ /h</option>
+            <option>À discuter</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Moyen de contact préféré</label>
+          <div class="radio-group" style="margin-top:8px">
+            <div class="radio-item"><input type="radio" name="contact_prefere" value="Courriel" id="rc_email"><label for="rc_email">Courriel</label></div>
+            <div class="radio-item"><input type="radio" name="contact_prefere" value="Téléphone" id="rc_tel"><label for="rc_tel">Téléphone</label></div>
+            <div class="radio-item"><input type="radio" name="contact_prefere" value="WhatsApp" id="rc_wa"><label for="rc_wa">WhatsApp</label></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row single">
+        <div class="form-group">
+          <label>Message ou précisions</label>
+          <textarea name="message" placeholder="Ajoute toute information utile : contraintes horaires, mobilité, situation particulière…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-section">
+      <button type="submit" class="btn-submit" id="submit-btn">Soumettre mon profil</button>
+      <p class="note">Ton inscription est gratuite et confidentielle. Andjix te contactera dès qu'une opportunité correspond à ton profil.</p>
+    </div>
+
+  </form>
+</div>
+
+<div class="footer-bar">
+  <span>ANDJIX Consulting Inc.</span> &nbsp;·&nbsp; 613-276-8707 &nbsp;·&nbsp; info.andjix@gmail.com &nbsp;·&nbsp; andjix.ca<br>
+  <span style="font-style:italic;color:#6a8070">"L'intégration réussie, votre vraie victoire."</span>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════
+   Configuration — remplacer par l'URL Make.com après création
+   ══════════════════════════════════════════════════════════ */
+const MAKE_WEBHOOK_CANDIDAT = 'REPLACE_ME';
+
+/* ══════════════════════════════════════════════════════════
+   Soumission du formulaire
+   ══════════════════════════════════════════════════════════ */
+document.getElementById('candidat-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const btn  = document.getElementById('submit-btn');
+  const orig = btn.textContent;
+  btn.textContent = 'Envoi en cours…';
+  btn.disabled = true;
+
+  const v     = (sel) => { const el = document.querySelector(sel); return el ? el.value.trim() : ''; };
+  const multi = (name) => [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(el => el.value);
+  const radio = (name) => { const el = document.querySelector(`input[name="${name}"]:checked`); return el ? el.value : ''; };
+
+  const payload = {
+    source:          'formulaire_candidat',
+    prenom:          v('input[name="prenom"]'),
+    nom:             v('input[name="nom"]'),
+    courriel:        v('input[name="courriel"]'),
+    telephone:       v('input[name="telephone"]'),
+    ville:           v('input[name="ville"]'),
+    statut:          v('select[name="statut"]'),
+    secteurs:        multi('secteurs').join(', '),
+    langues:         multi('langues').join(', '),
+    poste:           v('input[name="poste"]'),
+    competences:     v('textarea[name="competences"]'),
+    niveau:          v('select[name="niveau"]'),
+    formation:       v('input[name="formation"]'),
+    disponibilite:   v('select[name="disponibilite"]'),
+    contrat:         multi('contrat').join(', '),
+    salaire:         v('select[name="salaire"]'),
+    contact_prefere: radio('contact_prefere'),
+    message:         v('textarea[name="message"]'),
+    date_inscription: new Date().toISOString(),
+  };
+
+  // Validation minimale
+  if (!payload.prenom || !payload.nom || !payload.courriel || !payload.telephone) {
+    alert('Merci de remplir tous les champs obligatoires (*).');
+    btn.textContent = orig;
+    btn.disabled = false;
+    return;
+  }
+
+  try {
+    const res = await fetch(MAKE_WEBHOOK_CANDIDAT, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+
+    if (res.ok) {
+      document.getElementById('main-container').innerHTML = `
+        <div class="success-box">
+          <div class="success-icon">✅</div>
+          <h2>Profil reçu !</h2>
+          <p>Merci <strong style="color:#f0ece3">${payload.prenom}</strong>. Ton profil est maintenant dans notre base de données.<br><br>
+          Nous te contactons dès qu'un employeur correspond à ton profil.</p>
+          <p class="success-contact">📧 info.andjix@gmail.com &nbsp;·&nbsp; 📞 613-276-8707</p>
+        </div>`;
+    } else {
+      throw new Error('HTTP ' + res.status);
+    }
+  } catch (err) {
+    btn.textContent = orig;
+    btn.disabled = false;
+    alert('Une erreur est survenue. Veuillez réessayer ou écrire à info.andjix@gmail.com');
+    console.error('[Andjix Candidat]', err);
+  }
+});
+</script>
+</body>
+</html>
