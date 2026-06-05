@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "title": "Andjix Consulting Inc. : Firme fiscale spécialisée immigrants à Ottawa · Certifiée EFILE",
-    "description": "Déclarations T1, T2125 et T2 pour immigrants à Ottawa. Première année au Canada, double Ontario-Québec, travailleurs autonomes. Bilingue FR/EN. Certifié EFILE ARC."
+    "title": "Andjix Consulting Inc. : Fiscalité · Emploi · Immigration · Andjix IA à Ottawa",
+    "description": "Déclarations T1/T2125, placement bilingue, accueil des nouveaux arrivants et assistance IA 24/7. Andjix réunit quatre services essentiels pour les immigrants d'Ottawa et Gatineau."
   },
   "nav": {
     "individuals": "Particuliers",
@@ -16,35 +16,35 @@
     "cta": "Prendre rendez-vous"
   },
   "hero": {
-    "eyebrow": "La firme fiscale des immigrants à Ottawa · Certifiée EFILE ARC",
-    "title": "Votre déclaration d'impôts. Bien faite. <span class=\"accent\">Par un expert.</span>",
-    "lede": "Première année au Canada, travailleur autonome, double Ontario-Québec, famille immigrante : Andjix prépare et transmet vos déclarations fiscales (T1, T2125, T2) avec une expertise que les logiciels grand public n'ont pas.",
-    "cta_profiles": "Démarrer ma déclaration",
+    "eyebrow": "Fiscalité · Emploi · Immigration · Andjix IA",
+    "title": "Votre partenaire fiscal, emploi et immigration <span class=\"accent\">à Ottawa.</span>",
+    "lede": "Déclarations d'impôts, placement bilingue, accueil des nouveaux arrivants et assistance IA 24/7 : Andjix réunit les quatre services essentiels pour les immigrants et résidents d'Ottawa et Gatineau.",
+    "cta_profiles": "Voir nos services",
     "cta_individuals": "Je suis un particulier",
     "cta_sme": "Je suis une PME",
     "cta_book": "Réserver une consultation",
-    "trust": "Certifié EFILE ARC · Bilingue FR/EN · Ottawa · Spécialiste immigrants"
+    "trust": "Bilingue FR/EN · Ottawa · EFILE ARC · Spécialiste immigrants"
   },
   "intro": {
-    "eyebrow": "Votre situation fiscale est unique",
-    "title": "Les logiciels génériques ne connaissent pas votre réalité.",
-    "lede": "Les logiciels génériques ne savent pas que vous êtes arrivé en juin. Ils ignorent vos revenus étrangers, votre traité fiscal et vos crédits de première année. Andjix, si. Chaque déclaration est préparée par un conseiller qui connaît la réalité des immigrants à Ottawa.",
+    "eyebrow": "Le vrai défi",
+    "title": "Arriver au Canada n'est que le début.",
+    "lede": "Trouver un médecin de famille. Comprendre l'ARC. Bâtir un crédit. Inscrire les enfants à l'école. Décoder un bail ontarien. Chaque démarche compte, et peu de personnes vous accompagnent concrètement, dans votre langue.",
     "stat1_label": "nouveaux arrivants par an en Ontario",
-    "stat1_desc": "Une part importante s'installe à Ottawa avec des situations fiscales complexes que les outils standard gèrent mal.",
-    "stat2_label": "situations fiscales immigrants maîtrisées",
-    "stat2_desc": "Première année au Canada, double Ontario-Québec, T2125 autonome, revenus étrangers et traités fiscaux.",
-    "stat3_label": "profils de clients servis",
-    "stat3_desc": "Résident permanent, réfugié, étudiant, travailleur temporaire, autonome, famille : chaque situation mérite une déclaration sur mesure.",
-    "stat4_label": "disponibilité via Andjix IA",
-    "stat4_desc": "Questions fiscales générales répondues en français et en anglais à toute heure. Conseiller humain pour la signature et les dossiers complexes.",
-    "callout": "Votre déclaration signée et transmise par un expert certifié EFILE, pas un algorithme."
+    "stat1_desc": "Une part importante s'installe à Ottawa, sans accompagnement administratif bilingue accessible.",
+    "stat2_label": "piliers de services intégrés",
+    "stat2_desc": "Fiscalité, emploi, accueil des nouveaux arrivants et Andjix IA, réunis en une seule plateforme bilingue.",
+    "stat3_label": "profils accompagnés",
+    "stat3_desc": "Résident permanent, réfugié, étudiant, travailleur temporaire, famille, employeur : chaque situation mérite une réponse sur mesure.",
+    "stat4_label": "disponibilité en ligne",
+    "stat4_desc": "Andjix IA répond en français et en anglais à toute heure, et oriente vers un conseiller humain pour les dossiers complexes.",
+    "callout": "Le problème, c'est la navigation, l'information juste et l'intervention de notre équipe d'experts."
   },
   "pillars": {
-    "eyebrow": "Nos services",
-    "title": "La fiscalité en premier. Le reste, à portée de main.",
-    "lede": "La préparation fiscale est notre service principal et directement opérationnel. Pour les autres besoins, nous vous orientons vers les bonnes ressources.",
-    "p1_title": "Fiscalité — Service principal",
-    "p1_desc": "T1, T2125, T2 · Première année au Canada · Double Ontario-Québec · Crédits immigrants · Certifié EFILE ARC. À partir de 120 $.",
+    "eyebrow": "Nos 4 services",
+    "title": "Quatre piliers. Une seule destination.",
+    "lede": "Identifiez en moins de cinq secondes le service qui correspond à votre situation, et commencez votre démarche immédiatement.",
+    "p1_title": "Fiscalité",
+    "p1_desc": "T1, T2125, T2 · Première année au Canada · Double Ontario-Québec · Crédits immigrants · Certifié EFILE ARC.",
     "p1_link": "Démarrer ma déclaration",
     "p2_title": "Emploi Ottawa · Gatineau",
     "p2_desc": "Mise en relation avec des employeurs bilingues à Ottawa. Soumettez votre profil et nous vous mettons en contact avec notre réseau d'employeurs dans la région.",
@@ -57,21 +57,21 @@
     "p4_link": "Lancer Andjix IA"
   },
   "rupture": {
-    "eyebrow": "Pourquoi Andjix",
-    "title": "Là où les logiciels et les généralistes s'arrêtent, Andjix commence.",
-    "lede": "Les logiciels génériques et les comptables généralistes sont conçus pour le contribuable canadien « typique ». Les immigrants ont des situations différentes — et méritent un expert qui le sait.",
-    "h_classic": "Outils génériques / CPA généraliste",
-    "h_andjix": "Andjix — Spécialiste immigrants",
-    "row1_classic": "Conçu pour le contribuable typique — pas pour la première année au Canada ni les revenus étrangers.",
-    "row1_andjix": "Spécialisé : 1re année au Canada, revenus étrangers, traités fiscaux, double Ontario-Québec.",
-    "row2_classic": "Entre 80 $ et 200 $ sans accompagnement réel. Vous remplissez vous-même, vous assumez seul.",
-    "row2_andjix": "Entre 120 $ et 295 $ selon votre situation — un conseiller prépare, signe et assume la responsabilité.",
-    "row3_classic": "Aucune connaissance de vos crédits de première année, de l'ACE, du Trillium ou du T1135.",
-    "row3_andjix": "Maîtrise des crédits immigrants, des déductions d'établissement et des formulaires spécifiques ARC.",
-    "row4_classic": "Pas de signature professionnelle certifiée EFILE — en cas de vérification ARC, vous gérez seul.",
-    "row4_andjix": "Déclaration signée et transmise via EFILE — responsabilité professionnelle engagée sur votre dossier.",
-    "row5_classic": "Disponible uniquement aux heures de bureau, sans connaissance locale Ottawa-Gatineau.",
-    "row5_andjix": "Bilingue FR/EN, Andjix IA disponible 24/7, et maîtrise complète des deux régimes fiscal ON et QC."
+    "eyebrow": "La rupture Andjix",
+    "title": "Là où l'accompagnement cloisonné s'arrête, Andjix commence.",
+    "lede": "La plupart des services traitent un seul domaine à la fois. Andjix réunit fiscalité, emploi, immigration et IA sous un même toit — avec une expertise conçue pour les immigrants d'Ottawa.",
+    "h_classic": "Service mono-domaine",
+    "h_andjix": "Andjix — 4 piliers intégrés",
+    "row1_classic": "Un domaine à la fois : fiscal OU emploi OU immigration. Plusieurs prestataires à gérer en parallèle.",
+    "row1_andjix": "Quatre piliers intégrés : fiscalité, emploi, accueil des nouveaux arrivants et IA, en un seul endroit.",
+    "row2_classic": "Conçu pour le cas général — pas pour la première année au Canada, l'EIMT ou les revenus étrangers.",
+    "row2_andjix": "Spécialisé immigrants : 1re année, double Ontario-Québec, EIMT, permis de travail, revenus étrangers.",
+    "row3_classic": "Orientation vers d'autres ressources, sans suivi structuré ni continuité entre les démarches.",
+    "row3_andjix": "Suivi structuré : déclaration signée et transmise, placement confirmé, démarches complétées.",
+    "row4_classic": "Service limité aux heures de bureau, en anglais ou sans connaissance du contexte Ottawa-Gatineau.",
+    "row4_andjix": "Bilingue FR/EN · Certifié EFILE ARC · Andjix IA disponible 24/7 pour les questions générales.",
+    "row5_classic": "Information générale identique pour tous, sans expertise locale ni maîtrise des deux régimes ON/QC.",
+    "row5_andjix": "Expertise locale Ottawa-Gatineau, maîtrise des régimes fiscal ON et QC, réseau d'employeurs bilingues."
   },
   "audience": {
     "eyebrow": "Votre profil",
