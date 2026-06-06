@@ -9,7 +9,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 <style>
   .cand-hero { background: linear-gradient(135deg, rgba(22,163,74,.08) 0%, rgba(30,136,229,.06) 100%); border-bottom: 1px solid var(--border-soft); }
@@ -32,6 +32,69 @@
   .process-step-desc { font-size: .8125rem; opacity: .8; line-height: 1.5; }
   .guarantee-band { background: rgba(22,163,74,.06); border: 1.5px solid rgba(22,163,74,.2); border-radius: var(--radius); padding: 36px 40px; display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
   .guarantee-icon { width: 60px; height: 60px; background: rgba(22,163,74,.12); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: #16A34A; flex-shrink: 0; }
+
+  /* ── Bloc formulaire ── */
+  #formulaire { background: #0a1628; padding: 64px 0; }
+  .formulaire-wrap { max-width: 680px; margin: 0 auto; padding: 0 20px; font-family: 'DM Sans', sans-serif; }
+  .formulaire-wrap .f-intro { border-left: 4px solid #1d9e75; padding: 20px 24px; border-radius: 2px; margin-bottom: 32px; }
+  .formulaire-wrap .f-intro h2 { font-family: 'Playfair Display', serif; font-size: 22px; color: #f0ece3; margin-bottom: 8px; }
+  .formulaire-wrap .f-intro p { font-size: 13px; color: #a09080; line-height: 1.6; font-weight: 300; }
+  .formulaire-wrap .f-section { background: #fff; border-radius: 4px; padding: 24px; margin-bottom: 20px; border: 1px solid #dde8e2; }
+  .formulaire-wrap .f-section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #1d9e75; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid #e8f2ee; }
+  .formulaire-wrap .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .formulaire-wrap .f-row.single { grid-template-columns: 1fr; }
+  .formulaire-wrap .f-group { display: flex; flex-direction: column; }
+  .formulaire-wrap label { font-size: 12px; color: #3a5248; margin-bottom: 6px; font-weight: 500; }
+  .formulaire-wrap label span.req { color: #1d9e75; }
+  .formulaire-wrap input[type="text"],
+  .formulaire-wrap input[type="email"],
+  .formulaire-wrap input[type="tel"],
+  .formulaire-wrap input[type="url"],
+  .formulaire-wrap select,
+  .formulaire-wrap textarea {
+    border: 1px solid #c8ddd5; border-radius: 3px; padding: 10px 12px; font-size: 13px;
+    font-family: 'DM Sans', sans-serif; color: #1a2a25; background: #f7faf8; outline: none; transition: border-color 0.2s;
+  }
+  .formulaire-wrap input:focus,
+  .formulaire-wrap select:focus,
+  .formulaire-wrap textarea:focus { border-color: #1d9e75; background: #fff; }
+  .formulaire-wrap textarea { resize: vertical; min-height: 80px; }
+  .formulaire-wrap .f-field-note { font-size: 11px; color: #7a9a8a; margin-top: 5px; line-height: 1.5; }
+  .formulaire-wrap .f-highlight { background: #e8f5ef; border: 1px solid #9fd4b8; border-radius: 3px; padding: 14px 16px; margin-bottom: 16px; font-size: 12.5px; color: #0f6e56; line-height: 1.6; }
+  .formulaire-wrap .f-highlight strong { font-weight: 600; }
+  .formulaire-wrap .f-checkbox-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  .formulaire-wrap .f-checkbox-item { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+  .formulaire-wrap .f-checkbox-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: #1d9e75; cursor: pointer; }
+  .formulaire-wrap .f-checkbox-item label { font-size: 13px; color: #1a2a25; margin: 0; cursor: pointer; font-weight: 400; }
+  .formulaire-wrap .f-radio-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  .formulaire-wrap .f-radio-item { display: flex; align-items: center; gap: 6px; }
+  .formulaire-wrap .f-radio-item input[type="radio"] { accent-color: #1d9e75; }
+  .formulaire-wrap .f-radio-item label { font-size: 13px; color: #1a2a25; margin: 0; font-weight: 400; }
+  .formulaire-wrap .f-submit { text-align: center; margin-top: 10px; }
+  .formulaire-wrap .f-btn {
+    background: #1d9e75; color: #fff; border: none; padding: 14px 48px; font-size: 13px;
+    font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border-radius: 2px;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+  }
+  .formulaire-wrap .f-btn:hover { background: #0f6e56; }
+  .formulaire-wrap .f-btn:disabled { background: #7a9a8a; cursor: not-allowed; }
+  .formulaire-wrap .f-note { font-size: 11px; color: #7a9a8a; margin-top: 10px; }
+  .f-confirmation, .f-erreur { display: none; }
+  .f-confirmation-box {
+    background: #0a1628; border: 2px solid #1d9e75; border-radius: 4px;
+    padding: 40px 32px; text-align: center; margin: 40px 0;
+  }
+  .f-confirmation-box .f-check { font-size: 48px; margin-bottom: 16px; color: #1d9e75; }
+  .f-confirmation-box h2 { font-family: 'DM Sans', sans-serif; color: #1d9e75; font-size: 22px; margin-bottom: 12px; }
+  .f-confirmation-box p { color: #f0ece3; font-size: 14px; line-height: 1.7; font-weight: 300; }
+  .f-erreur-box {
+    background: #fff; border: 2px solid #c0392b; border-radius: 4px;
+    padding: 32px; text-align: center; margin: 40px 0;
+  }
+  .f-erreur-box h2 { color: #c0392b; font-size: 18px; margin-bottom: 12px; font-family: 'DM Sans', sans-serif; }
+  .f-erreur-box p { color: #3a5248; font-size: 13px; line-height: 1.7; }
+  .f-erreur-box a { color: #1d9e75; font-weight: 600; }
+  @media (max-width: 600px) { .formulaire-wrap .f-row { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -52,7 +115,7 @@
         <h1 data-i18n="cand.hero_title">Trouvez votre emploi.</h1>
         <p class="hero-lede" data-i18n="cand.hero_lede">CV canadien, accès au réseau Andjix, coaching entrevue. Nous travaillons pour vous — sans frais.</p>
         <div class="hero-actions">
-          <a href="#" data-typeform="placement" class="btn btn-primary">
+          <a href="#formulaire" class="btn btn-primary">
             <span data-i18n="cand.cta_primary">Déposer mon profil</span>
             <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
@@ -175,7 +238,7 @@
       <h2 data-i18n="cand.final_title">Prêt à démarrer votre recherche d'emploi ?</h2>
       <p data-i18n="cand.final_lede">Déposez votre profil maintenant. Nos premiers retours arrivent en 5 jours ouvrables.</p>
       <div class="partner-actions">
-        <a href="#" data-typeform="placement" class="btn btn-primary">
+        <a href="#formulaire" class="btn btn-primary">
           <span data-i18n="cand.cta_primary">Déposer mon profil</span>
           <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -193,11 +256,269 @@
   </div>
 </section>
 
+<!-- ════════════════════════════════
+     FORMULAIRE D'INSCRIPTION CANDIDAT
+     ════════════════════════════════ -->
+<section id="formulaire">
+  <div class="formulaire-wrap">
+
+    <div class="f-intro">
+      <h2>Inscris-toi une fois, on travaille pour toi.</h2>
+      <p>Remplis ce formulaire et rejoins notre base de données. Dès qu'un employeur correspond à ton profil, nous te contactons directement — gratuitement et sans intermédiaire.</p>
+    </div>
+
+    <form id="form-candidat">
+
+      <div class="f-section">
+        <div class="f-section-title">Informations personnelles</div>
+        <div class="f-row">
+          <div class="f-group">
+            <label>Prénom <span class="req">*</span></label>
+            <input type="text" id="f_prenom" placeholder="Ton prénom" required>
+          </div>
+          <div class="f-group">
+            <label>Nom <span class="req">*</span></label>
+            <input type="text" id="f_nom" placeholder="Ton nom de famille" required>
+          </div>
+        </div>
+        <div class="f-row">
+          <div class="f-group">
+            <label>Courriel <span class="req">*</span></label>
+            <input type="email" id="f_courriel" placeholder="exemple@gmail.com" required>
+          </div>
+          <div class="f-group">
+            <label>Téléphone / WhatsApp <span class="req">*</span></label>
+            <input type="tel" id="f_telephone" placeholder="613-XXX-XXXX" required>
+          </div>
+        </div>
+        <div class="f-row">
+          <div class="f-group">
+            <label>Ville de résidence <span class="req">*</span></label>
+            <input type="text" id="f_ville" placeholder="Ex. : Ottawa, Gatineau" required>
+          </div>
+          <div class="f-group">
+            <label>Statut au Canada <span class="req">*</span></label>
+            <select id="f_statut_immigration" required>
+              <option value="">— Sélectionner —</option>
+              <option>Citoyen canadien</option>
+              <option>Résident permanent</option>
+              <option>Permis de travail ouvert</option>
+              <option>Permis de travail fermé</option>
+              <option>Permis d'études avec autorisation de travail</option>
+              <option>Demandeur d'asile</option>
+              <option>Autre</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="f-section">
+        <div class="f-section-title">Profil professionnel</div>
+        <div class="f-highlight">
+          <strong>Conseil :</strong> Plus ton profil est complet, meilleures sont tes chances d'être contacté rapidement par un employeur qui te correspond.
+        </div>
+        <div class="f-row">
+          <div class="f-group">
+            <label>Secteur(s) d'intérêt <span class="req">*</span></label>
+            <div class="f-checkbox-group">
+              <div class="f-checkbox-item"><input type="checkbox" id="f_s_resto" value="Restauration"><label for="f_s_resto">Restauration</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_s_hotel" value="Hôtellerie"><label for="f_s_hotel">Hôtellerie</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_s_const" value="Construction"><label for="f_s_const">Construction</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_s_sante" value="Santé"><label for="f_s_sante">Santé</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_s_comm" value="Commerce"><label for="f_s_comm">Commerce</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_s_autre" value="Autre"><label for="f_s_autre">Autre</label></div>
+            </div>
+          </div>
+          <div class="f-group">
+            <label>Langues parlées <span class="req">*</span></label>
+            <div class="f-checkbox-group">
+              <div class="f-checkbox-item"><input type="checkbox" id="f_l_fr" value="Français"><label for="f_l_fr">Français</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_l_en" value="Anglais"><label for="f_l_en">Anglais</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_l_es" value="Espagnol"><label for="f_l_es">Espagnol</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_l_ar" value="Arabe"><label for="f_l_ar">Arabe</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_l_autre" value="Autre"><label for="f_l_autre">Autre</label></div>
+            </div>
+          </div>
+        </div>
+        <div class="f-row single">
+          <div class="f-group">
+            <label>Poste(s) recherché(s) <span class="req">*</span></label>
+            <input type="text" id="f_poste_recherche" placeholder="Ex. : Cuisinier, Commis de salle, Réceptionniste..." required>
+          </div>
+        </div>
+        <div class="f-row single">
+          <div class="f-group">
+            <label>Compétences principales</label>
+            <textarea id="f_competences" placeholder="Ex. : 3 ans d'expérience en cuisine africaine, maîtrise de la caisse, permis de conduire classe G..."></textarea>
+          </div>
+        </div>
+        <div class="f-row">
+          <div class="f-group">
+            <label>Niveau d'expérience</label>
+            <select id="f_niveau_experience">
+              <option value="">— Sélectionner —</option>
+              <option>Débutant (moins d'1 an)</option>
+              <option>Intermédiaire (1–3 ans)</option>
+              <option>Expérimenté (3–5 ans)</option>
+              <option>Senior (5+ ans)</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Diplôme / Formation</label>
+            <input type="text" id="f_formation" placeholder="Ex. : DEP Cuisine, DEC Gestion hôtelière...">
+          </div>
+        </div>
+      </div>
+
+      <div class="f-section">
+        <div class="f-section-title">Disponibilité et attentes</div>
+        <div class="f-row">
+          <div class="f-group">
+            <label>Disponibilité <span class="req">*</span></label>
+            <select id="f_disponibilite" required>
+              <option value="">— Sélectionner —</option>
+              <option>Immédiate</option>
+              <option>Dans 2 semaines</option>
+              <option>Dans 1 mois</option>
+              <option>Dans plus d'1 mois</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Type de contrat souhaité</label>
+            <div class="f-checkbox-group" style="margin-top:8px">
+              <div class="f-checkbox-item"><input type="checkbox" id="f_c_tp" value="Temps plein"><label for="f_c_tp">Temps plein</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_c_tpa" value="Temps partiel"><label for="f_c_tpa">Temps partiel</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_c_flex" value="Flexible"><label for="f_c_flex">Flexible</label></div>
+            </div>
+          </div>
+        </div>
+        <div class="f-row">
+          <div class="f-group">
+            <label>Salaire souhaité</label>
+            <select id="f_salaire_souhaite">
+              <option value="">— Sélectionner —</option>
+              <option>Salaire minimum (~17,20 $/h)</option>
+              <option>17 $ – 20 $/h</option>
+              <option>20 $ – 25 $/h</option>
+              <option>25 $ – 30 $/h</option>
+              <option>30 $+ /h</option>
+              <option>Ouvert à la discussion</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Moyen de contact préféré</label>
+            <div class="f-radio-group" style="margin-top:8px">
+              <div class="f-radio-item"><input type="radio" name="f_contact_cand" id="f_rc_email" value="Courriel"><label for="f_rc_email">Courriel</label></div>
+              <div class="f-radio-item"><input type="radio" name="f_contact_cand" id="f_rc_tel" value="Téléphone"><label for="f_rc_tel">Téléphone</label></div>
+              <div class="f-radio-item"><input type="radio" name="f_contact_cand" id="f_rc_wa" value="WhatsApp"><label for="f_rc_wa">WhatsApp</label></div>
+            </div>
+          </div>
+        </div>
+        <div class="f-row single">
+          <div class="f-group">
+            <label>Lien vers votre CV (Google Drive, OneDrive, Dropbox)</label>
+            <input type="url" id="f_lien_cv" placeholder="https://drive.google.com/file/d/...">
+            <p class="f-field-note">Assurez-vous que le lien est accessible à toute personne possédant le lien.</p>
+          </div>
+        </div>
+        <div class="f-row single">
+          <div class="f-group">
+            <label>Message ou précisions</label>
+            <textarea id="f_notes" placeholder="Ajoute toute information utile : contraintes horaires, mobilité, situation particulière..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="f-submit">
+        <button type="submit" class="f-btn" id="f_btn_cand">Soumettre mon profil</button>
+        <p class="f-note">Ton inscription est gratuite et confidentielle. Andjix te contactera dès qu'une opportunité correspond à ton profil.</p>
+      </div>
+
+    </form>
+
+    <div id="f_confirmation_cand" class="f-confirmation">
+      <div class="f-confirmation-box">
+        <div class="f-check">✓</div>
+        <h2>Profil reçu !</h2>
+        <p>Merci ! Votre dossier a bien été reçu.<br>Un conseiller Andjix vous contactera dans les 48h ouvrables.</p>
+      </div>
+    </div>
+
+    <div id="f_erreur_cand" class="f-erreur">
+      <div class="f-erreur-box">
+        <h2>Une erreur est survenue</h2>
+        <p>Votre profil n'a pas pu être envoyé. Veuillez réessayer ou nous contacter directement :<br><br>
+        <a href="mailto:info.andjix@gmail.com">info.andjix@gmail.com</a> &nbsp;·&nbsp;
+        <a href="tel:6132768401">613-276-8401</a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <div data-include="footer"></div>
 
 <script src="partials.js"></script>
 <script src="i18n.js"></script>
 <script src="andjix-config.js"></script>
 <script src="app.js"></script>
+<script>
+  const WEBHOOK_CAND = 'https://hook.us2.make.com/gofja89d3eu2q9pvo8961pf8ren4r8l4';
+
+  document.getElementById('form-candidat').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('f_btn_cand');
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours...';
+
+    const secteurs = ['f_s_resto','f_s_hotel','f_s_const','f_s_sante','f_s_comm','f_s_autre']
+      .map(id => document.getElementById(id)).filter(el => el.checked).map(el => el.value);
+
+    const langues = ['f_l_fr','f_l_en','f_l_es','f_l_ar','f_l_autre']
+      .map(id => document.getElementById(id)).filter(el => el.checked).map(el => el.value);
+
+    const contrats = ['f_c_tp','f_c_tpa','f_c_flex']
+      .map(id => document.getElementById(id)).filter(el => el.checked).map(el => el.value);
+
+    const moyenContact = document.querySelector('input[name="f_contact_cand"]:checked');
+
+    const payload = {
+      prenom: document.getElementById('f_prenom').value,
+      nom: document.getElementById('f_nom').value,
+      courriel: document.getElementById('f_courriel').value,
+      telephone: document.getElementById('f_telephone').value,
+      ville: document.getElementById('f_ville').value,
+      statut_immigration: document.getElementById('f_statut_immigration').value,
+      secteurs_cibles: secteurs,
+      poste_recherche: document.getElementById('f_poste_recherche').value,
+      competences: document.getElementById('f_competences').value,
+      langues_parlees: langues,
+      niveau_experience: document.getElementById('f_niveau_experience').value,
+      formation: document.getElementById('f_formation').value,
+      disponibilite: document.getElementById('f_disponibilite').value,
+      type_contrat_souhaite: contrats,
+      salaire_souhaite: document.getElementById('f_salaire_souhaite').value,
+      moyen_contact: moyenContact ? moyenContact.value : '',
+      lien_cv: document.getElementById('f_lien_cv').value,
+      notes: document.getElementById('f_notes').value
+    };
+
+    try {
+      const res = await fetch(WEBHOOK_CAND, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (res.ok) {
+        document.getElementById('form-candidat').style.display = 'none';
+        document.getElementById('f_confirmation_cand').style.display = 'block';
+      } else { throw new Error(); }
+    } catch {
+      document.getElementById('form-candidat').style.display = 'none';
+      document.getElementById('f_erreur_cand').style.display = 'block';
+    }
+  });
+</script>
+
 </body>
 </html>

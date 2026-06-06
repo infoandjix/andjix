@@ -9,7 +9,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 <style>
   .emp-hero { background: linear-gradient(135deg, rgba(234,88,12,.07) 0%, rgba(30,136,229,.06) 100%); border-bottom: 1px solid var(--border-soft); }
@@ -40,6 +40,72 @@
   .niche-item { background: var(--bg-soft); border: 1px solid var(--border-soft); border-radius: var(--radius-sm); padding: 16px 18px; display: flex; align-items: center; gap: 12px; font-size: .875rem; font-weight: 500; }
   .niche-item svg { color: var(--blue); flex-shrink: 0; }
   @media (max-width: 600px) { .stats-trio { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ── Bloc formulaire ── */
+  #formulaire { background: #0a1628; padding: 64px 0; }
+  .formulaire-wrap { max-width: 680px; margin: 0 auto; padding: 0 20px; font-family: 'DM Sans', sans-serif; }
+  .formulaire-wrap .f-intro { border-left: 4px solid #d4a84b; padding: 20px 24px; border-radius: 2px; margin-bottom: 32px; }
+  .formulaire-wrap .f-intro h2 { font-family: 'Playfair Display', serif; font-size: 22px; color: #f0ece3; margin-bottom: 8px; }
+  .formulaire-wrap .f-intro p { font-size: 13px; color: #a09080; line-height: 1.6; font-weight: 300; }
+  .formulaire-wrap .f-section { background: #fff; border-radius: 4px; padding: 24px; margin-bottom: 20px; border: 1px solid #e0dbd0; }
+  .formulaire-wrap .f-section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #d4a84b; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid #f0ebe0; }
+  .formulaire-wrap .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .formulaire-wrap .f-row.single { grid-template-columns: 1fr; }
+  .formulaire-wrap .f-group { display: flex; flex-direction: column; }
+  .formulaire-wrap label { font-size: 12px; color: #5a5248; margin-bottom: 6px; font-weight: 500; }
+  .formulaire-wrap label span.req { color: #d4a84b; }
+  .formulaire-wrap input[type="text"],
+  .formulaire-wrap input[type="email"],
+  .formulaire-wrap input[type="tel"],
+  .formulaire-wrap select,
+  .formulaire-wrap textarea {
+    border: 1px solid #ddd8cc; border-radius: 3px; padding: 10px 12px; font-size: 13px;
+    font-family: 'DM Sans', sans-serif; color: #2a2520; background: #faf9f6; outline: none; transition: border-color 0.2s;
+  }
+  .formulaire-wrap input:focus,
+  .formulaire-wrap select:focus,
+  .formulaire-wrap textarea:focus { border-color: #d4a84b; background: #fff; }
+  .formulaire-wrap textarea { resize: vertical; min-height: 80px; }
+  .formulaire-wrap .f-checkbox-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  .formulaire-wrap .f-checkbox-item { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+  .formulaire-wrap .f-checkbox-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: #d4a84b; cursor: pointer; }
+  .formulaire-wrap .f-checkbox-item label { font-size: 13px; color: #3a3028; margin: 0; cursor: pointer; font-weight: 400; }
+  .formulaire-wrap .f-radio-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  .formulaire-wrap .f-radio-item { display: flex; align-items: center; gap: 6px; }
+  .formulaire-wrap .f-radio-item input[type="radio"] { accent-color: #d4a84b; }
+  .formulaire-wrap .f-radio-item label { font-size: 13px; color: #3a3028; margin: 0; font-weight: 400; }
+  .formulaire-wrap .f-submit { text-align: center; margin-top: 10px; }
+  .formulaire-wrap .f-btn {
+    background: #d4a84b; color: #0a1628; border: none; padding: 14px 48px; font-size: 13px;
+    font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border-radius: 2px;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+  }
+  .formulaire-wrap .f-btn:hover { background: #c4982b; }
+  .formulaire-wrap .f-btn:disabled { background: #a09080; cursor: not-allowed; }
+  .formulaire-wrap .f-note { font-size: 11px; color: #a09080; margin-top: 10px; }
+  .formulaire-wrap .f-lang-toggle { display: flex; gap: 8px; margin-bottom: 24px; justify-content: flex-end; }
+  .formulaire-wrap .f-lang-btn {
+    background: transparent; border: 1px solid #d4a84b; color: #d4a84b; padding: 4px 12px;
+    font-size: 11px; font-family: 'DM Sans', sans-serif; cursor: pointer; border-radius: 2px;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .formulaire-wrap .f-lang-btn.active { background: #d4a84b; color: #0a1628; font-weight: 600; }
+  .f-confirmation, .f-erreur { display: none; }
+  .f-confirmation-box {
+    background: #0a1628; border: 2px solid #d4a84b; border-radius: 4px;
+    padding: 40px 32px; text-align: center; margin: 40px 0;
+  }
+  .f-confirmation-box .f-check { font-size: 48px; margin-bottom: 16px; color: #d4a84b; }
+  .f-confirmation-box h2 { font-family: 'Playfair Display', serif; color: #d4a84b; font-size: 22px; margin-bottom: 12px; font-family: 'DM Sans', sans-serif; }
+  .f-confirmation-box p { color: #f0ece3; font-size: 14px; line-height: 1.7; font-weight: 300; }
+  .f-erreur-box {
+    background: #fff; border: 2px solid #c0392b; border-radius: 4px;
+    padding: 32px; text-align: center; margin: 40px 0;
+  }
+  .f-erreur-box h2 { color: #c0392b; font-size: 18px; margin-bottom: 12px; font-family: 'DM Sans', sans-serif; }
+  .f-erreur-box p { color: #5a5248; font-size: 13px; line-height: 1.7; }
+  .f-erreur-box a { color: #d4a84b; font-weight: 600; }
+  @media (max-width: 600px) { .formulaire-wrap .f-row { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -57,8 +123,8 @@
         <h1 data-i18n="emp.hero_title">Des talents bilingues pour vos postes difficiles à combler.</h1>
         <p class="hero-lede" data-i18n="emp.hero_lede">Accédez au vivier de candidats qualifiés d'Andjix. 3 niveaux de service, garantie 60 jours, premiers CV en 5 jours ouvrables.</p>
         <div class="hero-actions">
-          <a href="#" data-calendly-link class="btn btn-primary">
-            <span data-i18n="emp.cta_primary">Prendre rendez-vous</span>
+          <a href="#formulaire" class="btn btn-primary">
+            <span data-i18n="emp.cta_inscription">Inscrire mon entreprise</span>
             <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
           <a href="#offres" class="btn btn-ghost">
@@ -122,7 +188,7 @@
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="emp.t1_f3">Vérification admissibilité au travail</span></li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="emp.t1_f4">Garantie 30 jours</span></li>
         </ul>
-        <a href="#" data-calendly-link class="btn btn-ghost" style="width: 100%; justify-content: center;">
+        <a href="#formulaire" class="btn btn-ghost" style="width: 100%; justify-content: center;">
           <span data-i18n="emp.t_cta">Démarrer ce forfait</span>
         </a>
       </div>
@@ -138,7 +204,7 @@
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="emp.t2_f4">Coordination logistique d'embauche</span></li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="emp.t2_f5">Garantie 60 jours</span></li>
         </ul>
-        <a href="#" data-calendly-link class="btn btn-primary" style="width: 100%; justify-content: center;">
+        <a href="#formulaire" class="btn btn-primary" style="width: 100%; justify-content: center;">
           <span data-i18n="emp.t_cta">Démarrer ce forfait</span>
         </a>
       </div>
@@ -153,7 +219,7 @@
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="emp.t3_f4">Accès prioritaire au vivier Andjix</span></li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="emp.t3_f5">Tarification à volume</span></li>
         </ul>
-        <a href="#" data-calendly-link class="btn btn-ghost" style="width: 100%; justify-content: center;">
+        <a href="#formulaire" class="btn btn-ghost" style="width: 100%; justify-content: center;">
           <span data-i18n="emp.t_cta_contact">Nous contacter</span>
         </a>
       </div>
@@ -258,8 +324,8 @@
       <h2 data-i18n="emp.final_title">Prêt à trouver votre prochain talent ?</h2>
       <p data-i18n="emp.final_lede">Contactez-nous pour discuter de votre besoin. Premiers profils livrés en 5 jours ouvrables.</p>
       <div class="partner-actions">
-        <a href="#" data-calendly-link class="btn btn-primary">
-          <span data-i18n="emp.cta_primary">Prendre rendez-vous</span>
+        <a href="#formulaire" class="btn btn-primary">
+          <span data-i18n="emp.cta_inscription">Inscrire mon entreprise</span>
           <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
         <a href="placement-candidats.html" class="btn btn-ghost">
@@ -276,11 +342,258 @@
   </div>
 </section>
 
+<!-- ════════════════════════════════
+     FORMULAIRE D'INSCRIPTION EMPLOYEUR
+     ════════════════════════════════ -->
+<section id="formulaire">
+  <div class="formulaire-wrap">
+
+    <div class="f-lang-toggle">
+      <button class="f-lang-btn active" onclick="setLangEmp('fr')">FR</button>
+      <button class="f-lang-btn" onclick="setLangEmp('en')">EN</button>
+    </div>
+
+    <div class="f-intro">
+      <h2>Rejoignez notre base de données partenaires</h2>
+      <p>Inscrivez votre entreprise gratuitement. Nous vous contacterons dès qu'un candidat qualifié correspond à vos besoins — sans démarche supplémentaire de votre part.</p>
+    </div>
+
+    <form id="form-employeur">
+
+      <div class="f-section">
+        <div class="f-section-title">Informations sur l'entreprise</div>
+        <div class="f-row">
+          <div class="f-group">
+            <label>Nom de l'entreprise <span class="req">*</span></label>
+            <input type="text" id="f_nom_entreprise" placeholder="Ex. : Hôtel Le Méridien Ottawa" required>
+          </div>
+          <div class="f-group">
+            <label>Secteur d'activité <span class="req">*</span></label>
+            <select id="f_secteur" required>
+              <option value="">— Sélectionner —</option>
+              <option>Restauration</option>
+              <option>Hôtellerie</option>
+              <option>Construction</option>
+              <option>Santé / Services aux personnes</option>
+              <option>Commerce de détail</option>
+              <option>Transport / Logistique</option>
+              <option>Autre</option>
+            </select>
+          </div>
+        </div>
+        <div class="f-row">
+          <div class="f-group">
+            <label>Adresse / Localisation <span class="req">*</span></label>
+            <input type="text" id="f_localisation" placeholder="Ex. : 150 rue Elgin, Ottawa" required>
+          </div>
+          <div class="f-group">
+            <label>Taille de l'entreprise</label>
+            <select id="f_taille_entreprise">
+              <option value="">— Sélectionner —</option>
+              <option>1–10 employés</option>
+              <option>11–50 employés</option>
+              <option>51–200 employés</option>
+              <option>200+ employés</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="f-section">
+        <div class="f-section-title">Besoins en recrutement</div>
+        <div class="f-row single">
+          <div class="f-group">
+            <label>Postes recherchés <span class="req">*</span></label>
+            <input type="text" id="f_postes_recherches" placeholder="Ex. : Cuisinier, Réceptionniste, Serveur..." required>
+          </div>
+        </div>
+        <div class="f-row">
+          <div class="f-group">
+            <label>Langue(s) requise(s) <span class="req">*</span></label>
+            <div class="f-checkbox-group">
+              <div class="f-checkbox-item"><input type="checkbox" id="f_fr" value="Français"><label for="f_fr">Français</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_en" value="Anglais"><label for="f_en">Anglais</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_bi" value="Bilingue"><label for="f_bi">Bilingue</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_autre_lang" value="Autre"><label for="f_autre_lang">Autre</label></div>
+            </div>
+          </div>
+          <div class="f-group">
+            <label>Type de contrat recherché</label>
+            <div class="f-checkbox-group">
+              <div class="f-checkbox-item"><input type="checkbox" id="f_tp" value="Temps plein"><label for="f_tp">Temps plein</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_tpa" value="Temps partiel"><label for="f_tpa">Temps partiel</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_sais" value="Saisonnier"><label for="f_sais">Saisonnier</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_perm" value="Permanent"><label for="f_perm">Permanent</label></div>
+            </div>
+          </div>
+        </div>
+        <div class="f-row">
+          <div class="f-group">
+            <label>Fourchette salariale offerte</label>
+            <select id="f_salaire_offert">
+              <option value="">— Sélectionner —</option>
+              <option>Salaire minimum (~17,20 $/h)</option>
+              <option>17 $ – 20 $/h</option>
+              <option>20 $ – 25 $/h</option>
+              <option>25 $ – 30 $/h</option>
+              <option>30 $+ /h</option>
+              <option>À discuter</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Délai de recrutement souhaité</label>
+            <select id="f_delai_recrutement">
+              <option value="">— Sélectionner —</option>
+              <option>Immédiat (dès que possible)</option>
+              <option>Dans les 2 semaines</option>
+              <option>Dans le mois</option>
+              <option>Planification future</option>
+            </select>
+          </div>
+        </div>
+        <div class="f-row single">
+          <div class="f-group">
+            <label>Exigences ou précisions supplémentaires</label>
+            <textarea id="f_exigences" placeholder="Ex. : Expérience en cuisine asiatique, permis de conduire requis..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="f-section">
+        <div class="f-section-title">Personne-ressource</div>
+        <div class="f-row">
+          <div class="f-group">
+            <label>Nom complet <span class="req">*</span></label>
+            <input type="text" id="f_nom_contact_rh" placeholder="Prénom Nom" required>
+          </div>
+          <div class="f-group">
+            <label>Titre / Poste</label>
+            <input type="text" id="f_titre_contact_rh" placeholder="Ex. : Directeur RH, Gérant">
+          </div>
+        </div>
+        <div class="f-row">
+          <div class="f-group">
+            <label>Courriel <span class="req">*</span></label>
+            <input type="email" id="f_courriel_rh" placeholder="exemple@entreprise.com" required>
+          </div>
+          <div class="f-group">
+            <label>Téléphone</label>
+            <input type="tel" id="f_telephone_rh" placeholder="613-XXX-XXXX">
+          </div>
+        </div>
+        <div class="f-row single">
+          <div class="f-group">
+            <label>Moyen de contact préféré</label>
+            <div class="f-radio-group">
+              <div class="f-radio-item"><input type="radio" name="f_contact" id="f_c_email" value="Courriel"><label for="f_c_email">Courriel</label></div>
+              <div class="f-radio-item"><input type="radio" name="f_contact" id="f_c_tel" value="Téléphone"><label for="f_c_tel">Téléphone</label></div>
+              <div class="f-radio-item"><input type="radio" name="f_contact" id="f_c_wa" value="WhatsApp"><label for="f_c_wa">WhatsApp</label></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="f-submit">
+        <button type="submit" class="f-btn" id="f_btn_emp">Soumettre ma demande</button>
+        <p class="f-note">Un conseiller Andjix vous contactera dans les 48h ouvrables.</p>
+      </div>
+
+    </form>
+
+    <div id="f_confirmation_fr" class="f-confirmation">
+      <div class="f-confirmation-box">
+        <div class="f-check">✓</div>
+        <h2>Demande reçue !</h2>
+        <p>Merci ! Votre dossier a bien été reçu.<br>Un conseiller Andjix vous contactera dans les 48h ouvrables.</p>
+      </div>
+    </div>
+
+    <div id="f_confirmation_en" class="f-confirmation">
+      <div class="f-confirmation-box">
+        <div class="f-check">✓</div>
+        <h2>Request received!</h2>
+        <p>Thank you! Your file has been received.<br>An Andjix advisor will contact you within 48 business hours.</p>
+      </div>
+    </div>
+
+    <div id="f_erreur_emp" class="f-erreur">
+      <div class="f-erreur-box">
+        <h2>Une erreur est survenue</h2>
+        <p>Votre demande n'a pas pu être envoyée. Veuillez réessayer ou nous contacter directement :<br><br>
+        <a href="mailto:info.andjix@gmail.com">info.andjix@gmail.com</a> &nbsp;·&nbsp;
+        <a href="tel:6132768401">613-276-8401</a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <div data-include="footer"></div>
 
 <script src="partials.js"></script>
 <script src="i18n.js"></script>
 <script src="andjix-config.js"></script>
 <script src="app.js"></script>
+<script>
+  const WEBHOOK_EMP = 'https://hook.us2.make.com/jo5mxydfpermgd03yyrqsgwv7j75g4a4';
+  let langEmp = 'fr';
+
+  function setLangEmp(lang) {
+    langEmp = lang;
+    document.querySelectorAll('.f-lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.f-lang-btn[onclick="setLangEmp(\'' + lang + '\')"]').classList.add('active');
+  }
+
+  document.getElementById('form-employeur').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('f_btn_emp');
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours...';
+
+    const langues = ['f_fr','f_en','f_bi','f_autre_lang']
+      .map(id => document.getElementById(id))
+      .filter(el => el.checked).map(el => el.value);
+
+    const contrats = ['f_tp','f_tpa','f_sais','f_perm']
+      .map(id => document.getElementById(id))
+      .filter(el => el.checked).map(el => el.value);
+
+    const moyenContact = document.querySelector('input[name="f_contact"]:checked');
+
+    const payload = {
+      nom_entreprise: document.getElementById('f_nom_entreprise').value,
+      secteur: document.getElementById('f_secteur').value,
+      taille_entreprise: document.getElementById('f_taille_entreprise').value,
+      postes_recherches: document.getElementById('f_postes_recherches').value,
+      langues_requises: langues,
+      type_contrat: contrats,
+      salaire_offert: document.getElementById('f_salaire_offert').value,
+      delai_recrutement: document.getElementById('f_delai_recrutement').value,
+      localisation: document.getElementById('f_localisation').value,
+      nom_contact_rh: document.getElementById('f_nom_contact_rh').value,
+      titre_contact_rh: document.getElementById('f_titre_contact_rh').value,
+      courriel_rh: document.getElementById('f_courriel_rh').value,
+      telephone_rh: document.getElementById('f_telephone_rh').value,
+      moyen_contact: moyenContact ? moyenContact.value : '',
+      exigences_supplementaires: document.getElementById('f_exigences').value
+    };
+
+    try {
+      const res = await fetch(WEBHOOK_EMP, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (res.ok) {
+        document.getElementById('form-employeur').style.display = 'none';
+        document.getElementById(langEmp === 'en' ? 'f_confirmation_en' : 'f_confirmation_fr').style.display = 'block';
+      } else { throw new Error(); }
+    } catch {
+      document.getElementById('form-employeur').style.display = 'none';
+      document.getElementById('f_erreur_emp').style.display = 'block';
+    }
+  });
+</script>
+
 </body>
 </html>
