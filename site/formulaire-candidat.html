@@ -291,17 +291,34 @@ document.getElementById('form-candidat').addEventListener('submit', async functi
   const getChecked = (name) =>
     [...f.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value);
 
+  const niveauMap = {
+    'Débutant (moins d\'1 an)': 'Débutant',
+    'Intermédiaire (1–3 ans)': 'Intermédiaire',
+    'Expérimenté (3–5 ans)': 'Expérimenté',
+    'Senior (5+ ans)': 'Senior'
+  };
+
+  const statutMap = {
+    'Citoyen canadien': 'Citoyen',
+    'Résident permanent': 'Résident permanent',
+    'Permis de travail ouvert': 'Permis travail',
+    'Permis de travail fermé': 'Permis travail',
+    'Permis d\'études avec autorisation de travail': 'Permis travail',
+    'Demandeur d\'asile': 'Autre',
+    'Autre': 'Autre'
+  };
+
   const fields = {
     "Prénom": f.prenom.value.trim(),
     "Nom": f.nom.value.trim(),
     "Courriel": f.courriel.value.trim(),
     "Téléphone": f.telephone.value.trim(),
     "Ville": f.ville.value.trim(),
-    "Statut immigration": f.statut_immigration.value || null,
+    "Statut immigration": statutMap[f.statut_immigration.value] || f.statut_immigration.value || null,
     "Secteurs ciblés": getChecked('secteurs'),
     "Poste recherché": f.poste.value.trim(),
     "Langues parlées": getChecked('langues'),
-    "Niveau expérience": f.niveau.value || null,
+    "Niveau expérience": niveauMap[f.niveau.value] || f.niveau.value || null,
     "Disponibilité": f.disponibilite.value || null,
     "Type contrat": getChecked('contrat'),
     "Salaire souhaité": f.salaire.value || null,
