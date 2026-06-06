@@ -1,396 +1,192 @@
+// Andjix — Matching Engine + Alertes EmailJS
+
+// ─── Normalisation ───────────────────────────────────────────────────────────
+
+function normalise(val) {
+  if (!val) return '';
+  return val.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
+}
+
+function normaliseArr(arr) {
+  if (!Array.isArray(arr)) return [];
+  return arr.map(normalise);
+}
+
+// ─── Compatibilité salariale ─────────────────────────────────────────────────
+
+const SALARY_RANK = {
+  'salaire minimum': 1, '17 - 20': 2, '20 - 25': 3,
+  '25 - 30': 4, '30+': 5, 'ouvert': 99, 'a discuter': 99
+};
+
+function salaryKey(str) {
+  const s = normalise(str);
+  if (s.includes('minimum') || s.includes('17,20')) return 'salaire minimum';
+  if (s.includes('17') && s.includes('20')) return '17 - 20';
+  if (s.includes('20') && s.includes('25')) return '20 - 25';
+  if (s.includes('25') && s.includes('30')) return '25 - 30';
+  if (s.includes('30')) return '30+';
+  if (s.includes('ouvert') || s.includes('discuter')) return 'ouvert';
+  return null;
+}
+
+function salaryCompatible(offert, souhaite) {
+  if (!offert || !souhaite) return false;
+  const ko = SALARY_RANK[salaryKey(offert)];
+  const ks = SALARY_RANK[salaryKey(souhaite)];
+  if (!ko || !ks) return false;
+  if (ks === 99 || ko === 99) return true;
+  return ko >= ks;
+}
+
+// ─── Compatibilité disponibilité / délai ─────────────────────────────────────
+
+const DISPO_RANK = {
+  'immediate': 1, '2 semaines': 2, '1 mois': 3, 'plus': 4
+};
+
+function dispoKey(str) {
+  const s = normalise(str);
+  if (s.includes('immed') || s.includes('des que')) return 'immediate';
+  if (s.includes('2 semaine') || s.includes('deux semaine')) return '2 semaines';
+  if (s.includes('1 mois') || s.includes('un mois') || s.includes('mois')) return '1 mois';
+  return 'plus';
+}
+
+function dispoCompatible(delaiEmployeur, dispoCandidat) {
+  if (!delaiEmployeur || !dispoCandidat) return false;
+  const ke = DISPO_RANK[dispoKey(delaiEmployeur)];
+  const kc = DISPO_RANK[dispoKey(dispoCandidat)];
+  if (!ke || !kc) return false;
+  return kc <= ke;
+}
+
+// ─── Compatibilité langue ─────────────────────────────────────────────────────
+
+function langueCompatible(languesRequises, languesParlees) {
+  const req = normaliseArr(languesRequises);
+  const parl = normaliseArr(languesParlees);
+  if (req.length === 0 || parl.length === 0) return false;
+  const candidatBilingue = parl.includes('bilingue') ||
+    (parl.includes('francais') && parl.includes('anglais'));
+  return req.some(r => {
+    if (r === 'bilingue') return candidatBilingue;
+    return parl.includes(r) || candidatBilingue;
+  });
+}
+
+// ─── Compatibilité secteur ────────────────────────────────────────────────────
+
+function secteurCompatible(secteurEmployeur, secteursCandidat) {
+  if (!secteurEmployeur) return false;
+  const se = normalise(secteurEmployeur);
+  const sc = normaliseArr(secteursCandidat);
+  return sc.some(s => se.includes(s) || s.includes(se));
+}
+
+// ─── Compatibilité contrat ────────────────────────────────────────────────────
+
+function contratCompatible(contratsEmployeur, contratsCandidat) {
+  const ce = normaliseArr(contratsEmployeur);
+  const cc = normaliseArr(contratsCandidat);
+  if (ce.length === 0 || cc.length === 0) return false;
+  if (cc.includes('flexible')) return true;
+  return ce.some(c => cc.includes(c));
+}
+
+// ─── Fonction principale de matching ─────────────────────────────────────────
+
 /**
- * matching.js — Moteur de matching Andjix Placement
+ * matchCandidats(employeur, candidats)
  *
- * Dépendances (chargées avant ce script) :
- *   - placement-config.js  → window.PLACEMENT_CONFIG
- *   - EmailJS SDK (CDN)    → window.emailjs
- *
- * Fonctions publiques exposées sur window.AndjixMatching :
- *   matchCandidats(employeur, candidats)  → [{candidat, score, criteresMatchés}]
- *   fetchEmployeurs()                     → Promise<record[]>
- *   fetchCandidatsDisponibles()           → Promise<record[]>
- *   sendMatchAlert(employeur, matches)    → Promise
+ * @param {Object} employeur  - Enregistrement Airtable employeur (champs Airtable)
+ * @param {Array}  candidats  - Tableau d'enregistrements Airtable candidats
+ * @returns {Array} Candidats avec score >= 4, triés par score décroissant
+ *   Format : [{ candidat, score, criteres_matches }]
  */
+function matchCandidats(employeur, candidats) {
+  const e = employeur.fields || employeur;
 
-(function () {
-  'use strict';
-
-  /* ══════════════════════════════════════════════════════════════════════════
-     1. TABLES DE RÉFÉRENCE
-     ══════════════════════════════════════════════════════════════════════════ */
-
-  /**
-   * Fourchettes salariales ordonnées du plus bas au plus élevé.
-   * Les valeurs ici doivent correspondre EXACTEMENT aux options Single Select
-   * définies dans Airtable (champs "Salaire offert" et "Salaire souhaité").
-   */
-  const SALARY_ORDER = [
-    'Salaire minimum (~17,20 $/h)',
-    '17 $ – 20 $/h',
-    '20 $ – 25 $/h',
-    '25 $ – 30 $/h',
-    '30 $+ /h',
-    'À discuter',
-  ];
-
-  /**
-   * Délais de recrutement employeur → nombre de jours max.
-   * Doit correspondre aux options du champ "Délai recrutement" dans Airtable.
-   */
-  const DELAI_JOURS = {
-    'Immédiat (dès que possible)': 7,
-    'Dans les 2 semaines':         14,
-    'Dans le mois':                30,
-    'Planification future':        120,
-  };
-
-  /**
-   * Disponibilité candidat → nombre de jours avant disponibilité.
-   * Doit correspondre aux options du champ "Disponibilité" dans Airtable.
-   */
-  const DISPO_JOURS = {
-    'Immédiate':            0,
-    'Dans les 2 semaines':  14,
-    'Dans 1 mois':          30,
-    "Dans plus d'1 mois":   75,
-  };
-
-
-  /* ══════════════════════════════════════════════════════════════════════════
-     2. FONCTIONS UTILITAIRES
-     ══════════════════════════════════════════════════════════════════════════ */
-
-  /** Normalise une chaîne : minuscules + trim pour comparaison souple. */
-  function norm(s) {
-    return (s || '').toLowerCase().trim();
-  }
-
-  /**
-   * Compatibilité salariale.
-   * Renvoie true si les deux fourchettes sont identiques ou adjacentes (±1 bucket).
-   * Ex : "45 000–55 000 $" (idx 2) est compatible avec "55 000–70 000 $" (idx 3).
-   */
-  /** Normalise les tirets et espaces pour comparer les fourchettes salariales.
-   *  Accepte "-", "–", "—" et variations d'espaces (ex: "55 000 - 70 000 $"). */
-  function normSalary(s) {
-    return (s || '').replace(/\s*[-–—]\s*/g, ' – ').trim();
-  }
-
-  function salaireCompatible(offert, souhaite) {
-    const normOrder = SALARY_ORDER.map(normSalary);
-    const a = normOrder.indexOf(normSalary(offert));
-    const b = normOrder.indexOf(normSalary(souhaite));
-    if (a === -1 || b === -1) return false;
-    return Math.abs(a - b) <= 1;
-  }
-
-  /**
-   * Compatibilité de disponibilité.
-   * Renvoie true si le candidat est disponible avant ou au plus tard
-   * à la date butoir de recrutement de l'employeur.
-   */
-  function dispoCompatible(delaiEmployeur, dispoCandidat) {
-    const maxJours = DELAI_JOURS[delaiEmployeur];
-    const joursCandidat = DISPO_JOURS[dispoCandidat];
-    if (maxJours == null || joursCandidat == null) return false;
-    return joursCandidat <= maxJours;
-  }
-
-  /**
-   * Compatibilité linguistique.
-   * languesRequises : tableau (multi-select Airtable) de l'employeur.
-   * languesParlees  : tableau (multi-select Airtable) du candidat.
-   *
-   * Règle :
-   *   - Si l'employeur exige "Bilingue FR/EN" → le candidat doit avoir
-   *     "Bilingue FR/EN" OU (Français ET Anglais) dans ses langues.
-   *   - Pour toute autre langue requise → au moins une langue requise
-   *     doit figurer parmi les langues du candidat.
-   */
-  function langueCompatible(languesRequises, languesParlees) {
-    const req = (languesRequises || []).map(norm);
-    const has = (languesParlees  || []).map(norm);
-    if (!req.length || !has.length) return false;
-
-    for (const reqLang of req) {
-      if (reqLang === 'bilingue fr/en') {
-        const hasBilingual = has.includes('bilingue fr/en');
-        const hasFr = has.some(l => l.includes('fran'));
-        const hasEn = has.some(l => l.includes('angl') || l.includes('engl') || l === 'en');
-        if (hasBilingual || (hasFr && hasEn)) return true;
-      } else {
-        if (has.some(l => l.includes(reqLang) || reqLang.includes(l))) return true;
-      }
-    }
-    return false;
-  }
-
-  /**
-   * Compatibilité de type de contrat.
-   * Renvoie true s'il existe au moins une valeur commune entre
-   * les types acceptés par l'employeur et ceux souhaités par le candidat.
-   */
-  function contratCompatible(contratsEmployeur, contratsCandidat) {
-    const empC = (contratsEmployeur || []).map(norm);
-    const canC = (contratsCandidat  || []).map(norm);
-    if (!empC.length || !canC.length) return false;
-    // "Flexible" côté candidat = accepte tout type de contrat
-    if (canC.includes('flexible')) return true;
-    return empC.some(c => canC.includes(c));
-  }
-
-
-  /* ══════════════════════════════════════════════════════════════════════════
-     3. ALGORITHME DE MATCHING (score /7)
-     ══════════════════════════════════════════════════════════════════════════ */
-
-  /**
-   * matchCandidats(employeur, candidats)
-   *
-   * Compare un employeur avec une liste de candidats et attribue un score
-   * sur 7 points selon 5 critères :
-   *
-   *   Critère              Points  Champs comparés
-   *   ─────────────────────────────────────────────────────────────────
-   *   Secteur identique      2     Employeur.Secteur ↔ Candidat."Secteurs ciblés"
-   *   Langue compatible      2     Employeur."Langues requises" ↔ Candidat."Langues parlées"
-   *   Type contrat           1     Employeur."Type contrat" ↔ Candidat."Type contrat"
-   *   Fourchette salariale   1     Employeur."Salaire offert" ↔ Candidat."Salaire souhaité"
-   *   Disponibilité          1     Employeur."Délai recrutement" ↔ Candidat."Disponibilité"
-   *   ─────────────────────────────────────────────────────────────────
-   *   TOTAL                  7
-   *
-   * @param {object}   employeur  Record Airtable (avec .fields) de Employeurs_Andjix
-   * @param {object[]} candidats  Array de records Airtable de Candidats_Andjix
-   * @returns {Array<{candidat:object, score:number, criteresMatchés:Array}>}
-   *   Uniquement les candidats avec score ≥ 4, triés par score décroissant.
-   *   Chaque élément de criteresMatchés : { critere, pts, detail }
-   */
-  function matchCandidats(employeur, candidats) {
-    if (!employeur || !Array.isArray(candidats)) return [];
-
-    const ef = employeur.fields || {};
-    const results = [];
-
-    for (const candidat of candidats) {
-      const cf = candidat.fields || {};
+  return candidats
+    .filter(c => {
+      const statut = normalise((c.fields || c)['Statut'] || '');
+      return statut === 'disponible';
+    })
+    .map(candidat => {
+      const c = candidat.fields || candidat;
+      const criteres = {};
       let score = 0;
-      const criteresMatchés = [];
 
-      // ── Critère 1 : Secteur (2 pts) ──────────────────────────────────────
-      const empSecteur = ef['Secteur'] || '';
-      const candSecteurs = cf['Secteurs ciblés'] || [];
-      if (empSecteur && candSecteurs.includes(empSecteur)) {
+      // Secteur identique → 2 pts
+      if (secteurCompatible(e['Secteur'], c['Secteurs ciblés'])) {
+        criteres.secteur = true;
         score += 2;
-        criteresMatchés.push({
-          critere: 'Secteur',
-          pts: 2,
-          detail: empSecteur,
-        });
       }
 
-      // ── Critère 2 : Langue (2 pts) ───────────────────────────────────────
-      const empLangues = ef['Langues requises'] || [];
-      const candLangues = cf['Langues parlées'] || [];
-      if (langueCompatible(empLangues, candLangues)) {
+      // Langue compatible → 2 pts
+      if (langueCompatible(e['Langues requises'], c['Langues parlées'])) {
+        criteres.langue = true;
         score += 2;
-        criteresMatchés.push({
-          critere: 'Langue',
-          pts: 2,
-          detail: empLangues.join(', '),
-        });
       }
 
-      // ── Critère 3 : Contrat (1 pt) ───────────────────────────────────────
-      const empContrats = ef['Type contrat'] || [];
-      const candContrats = cf['Type contrat'] || [];
-      if (contratCompatible(empContrats, candContrats)) {
-        const matched = empContrats.filter(c => candContrats.map(norm).includes(norm(c)));
+      // Type contrat compatible → 1 pt
+      if (contratCompatible(e['Type contrat'], c['Type contrat'])) {
+        criteres.contrat = true;
         score += 1;
-        criteresMatchés.push({
-          critere: 'Contrat',
-          pts: 1,
-          detail: matched.join(', '),
-        });
       }
 
-      // ── Critère 4 : Salaire (1 pt) ───────────────────────────────────────
-      if (salaireCompatible(ef['Salaire offert'], cf['Salaire souhaité'])) {
+      // Fourchette salariale compatible → 1 pt
+      if (salaryCompatible(e['Salaire offert'], c['Salaire souhaité'])) {
+        criteres.salaire = true;
         score += 1;
-        criteresMatchés.push({
-          critere: 'Salaire',
-          pts: 1,
-          detail: cf['Salaire souhaité'] || '—',
-        });
       }
 
-      // ── Critère 5 : Disponibilité (1 pt) ────────────────────────────────
-      if (dispoCompatible(ef['Délai recrutement'], cf['Disponibilité'])) {
+      // Disponibilité dans les délais → 1 pt
+      if (dispoCompatible(e['Délai recrutement'], c['Disponibilité'])) {
+        criteres.disponibilite = true;
         score += 1;
-        criteresMatchés.push({
-          critere: 'Disponibilité',
-          pts: 1,
-          detail: cf['Disponibilité'] || '—',
-        });
       }
 
-      if (score >= 4) {
-        results.push({ candidat, score, criteresMatchés });
-      }
-    }
+      return { candidat, score, criteres_matches: criteres };
+    })
+    .filter(r => r.score >= 4)
+    .sort((a, b) => b.score - a.score);
+}
 
-    // Tri décroissant par score
-    return results.sort((a, b) => b.score - a.score);
-  }
+// ─── Notification EmailJS ─────────────────────────────────────────────────────
 
+/**
+ * sendMatchAlert(employeur, matches)
+ * Envoie un récapitulatif des matches à info.andjix@gmail.com via EmailJS.
+ * Requiert EmailJS chargé dans la page et EMAILJS_* configurés dans config.js.
+ */
+async function sendMatchAlert(employeur, matches) {
+  if (!matches || matches.length === 0) return;
 
-  /* ══════════════════════════════════════════════════════════════════════════
-     4. AIRTABLE API
-     ══════════════════════════════════════════════════════════════════════════ */
+  const e = employeur.fields || employeur;
 
-  /**
-   * Récupère tous les enregistrements d'une table Airtable (gère la pagination).
-   * @param {string} tableName   Nom exact de la table dans Airtable
-   * @param {string} [formula]   Formule de filtre (ex: "{Statut}='Actif'")
-   * @returns {Promise<object[]>} Tableau de records Airtable {id, fields}
-   */
-  async function airtableFetchAll(tableName, formula) {
-    const cfg = window.PLACEMENT_CONFIG && window.PLACEMENT_CONFIG.airtable;
-    if (!cfg || !cfg.token || cfg.token === 'REPLACE_ME') {
-      throw new Error('Clé Airtable non configurée dans placement-config.js');
-    }
+  const lignes = matches.map(({ candidat, score, criteres_matches }) => {
+    const c = candidat.fields || candidat;
+    const criteres = Object.keys(criteres_matches)
+      .map(k => ({ secteur: 'Secteur', langue: 'Langue', contrat: 'Contrat',
+                   salaire: 'Salaire', disponibilite: 'Disponibilité' }[k])
+      ).join(', ');
+    return `• ${c['Prénom'] || ''} ${c['Nom'] || ''} — Score: ${score}/7 — Critères: ${criteres}\n  Poste: ${c['Poste recherché'] || 'N/A'} | Tél: ${c['Téléphone'] || 'N/A'} | ${c['Courriel'] || ''}`;
+  }).join('\n\n');
 
-    const baseUrl = `https://api.airtable.com/v0/${cfg.baseId}/${encodeURIComponent(tableName)}`;
-    let allRecords = [];
-    let offset = null;
-
-    do {
-      const params = new URLSearchParams();
-      if (formula) params.set('filterByFormula', formula);
-      params.set('pageSize', '100');
-      if (offset) params.set('offset', offset);
-
-      const response = await fetch(`${baseUrl}?${params.toString()}`, {
-        headers: {
-          'Authorization': `Bearer ${cfg.token}`,
-        },
-      });
-
-      if (!response.ok) {
-        let errMsg = `HTTP ${response.status}`;
-        try {
-          const errData = await response.json();
-          errMsg = errData.error?.message || errMsg;
-        } catch (_) {}
-        throw new Error(`Airtable API — ${tableName} : ${errMsg}`);
-      }
-
-      const data = await response.json();
-      allRecords = allRecords.concat(data.records || []);
-      offset = data.offset || null;
-
-    } while (offset);
-
-    return allRecords;
-  }
-
-  /** Récupère tous les employeurs avec statut "Actif". */
-  function fetchEmployeurs() {
-    const table = window.PLACEMENT_CONFIG.airtable.tables.employeurs;
-    return airtableFetchAll(table, `{Statut} = 'Actif'`);
-  }
-
-  /** Récupère tous les candidats avec statut "Disponible". */
-  function fetchCandidatsDisponibles() {
-    const table = window.PLACEMENT_CONFIG.airtable.tables.candidats;
-    return airtableFetchAll(table, `{Statut} = 'Disponible'`);
-  }
-
-
-  /* ══════════════════════════════════════════════════════════════════════════
-     5. NOTIFICATION EMAILJS
-     ══════════════════════════════════════════════════════════════════════════ */
-
-  /**
-   * sendMatchAlert(employeur, matches)
-   *
-   * Envoie un email récapitulatif à info.andjix@gmail.com via EmailJS.
-   * Nécessite que le SDK EmailJS soit chargé (CDN dans admin-matching.html).
-   *
-   * @param {object}   employeur  Record Airtable de l'employeur
-   * @param {object[]} matches    Résultats de matchCandidats()
-   * @returns {Promise}
-   */
-  async function sendMatchAlert(employeur, matches) {
-    const cfg = window.PLACEMENT_CONFIG && window.PLACEMENT_CONFIG.emailjs;
-    if (!cfg || !cfg.userId || cfg.userId === 'REPLACE_ME') {
-      throw new Error('EmailJS non configuré dans placement-config.js');
-    }
-
-    const ef = employeur.fields || {};
-
-    // Construction de la liste de matchs en texte brut
-    const matchList = matches.map((m, i) => {
-      const cf = m.candidat.fields || {};
-      const prenom  = cf['Prénom'] || '';
-      const nom     = cf['Nom'] || '';
-      const criteres = m.criteresMatchés.map(c => `${c.critere} (+${c.pts})`).join(', ');
-      const poste   = cf['Poste recherché'] || 'N/A';
-      const dispo   = cf['Disponibilité'] || 'N/A';
-      const mail    = cf['Courriel'] || '';
-      const tel     = cf['Téléphone'] || '';
-      return (
-        `${i + 1}. ${prenom} ${nom} - Score ${m.score}/7\n` +
-        `   Criteres : ${criteres}\n` +
-        `   Poste : ${poste} | Disponible : ${dispo}\n` +
-        `   Contact : ${mail}${tel ? ' - ' + tel : ''}`
-      );
-    }).join('\n\n');
-
-    const templateParams = {
-      to_email:          cfg.to,
-      name:              'Andjix Placement',
-      email:             cfg.to,
-      employeur_nom:     ef['Nom entreprise']   || 'N/A',
-      employeur_secteur: ef['Secteur']           || 'N/A',
-      employeur_poste:   ef['Postes recherchés'] || 'N/A',
-      match_count:       String(matches.length),
-      match_list:        matchList,
-      date_matching:     new Date().toLocaleDateString('fr-CA', {
-                           year: 'numeric', month: 'long', day: 'numeric',
-                         }),
-    };
-
-    // Appel direct à l'API REST EmailJS — indépendant du SDK et de sa version
-    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        service_id:      cfg.serviceId,
-        template_id:     cfg.templateId,
-        user_id:         cfg.userId,
-        template_params: templateParams,
-      }),
-    });
-
-    if (!response.ok) {
-      const text = await response.text().catch(() => `HTTP ${response.status}`);
-      throw new Error(`EmailJS API ${response.status} : ${text}`);
-    }
-
-    return response.text();
-  }
-
-
-  /* ══════════════════════════════════════════════════════════════════════════
-     6. EXPORT PUBLIC
-     ══════════════════════════════════════════════════════════════════════════ */
-
-  window.AndjixMatching = {
-    matchCandidats,
-    fetchEmployeurs,
-    fetchCandidatsDisponibles,
-    sendMatchAlert,
+  const templateParams = {
+    to_email: 'info.andjix@gmail.com',
+    employeur_nom: e['Nom entreprise'] || 'N/A',
+    employeur_poste: e['Postes recherchés'] || 'N/A',
+    nb_matches: matches.length,
+    liste_matches: lignes,
+    date: new Date().toLocaleDateString('fr-CA', { dateStyle: 'long' })
   };
 
-})();
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+    console.log('Alerte match envoyée à info.andjix@gmail.com');
+  } catch (err) {
+    console.error('Erreur EmailJS :', err);
+  }
+}

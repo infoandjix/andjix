@@ -8,75 +8,112 @@
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@700&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'DM Sans', sans-serif; background: #f4f1eb; min-height: 100vh; }
-  .header { background: #0a1628; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; }
+
+  .header {
+    background: #0a1628;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: #d4a84b; letter-spacing: 1px; }
   .logo span { font-family: 'DM Sans', sans-serif; font-size: 11px; color: #a09080; display: block; letter-spacing: 2px; text-transform: uppercase; }
   .header-tag { background: #d4a84b; color: #0a1628; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; }
+
   .container { max-width: 680px; margin: 40px auto; padding: 0 20px 60px; }
+
   .intro { background: #0a1628; border-left: 4px solid #d4a84b; padding: 20px 24px; border-radius: 2px; margin-bottom: 32px; }
   .intro h1 { font-family: 'Playfair Display', serif; font-size: 22px; color: #f0ece3; margin-bottom: 8px; }
   .intro p { font-size: 13px; color: #a09080; line-height: 1.6; font-weight: 300; }
+
   .section { background: #fff; border-radius: 4px; padding: 24px; margin-bottom: 20px; border: 1px solid #e0dbd0; }
   .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #d4a84b; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid #f0ebe0; }
+
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
   .form-row.single { grid-template-columns: 1fr; }
+
   .form-group { display: flex; flex-direction: column; }
   label { font-size: 12px; color: #5a5248; margin-bottom: 6px; font-weight: 500; }
   label span { color: #d4a84b; }
+
   input[type="text"], input[type="email"], input[type="tel"], select, textarea {
-    border: 1px solid #ddd8cc; border-radius: 3px; padding: 10px 12px; font-size: 13px;
-    font-family: 'DM Sans', sans-serif; color: #2a2520; background: #faf9f6; outline: none; transition: border-color 0.2s;
+    border: 1px solid #ddd8cc;
+    border-radius: 3px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    color: #2a2520;
+    background: #faf9f6;
+    outline: none;
+    transition: border-color 0.2s;
   }
   input:focus, select:focus, textarea:focus { border-color: #d4a84b; background: #fff; }
   textarea { resize: vertical; min-height: 80px; }
+
   .checkbox-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
   .checkbox-item { display: flex; align-items: center; gap: 6px; cursor: pointer; }
   .checkbox-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: #d4a84b; cursor: pointer; }
   .checkbox-item label { font-size: 13px; color: #3a3028; margin: 0; cursor: pointer; font-weight: 400; }
+
   .radio-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
   .radio-item { display: flex; align-items: center; gap: 6px; }
   .radio-item input[type="radio"] { accent-color: #d4a84b; }
   .radio-item label { font-size: 13px; color: #3a3028; margin: 0; font-weight: 400; }
+
   .submit-section { text-align: center; margin-top: 10px; }
-  .btn-submit { background: #d4a84b; color: #0a1628; border: none; padding: 14px 48px; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border-radius: 2px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; }
-  .btn-submit:hover:not(:disabled) { background: #c4982b; }
-  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn-submit {
+    background: #d4a84b;
+    color: #0a1628;
+    border: none;
+    padding: 14px 48px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s;
+  }
+  .btn-submit:hover { background: #c4982b; }
   .note { font-size: 11px; color: #a09080; margin-top: 10px; }
+
   .footer-bar { background: #0a1628; text-align: center; padding: 14px; font-size: 11px; color: #a09080; margin-top: 40px; }
   .footer-bar span { color: #d4a84b; }
-  .success-box { background: #0a1628; border-left: 4px solid #d4a84b; padding: 48px 32px; border-radius: 4px; text-align: center; max-width: 500px; margin: 0 auto; }
-  .success-icon { font-size: 52px; margin-bottom: 16px; }
-  .success-box h2 { font-family: 'Playfair Display', serif; color: #f0ece3; font-size: 26px; margin-bottom: 12px; }
-  .success-box p { color: #a09080; font-size: 14px; line-height: 1.7; }
-  .success-contact { color: #d4a84b; margin-top: 20px; font-size: 13px; }
+  .alert { padding: 14px 18px; border-radius: 3px; font-size: 13px; margin-bottom: 20px; display: none; }
+  .alert.success { background: #fdf6e3; border: 1px solid #d4a84b; color: #7a5c00; }
+  .alert.error { background: #fdecea; border: 1px solid #e57373; color: #b71c1c; }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div><div class="logo">ANDJIX <span>Consulting Inc.</span></div></div>
+  <div>
+    <div class="logo">ANDJIX <span>Consulting Inc.</span></div>
+  </div>
   <div class="header-tag">Espace Employeurs</div>
 </div>
 
-<div class="container" id="main-container">
+<div class="container">
 
   <div class="intro">
     <h1>Rejoignez notre base de données partenaires</h1>
     <p>Inscrivez votre entreprise gratuitement. Nous vous contacterons dès qu'un candidat qualifié correspond à vos besoins — sans démarche supplémentaire de votre part.</p>
   </div>
 
-  <form id="employeur-form" novalidate>
+  <div id="alert-box" class="alert"></div>
+  <form id="form-employeur">
 
     <div class="section">
       <div class="section-title">Informations sur l'entreprise</div>
       <div class="form-row">
         <div class="form-group">
           <label>Nom de l'entreprise <span>*</span></label>
-          <input type="text" name="nom_entreprise" placeholder="Ex. : Hôtel Le Méridien Ottawa" required>
+          <input type="text" name="entreprise" placeholder="Ex. : Hôtel Le Méridien Ottawa">
         </div>
         <div class="form-group">
           <label>Secteur d'activité <span>*</span></label>
-          <select name="secteur" required>
+          <select name="secteur">
             <option value="">— Sélectionner —</option>
             <option>Restauration</option>
             <option>Hôtellerie</option>
@@ -91,7 +128,7 @@
       <div class="form-row">
         <div class="form-group">
           <label>Adresse / Localisation <span>*</span></label>
-          <input type="text" name="localisation" placeholder="Ex. : 150 rue Elgin, Ottawa" required>
+          <input type="text" name="localisation" placeholder="Ex. : 150 rue Elgin, Ottawa">
         </div>
         <div class="form-group">
           <label>Taille de l'entreprise</label>
@@ -111,26 +148,26 @@
       <div class="form-row single">
         <div class="form-group">
           <label>Postes recherchés <span>*</span></label>
-          <input type="text" name="postes" placeholder="Ex. : Cuisinier, Réceptionniste, Serveur, Agent d'entretien…" required>
+          <input type="text" name="postes" placeholder="Ex. : Cuisinier, Réceptionniste, Serveur, Agent d'entretien...">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
           <label>Langue(s) requise(s) <span>*</span></label>
           <div class="checkbox-group">
-            <div class="checkbox-item"><input type="checkbox" name="langues" value="Français" id="l_fr"><label for="l_fr">Français</label></div>
-            <div class="checkbox-item"><input type="checkbox" name="langues" value="Anglais" id="l_en"><label for="l_en">Anglais</label></div>
-            <div class="checkbox-item"><input type="checkbox" name="langues" value="Bilingue FR/EN" id="l_bi"><label for="l_bi">Bilingue FR/EN</label></div>
-            <div class="checkbox-item"><input type="checkbox" name="langues" value="Autre" id="l_autre"><label for="l_autre">Autre</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="langues" value="Français" id="fr"><label for="fr">Français</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="langues" value="Anglais" id="en"><label for="en">Anglais</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="langues" value="Bilingue" id="bi"><label for="bi">Bilingue</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="langues" value="Autre" id="autre_lang"><label for="autre_lang">Autre</label></div>
           </div>
         </div>
         <div class="form-group">
           <label>Type de contrat recherché</label>
           <div class="checkbox-group">
-            <div class="checkbox-item"><input type="checkbox" name="contrat" value="Temps plein" id="c_tp"><label for="c_tp">Temps plein</label></div>
-            <div class="checkbox-item"><input type="checkbox" name="contrat" value="Temps partiel" id="c_tpa"><label for="c_tpa">Temps partiel</label></div>
-            <div class="checkbox-item"><input type="checkbox" name="contrat" value="Saisonnier" id="c_sais"><label for="c_sais">Saisonnier</label></div>
-            <div class="checkbox-item"><input type="checkbox" name="contrat" value="Permanent" id="c_perm"><label for="c_perm">Permanent</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="contrat" value="Temps plein" id="tp"><label for="tp">Temps plein</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="contrat" value="Temps partiel" id="tpa"><label for="tpa">Temps partiel</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="contrat" value="Saisonnier" id="sais"><label for="sais">Saisonnier</label></div>
+            <div class="checkbox-item"><input type="checkbox" name="contrat" value="Permanent" id="perm"><label for="perm">Permanent</label></div>
           </div>
         </div>
       </div>
@@ -161,7 +198,7 @@
       <div class="form-row single">
         <div class="form-group">
           <label>Exigences ou précisions supplémentaires</label>
-          <textarea name="exigences" placeholder="Ex. : Expérience en cuisine asiatique, permis de conduire requis, disponibilité les weekends…"></textarea>
+          <textarea name="exigences" placeholder="Ex. : Expérience en cuisine asiatique, permis de conduire requis, disponibilité les weekends..."></textarea>
         </div>
       </div>
     </div>
@@ -171,7 +208,7 @@
       <div class="form-row">
         <div class="form-group">
           <label>Nom complet <span>*</span></label>
-          <input type="text" name="nom_contact" placeholder="Prénom Nom" required>
+          <input type="text" name="nom_contact" placeholder="Prénom Nom">
         </div>
         <div class="form-group">
           <label>Titre / Poste</label>
@@ -181,7 +218,7 @@
       <div class="form-row">
         <div class="form-group">
           <label>Courriel <span>*</span></label>
-          <input type="email" name="courriel" placeholder="exemple@entreprise.com" required>
+          <input type="email" name="courriel" placeholder="exemple@entreprise.com">
         </div>
         <div class="form-group">
           <label>Téléphone</label>
@@ -192,16 +229,16 @@
         <div class="form-group">
           <label>Moyen de contact préféré</label>
           <div class="radio-group">
-            <div class="radio-item"><input type="radio" name="contact_prefere" value="Courriel" id="c_email"><label for="c_email">Courriel</label></div>
-            <div class="radio-item"><input type="radio" name="contact_prefere" value="Téléphone" id="c_tel"><label for="c_tel">Téléphone</label></div>
-            <div class="radio-item"><input type="radio" name="contact_prefere" value="WhatsApp" id="c_wa"><label for="c_wa">WhatsApp</label></div>
+            <div class="radio-item"><input type="radio" name="contact_pref" value="Courriel" id="c_email"><label for="c_email">Courriel</label></div>
+            <div class="radio-item"><input type="radio" name="contact_pref" value="Téléphone" id="c_tel"><label for="c_tel">Téléphone</label></div>
+            <div class="radio-item"><input type="radio" name="contact_pref" value="WhatsApp" id="c_wa"><label for="c_wa">WhatsApp</label></div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="submit-section">
-      <button type="submit" class="btn-submit" id="submit-btn">Soumettre ma demande</button>
+      <button type="submit" class="btn-submit">Soumettre ma demande</button>
       <p class="note">Un conseiller Andjix vous contactera dans les 48h ouvrables.</p>
     </div>
 
@@ -210,83 +247,78 @@
 
 <div class="footer-bar">
   <span>ANDJIX Consulting Inc.</span> &nbsp;·&nbsp; 613-276-8707 &nbsp;·&nbsp; info.andjix@gmail.com &nbsp;·&nbsp; andjix.ca<br>
-  <span style="font-style:italic;color:#6a6058">"L'intégration réussie, votre vraie victoire."</span>
+  <span style="font-style:italic; color:#6a6058">"L'intégration réussie, votre vraie victoire."</span>
 </div>
 
+<script src="config.js"></script>
 <script>
-/* ══════════════════════════════════════════════════════════
-   Configuration — remplacer par l'URL Make.com après création
-   ══════════════════════════════════════════════════════════ */
-const MAKE_WEBHOOK_EMPLOYEUR = 'REPLACE_ME';
-
-/* ══════════════════════════════════════════════════════════
-   Soumission du formulaire
-   ══════════════════════════════════════════════════════════ */
-document.getElementById('employeur-form').addEventListener('submit', async function (e) {
+document.getElementById('form-employeur').addEventListener('submit', async function(e) {
   e.preventDefault();
+  const f = this;
+  const alertBox = document.getElementById('alert-box');
+  const btn = f.querySelector('.btn-submit');
 
-  const btn  = document.getElementById('submit-btn');
-  const orig = btn.textContent;
-  btn.textContent = 'Envoi en cours…';
-  btn.disabled = true;
+  const getChecked = (name) =>
+    [...f.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value);
 
-  const v     = (sel) => { const el = document.querySelector(sel); return el ? el.value.trim() : ''; };
-  const multi = (name) => [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(el => el.value);
-  const radio = (name) => { const el = document.querySelector(`input[name="${name}"]:checked`); return el ? el.value : ''; };
+  const contactPref = f.querySelector('input[name="contact_pref"]:checked');
 
-  const payload = {
-    source:          'formulaire_employeur',
-    nom_entreprise:  v('input[name="nom_entreprise"]'),
-    secteur:         v('select[name="secteur"]'),
-    localisation:    v('input[name="localisation"]'),
-    taille:          v('select[name="taille"]'),
-    postes:          v('input[name="postes"]'),
-    langues:         multi('langues').join(', '),
-    contrat:         multi('contrat').join(', '),
-    salaire:         v('select[name="salaire"]'),
-    delai:           v('select[name="delai"]'),
-    exigences:       v('textarea[name="exigences"]'),
-    nom_contact:     v('input[name="nom_contact"]'),
-    titre:           v('input[name="titre"]'),
-    courriel:        v('input[name="courriel"]'),
-    telephone:       v('input[name="telephone"]'),
-    contact_prefere: radio('contact_prefere'),
-    date_inscription: new Date().toISOString(),
+  const fields = {
+    "Nom entreprise": f.entreprise.value.trim(),
+    "Secteur": f.secteur.value || null,
+    "Postes recherchés": f.postes.value.trim(),
+    "Langues requises": getChecked('langues'),
+    "Type contrat": getChecked('contrat'),
+    "Salaire offert": f.salaire.value || null,
+    "Délai recrutement": f.delai.value || null,
+    "Localisation": f.localisation.value.trim(),
+    "Nom contact": f.nom_contact.value.trim(),
+    "Courriel": f.courriel.value.trim(),
+    "Téléphone": f.telephone.value.trim(),
+    "Statut": "Actif",
+    "Notes": [
+      f.taille.value ? `Taille: ${f.taille.value}` : '',
+      f.titre.value.trim() ? `Titre: ${f.titre.value.trim()}` : '',
+      contactPref ? `Contact préféré: ${contactPref.value}` : '',
+      f.exigences.value.trim()
+    ].filter(Boolean).join(' | ') || null
   };
 
-  // Validation minimale
-  if (!payload.nom_entreprise || !payload.nom_contact || !payload.courriel) {
-    alert('Merci de remplir tous les champs obligatoires (*).');
-    btn.textContent = orig;
-    btn.disabled = false;
-    return;
-  }
+  Object.keys(fields).forEach(k => {
+    if (fields[k] === null || fields[k] === '' || (Array.isArray(fields[k]) && fields[k].length === 0))
+      delete fields[k];
+  });
+
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours...';
 
   try {
-    const res = await fetch(MAKE_WEBHOOK_EMPLOYEUR, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify(payload),
+    const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_EMPLOYEURS)}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ fields })
     });
 
-    if (res.ok) {
-      document.getElementById('main-container').innerHTML = `
-        <div class="success-box">
-          <div class="success-icon">✅</div>
-          <h2>Demande reçue !</h2>
-          <p>Merci <strong style="color:#f0ece3">${payload.nom_contact}</strong>.<br><br>
-          Votre demande pour <strong style="color:#f0ece3">${payload.nom_entreprise}</strong> a bien été enregistrée.<br>
-          Un conseiller Andjix vous contactera dans les 48h ouvrables.</p>
-          <p class="success-contact">📧 info.andjix@gmail.com &nbsp;·&nbsp; 📞 613-276-8707</p>
-        </div>`;
-    } else {
-      throw new Error('HTTP ' + res.status);
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error?.message || 'Erreur Airtable');
     }
+
+    alertBox.className = 'alert success';
+    alertBox.textContent = '✓ Votre demande a été soumise avec succès ! Un conseiller Andjix vous contactera dans les 48h ouvrables.';
+    alertBox.style.display = 'block';
+    f.reset();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   } catch (err) {
-    btn.textContent = orig;
+    alertBox.className = 'alert error';
+    alertBox.textContent = '✗ Une erreur est survenue : ' + err.message + '. Réessayez ou contactez info.andjix@gmail.com.';
+    alertBox.style.display = 'block';
+  } finally {
     btn.disabled = false;
-    alert('Une erreur est survenue. Veuillez réessayer ou écrire à info.andjix@gmail.com');
-    console.error('[Andjix Employeur]', err);
+    btn.textContent = 'Soumettre ma demande';
   }
 });
 </script>
