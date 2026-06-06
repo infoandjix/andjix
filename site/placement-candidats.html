@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -36,6 +37,10 @@
   /* ── Bloc formulaire ── */
   #formulaire { background: #0a1628; padding: 64px 0; }
   .formulaire-wrap { max-width: 680px; margin: 0 auto; padding: 0 20px; font-family: 'DM Sans', sans-serif; }
+  .f-lang-toggle-bar { display: flex; align-items: center; justify-content: flex-end; gap: 4px; margin-bottom: 20px; }
+  .f-lang-sep { color: #a09080; font-size: 11px; }
+  .f-lang-btn { background: transparent; border: 1px solid #a09080; color: #a09080; padding: 4px 10px; font-size: 11px; font-family: 'DM Sans', sans-serif; cursor: pointer; border-radius: 2px; letter-spacing: 1px; text-transform: uppercase; transition: background 0.2s, color 0.2s; }
+  .f-lang-btn.active { background: #d4a84b; color: #0a1628; font-weight: 600; border-color: #d4a84b; }
   .formulaire-wrap .f-intro { border-left: 4px solid #1d9e75; padding: 20px 24px; border-radius: 2px; margin-bottom: 32px; }
   .formulaire-wrap .f-intro h2 { font-family: 'Playfair Display', serif; font-size: 22px; color: #f0ece3; margin-bottom: 8px; }
   .formulaire-wrap .f-intro p { font-size: 13px; color: #a09080; line-height: 1.6; font-weight: 300; }
@@ -262,176 +267,184 @@
 <section id="formulaire">
   <div class="formulaire-wrap">
 
+    <div class="f-lang-toggle-bar">
+      <button class="f-lang-btn active" data-lang="fr" onclick="setLangCand('fr')">FR</button>
+      <span class="f-lang-sep">|</span>
+      <button class="f-lang-btn" data-lang="en" onclick="setLangCand('en')">EN</button>
+    </div>
+
     <div class="f-intro">
-      <h2>Inscris-toi une fois, on travaille pour toi.</h2>
-      <p>Remplis ce formulaire et rejoins notre base de données. Dès qu'un employeur correspond à ton profil, nous te contactons directement — gratuitement et sans intermédiaire.</p>
+      <h2 data-fr="Inscris-toi une fois, on travaille pour toi." data-en="Register once, we work for you.">Inscris-toi une fois, on travaille pour toi.</h2>
+      <p data-fr="Remplis ce formulaire et rejoins notre base de données. Dès qu'un employeur correspond à ton profil, nous te contactons directement — gratuitement et sans intermédiaire." data-en="Fill out this form and join our database. As soon as an employer matches your profile, we contact you directly — free of charge and without intermediary.">Remplis ce formulaire et rejoins notre base de données. Dès qu'un employeur correspond à ton profil, nous te contactons directement — gratuitement et sans intermédiaire.</p>
     </div>
 
     <form id="form-candidat">
 
       <div class="f-section">
-        <div class="f-section-title">Informations personnelles</div>
+        <div class="f-section-title" data-fr="Informations personnelles" data-en="Personal Information">Informations personnelles</div>
         <div class="f-row">
           <div class="f-group">
-            <label>Prénom <span class="req">*</span></label>
-            <input type="text" id="f_prenom" placeholder="Ton prénom" required>
+            <label><span data-fr="Prénom" data-en="First Name">Prénom</span> <span class="req">*</span></label>
+            <input type="text" id="f_prenom" data-ph-fr="Ton prénom" data-ph-en="Your first name" placeholder="Ton prénom" required>
           </div>
           <div class="f-group">
-            <label>Nom <span class="req">*</span></label>
-            <input type="text" id="f_nom" placeholder="Ton nom de famille" required>
+            <label><span data-fr="Nom" data-en="Last Name">Nom</span> <span class="req">*</span></label>
+            <input type="text" id="f_nom" data-ph-fr="Ton nom de famille" data-ph-en="Your last name" placeholder="Ton nom de famille" required>
           </div>
         </div>
         <div class="f-row">
           <div class="f-group">
-            <label>Courriel <span class="req">*</span></label>
-            <input type="email" id="f_courriel" placeholder="exemple@gmail.com" required>
+            <label><span data-fr="Courriel" data-en="Email">Courriel</span> <span class="req">*</span></label>
+            <input type="email" id="f_courriel" data-ph-fr="exemple@gmail.com" data-ph-en="example@gmail.com" placeholder="exemple@gmail.com" required>
           </div>
           <div class="f-group">
-            <label>Téléphone / WhatsApp <span class="req">*</span></label>
-            <input type="tel" id="f_telephone" placeholder="613-XXX-XXXX" required>
+            <label><span data-fr="Téléphone / WhatsApp" data-en="Phone / WhatsApp">Téléphone / WhatsApp</span> <span class="req">*</span></label>
+            <input type="tel" id="f_telephone" data-ph-fr="613-XXX-XXXX" data-ph-en="613-XXX-XXXX" placeholder="613-XXX-XXXX" required>
           </div>
         </div>
         <div class="f-row">
           <div class="f-group">
-            <label>Ville de résidence <span class="req">*</span></label>
-            <input type="text" id="f_ville" placeholder="Ex. : Ottawa, Gatineau" required>
+            <label><span data-fr="Ville de résidence" data-en="City of Residence">Ville de résidence</span> <span class="req">*</span></label>
+            <input type="text" id="f_ville" data-ph-fr="Ex. : Ottawa, Gatineau" data-ph-en="e.g.: Ottawa, Gatineau" placeholder="Ex. : Ottawa, Gatineau" required>
           </div>
           <div class="f-group">
-            <label>Statut au Canada <span class="req">*</span></label>
+            <label><span data-fr="Statut au Canada" data-en="Status in Canada">Statut au Canada</span> <span class="req">*</span></label>
             <select id="f_statut_immigration" required>
-              <option value="">— Sélectionner —</option>
-              <option>Citoyen canadien</option>
-              <option>Résident permanent</option>
-              <option>Permis de travail ouvert</option>
-              <option>Permis de travail fermé</option>
-              <option>Permis d'études avec autorisation de travail</option>
-              <option>Demandeur d'asile</option>
-              <option>Autre</option>
+              <option value="" data-fr="— Sélectionner —" data-en="— Select —">— Sélectionner —</option>
+              <option value="Citoyen canadien" data-fr="Citoyen canadien" data-en="Canadian Citizen">Citoyen canadien</option>
+              <option value="Résident permanent" data-fr="Résident permanent" data-en="Permanent Resident">Résident permanent</option>
+              <option value="Permis de travail ouvert" data-fr="Permis de travail ouvert" data-en="Open Work Permit">Permis de travail ouvert</option>
+              <option value="Permis de travail fermé" data-fr="Permis de travail fermé" data-en="Closed Work Permit">Permis de travail fermé</option>
+              <option value="Permis d'études avec autorisation de travail" data-fr="Permis d'études avec autorisation de travail" data-en="Study Permit with Work Authorization">Permis d'études avec autorisation de travail</option>
+              <option value="Demandeur d'asile" data-fr="Demandeur d'asile" data-en="Asylum Seeker">Demandeur d'asile</option>
+              <option value="Autre" data-fr="Autre" data-en="Other">Autre</option>
             </select>
           </div>
         </div>
       </div>
 
       <div class="f-section">
-        <div class="f-section-title">Profil professionnel</div>
-        <div class="f-highlight">
+        <div class="f-section-title" data-fr="Profil professionnel" data-en="Professional Profile">Profil professionnel</div>
+        <div class="f-highlight"
+          data-html-fr="<strong>Conseil :</strong> Plus ton profil est complet, meilleures sont tes chances d'être contacté rapidement par un employeur qui te correspond."
+          data-html-en="<strong>Tip:</strong> The more complete your profile, the better your chances of being contacted quickly by a matching employer.">
           <strong>Conseil :</strong> Plus ton profil est complet, meilleures sont tes chances d'être contacté rapidement par un employeur qui te correspond.
         </div>
         <div class="f-row">
           <div class="f-group">
-            <label>Secteur(s) d'intérêt <span class="req">*</span></label>
+            <label><span data-fr="Secteur(s) d'intérêt" data-en="Sector(s) of Interest">Secteur(s) d'intérêt</span> <span class="req">*</span></label>
             <div class="f-checkbox-group">
-              <div class="f-checkbox-item"><input type="checkbox" id="f_s_resto" value="Restauration"><label for="f_s_resto">Restauration</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_s_hotel" value="Hôtellerie"><label for="f_s_hotel">Hôtellerie</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_s_const" value="Construction"><label for="f_s_const">Construction</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_s_sante" value="Santé"><label for="f_s_sante">Santé</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_s_comm" value="Commerce"><label for="f_s_comm">Commerce</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_s_autre" value="Autre"><label for="f_s_autre">Autre</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_s_resto" value="Restauration"><label for="f_s_resto" data-fr="Restauration" data-en="Food Service">Restauration</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_s_hotel" value="Hôtellerie"><label for="f_s_hotel" data-fr="Hôtellerie" data-en="Hospitality">Hôtellerie</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_s_const" value="Construction"><label for="f_s_const" data-fr="Construction" data-en="Construction">Construction</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_s_sante" value="Santé"><label for="f_s_sante" data-fr="Santé" data-en="Healthcare">Santé</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_s_comm" value="Commerce"><label for="f_s_comm" data-fr="Commerce" data-en="Retail">Commerce</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_s_autre" value="Autre"><label for="f_s_autre" data-fr="Autre" data-en="Other">Autre</label></div>
             </div>
           </div>
           <div class="f-group">
-            <label>Langues parlées <span class="req">*</span></label>
+            <label><span data-fr="Langues parlées" data-en="Languages Spoken">Langues parlées</span> <span class="req">*</span></label>
             <div class="f-checkbox-group">
-              <div class="f-checkbox-item"><input type="checkbox" id="f_l_fr" value="Français"><label for="f_l_fr">Français</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_l_en" value="Anglais"><label for="f_l_en">Anglais</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_l_es" value="Espagnol"><label for="f_l_es">Espagnol</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_l_ar" value="Arabe"><label for="f_l_ar">Arabe</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_l_autre" value="Autre"><label for="f_l_autre">Autre</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_l_fr" value="Français"><label for="f_l_fr" data-fr="Français" data-en="French">Français</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_l_en" value="Anglais"><label for="f_l_en" data-fr="Anglais" data-en="English">Anglais</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_l_es" value="Espagnol"><label for="f_l_es" data-fr="Espagnol" data-en="Spanish">Espagnol</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_l_ar" value="Arabe"><label for="f_l_ar" data-fr="Arabe" data-en="Arabic">Arabe</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_l_autre" value="Autre"><label for="f_l_autre" data-fr="Autre" data-en="Other">Autre</label></div>
             </div>
           </div>
         </div>
         <div class="f-row single">
           <div class="f-group">
-            <label>Poste(s) recherché(s) <span class="req">*</span></label>
-            <input type="text" id="f_poste_recherche" placeholder="Ex. : Cuisinier, Commis de salle, Réceptionniste..." required>
+            <label><span data-fr="Poste(s) recherché(s)" data-en="Position(s) Sought">Poste(s) recherché(s)</span> <span class="req">*</span></label>
+            <input type="text" id="f_poste_recherche" data-ph-fr="Ex. : Cuisinier, Commis de salle, Réceptionniste..." data-ph-en="e.g.: Cook, Room Attendant, Receptionist..." placeholder="Ex. : Cuisinier, Commis de salle, Réceptionniste..." required>
           </div>
         </div>
         <div class="f-row single">
           <div class="f-group">
-            <label>Compétences principales</label>
-            <textarea id="f_competences" placeholder="Ex. : 3 ans d'expérience en cuisine africaine, maîtrise de la caisse, permis de conduire classe G..."></textarea>
+            <label data-fr="Compétences principales" data-en="Main Skills">Compétences principales</label>
+            <textarea id="f_competences" data-ph-fr="Ex. : 3 ans d'expérience en cuisine africaine, maîtrise de la caisse, permis de conduire classe G..." data-ph-en="e.g.: 3 years experience in African cuisine, cashier skills, class G driver's license..." placeholder="Ex. : 3 ans d'expérience en cuisine africaine, maîtrise de la caisse, permis de conduire classe G..."></textarea>
           </div>
         </div>
         <div class="f-row">
           <div class="f-group">
-            <label>Niveau d'expérience</label>
+            <label data-fr="Niveau d'expérience" data-en="Experience Level">Niveau d'expérience</label>
             <select id="f_niveau_experience">
-              <option value="">— Sélectionner —</option>
-              <option>Débutant (moins d'1 an)</option>
-              <option>Intermédiaire (1–3 ans)</option>
-              <option>Expérimenté (3–5 ans)</option>
-              <option>Senior (5+ ans)</option>
+              <option value="" data-fr="— Sélectionner —" data-en="— Select —">— Sélectionner —</option>
+              <option value="Débutant (moins d'1 an)" data-fr="Débutant (moins d'1 an)" data-en="Beginner (less than 1 year)">Débutant (moins d'1 an)</option>
+              <option value="Intermédiaire (1–3 ans)" data-fr="Intermédiaire (1–3 ans)" data-en="Intermediate (1–3 years)">Intermédiaire (1–3 ans)</option>
+              <option value="Expérimenté (3–5 ans)" data-fr="Expérimenté (3–5 ans)" data-en="Experienced (3–5 years)">Expérimenté (3–5 ans)</option>
+              <option value="Senior (5+ ans)" data-fr="Senior (5+ ans)" data-en="Senior (5+ years)">Senior (5+ ans)</option>
             </select>
           </div>
           <div class="f-group">
-            <label>Diplôme / Formation</label>
-            <input type="text" id="f_formation" placeholder="Ex. : DEP Cuisine, DEC Gestion hôtelière...">
+            <label data-fr="Diplôme / Formation" data-en="Diploma / Training">Diplôme / Formation</label>
+            <input type="text" id="f_formation" data-ph-fr="Ex. : DEP Cuisine, DEC Gestion hôtelière..." data-ph-en="e.g.: Culinary Arts Diploma, Hotel Management..." placeholder="Ex. : DEP Cuisine, DEC Gestion hôtelière...">
           </div>
         </div>
       </div>
 
       <div class="f-section">
-        <div class="f-section-title">Disponibilité et attentes</div>
+        <div class="f-section-title" data-fr="Disponibilité et attentes" data-en="Availability &amp; Expectations">Disponibilité et attentes</div>
         <div class="f-row">
           <div class="f-group">
-            <label>Disponibilité <span class="req">*</span></label>
+            <label><span data-fr="Disponibilité" data-en="Availability">Disponibilité</span> <span class="req">*</span></label>
             <select id="f_disponibilite" required>
-              <option value="">— Sélectionner —</option>
-              <option>Immédiate</option>
-              <option>Dans 2 semaines</option>
-              <option>Dans 1 mois</option>
-              <option>Dans plus d'1 mois</option>
+              <option value="" data-fr="— Sélectionner —" data-en="— Select —">— Sélectionner —</option>
+              <option value="Immédiate" data-fr="Immédiate" data-en="Immediate">Immédiate</option>
+              <option value="Dans 2 semaines" data-fr="Dans 2 semaines" data-en="Within 2 weeks">Dans 2 semaines</option>
+              <option value="Dans 1 mois" data-fr="Dans 1 mois" data-en="Within 1 month">Dans 1 mois</option>
+              <option value="Dans plus d'1 mois" data-fr="Dans plus d'1 mois" data-en="More than 1 month away">Dans plus d'1 mois</option>
             </select>
           </div>
           <div class="f-group">
-            <label>Type de contrat souhaité</label>
+            <label data-fr="Type de contrat souhaité" data-en="Desired Contract Type">Type de contrat souhaité</label>
             <div class="f-checkbox-group" style="margin-top:8px">
-              <div class="f-checkbox-item"><input type="checkbox" id="f_c_tp" value="Temps plein"><label for="f_c_tp">Temps plein</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_c_tpa" value="Temps partiel"><label for="f_c_tpa">Temps partiel</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_c_flex" value="Flexible"><label for="f_c_flex">Flexible</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_c_tp" value="Temps plein"><label for="f_c_tp" data-fr="Temps plein" data-en="Full time">Temps plein</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_c_tpa" value="Temps partiel"><label for="f_c_tpa" data-fr="Temps partiel" data-en="Part time">Temps partiel</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_c_flex" value="Flexible"><label for="f_c_flex" data-fr="Flexible" data-en="Flexible">Flexible</label></div>
             </div>
           </div>
         </div>
         <div class="f-row">
           <div class="f-group">
-            <label>Salaire souhaité</label>
+            <label data-fr="Salaire souhaité" data-en="Desired Salary">Salaire souhaité</label>
             <select id="f_salaire_souhaite">
-              <option value="">— Sélectionner —</option>
-              <option>Salaire minimum (~17,20 $/h)</option>
-              <option>17 $ – 20 $/h</option>
-              <option>20 $ – 25 $/h</option>
-              <option>25 $ – 30 $/h</option>
-              <option>30 $+ /h</option>
-              <option>Ouvert à la discussion</option>
+              <option value="" data-fr="— Sélectionner —" data-en="— Select —">— Sélectionner —</option>
+              <option value="Salaire minimum (~17,20 $/h)" data-fr="Salaire minimum (~17,20 $/h)" data-en="Minimum wage (~$17.20/h)">Salaire minimum (~17,20 $/h)</option>
+              <option value="17 $ – 20 $/h" data-fr="17 $ – 20 $/h" data-en="$17 – $20/h">17 $ – 20 $/h</option>
+              <option value="20 $ – 25 $/h" data-fr="20 $ – 25 $/h" data-en="$20 – $25/h">20 $ – 25 $/h</option>
+              <option value="25 $ – 30 $/h" data-fr="25 $ – 30 $/h" data-en="$25 – $30/h">25 $ – 30 $/h</option>
+              <option value="30 $+ /h" data-fr="30 $+ /h" data-en="$30+/h">30 $+ /h</option>
+              <option value="Ouvert à la discussion" data-fr="Ouvert à la discussion" data-en="Open to discussion">Ouvert à la discussion</option>
             </select>
           </div>
           <div class="f-group">
-            <label>Moyen de contact préféré</label>
+            <label data-fr="Moyen de contact préféré" data-en="Preferred Contact Method">Moyen de contact préféré</label>
             <div class="f-radio-group" style="margin-top:8px">
-              <div class="f-radio-item"><input type="radio" name="f_contact_cand" id="f_rc_email" value="Courriel"><label for="f_rc_email">Courriel</label></div>
-              <div class="f-radio-item"><input type="radio" name="f_contact_cand" id="f_rc_tel" value="Téléphone"><label for="f_rc_tel">Téléphone</label></div>
-              <div class="f-radio-item"><input type="radio" name="f_contact_cand" id="f_rc_wa" value="WhatsApp"><label for="f_rc_wa">WhatsApp</label></div>
+              <div class="f-radio-item"><input type="radio" name="f_contact_cand" id="f_rc_email" value="Courriel"><label for="f_rc_email" data-fr="Courriel" data-en="Email">Courriel</label></div>
+              <div class="f-radio-item"><input type="radio" name="f_contact_cand" id="f_rc_tel" value="Téléphone"><label for="f_rc_tel" data-fr="Téléphone" data-en="Phone">Téléphone</label></div>
+              <div class="f-radio-item"><input type="radio" name="f_contact_cand" id="f_rc_wa" value="WhatsApp"><label for="f_rc_wa" data-fr="WhatsApp" data-en="WhatsApp">WhatsApp</label></div>
             </div>
           </div>
         </div>
         <div class="f-row single">
           <div class="f-group">
-            <label>Lien vers votre CV (Google Drive, OneDrive, Dropbox)</label>
-            <input type="url" id="f_lien_cv" placeholder="https://drive.google.com/file/d/...">
-            <p class="f-field-note">Assurez-vous que le lien est accessible à toute personne possédant le lien.</p>
+            <label data-fr="Lien vers votre CV (Google Drive, OneDrive, Dropbox)" data-en="Link to your Resume (Google Drive, OneDrive, Dropbox)">Lien vers votre CV (Google Drive, OneDrive, Dropbox)</label>
+            <input type="url" id="f_lien_cv" data-ph-fr="https://drive.google.com/file/d/..." data-ph-en="https://drive.google.com/file/d/..." placeholder="https://drive.google.com/file/d/...">
+            <p class="f-field-note" data-fr="Assurez-vous que le lien est accessible à toute personne possédant le lien." data-en="Make sure the link is accessible to anyone who has it.">Assurez-vous que le lien est accessible à toute personne possédant le lien.</p>
           </div>
         </div>
         <div class="f-row single">
           <div class="f-group">
-            <label>Message ou précisions</label>
-            <textarea id="f_notes" placeholder="Ajoute toute information utile : contraintes horaires, mobilité, situation particulière..."></textarea>
+            <label data-fr="Message ou précisions" data-en="Message or Additional Info">Message ou précisions</label>
+            <textarea id="f_notes" data-ph-fr="Ajoute toute information utile : contraintes horaires, mobilité, situation particulière..." data-ph-en="Add any useful information: schedule constraints, mobility, special situation..." placeholder="Ajoute toute information utile : contraintes horaires, mobilité, situation particulière..."></textarea>
           </div>
         </div>
       </div>
 
       <div class="f-submit">
-        <button type="submit" class="f-btn" id="f_btn_cand">Soumettre mon profil</button>
-        <p class="f-note">Ton inscription est gratuite et confidentielle. Andjix te contactera dès qu'une opportunité correspond à ton profil.</p>
+        <button type="submit" class="f-btn" id="f_btn_cand" data-fr="Soumettre mon profil" data-en="Submit my profile">Soumettre mon profil</button>
+        <p class="f-note" data-fr="Ton inscription est gratuite et confidentielle. Andjix te contactera dès qu'une opportunité correspond à ton profil." data-en="Your registration is free and confidential. Andjix will contact you as soon as an opportunity matches your profile.">Ton inscription est gratuite et confidentielle. Andjix te contactera dès qu'une opportunité correspond à ton profil.</p>
       </div>
 
     </form>
@@ -439,17 +452,15 @@
     <div id="f_confirmation_cand" class="f-confirmation">
       <div class="f-confirmation-box">
         <div class="f-check">✓</div>
-        <h2>Profil reçu !</h2>
-        <p>Merci ! Votre dossier a bien été reçu.<br>Un conseiller Andjix vous contactera dans les 48h ouvrables.</p>
+        <h2 data-fr="Profil reçu !" data-en="Profile received!">Profil reçu !</h2>
+        <p data-fr="Merci ! Votre dossier a bien été reçu. Un conseiller Andjix vous contactera dans les 48h ouvrables." data-en="Thank you! Your file has been received. An Andjix advisor will contact you within 48 business hours.">Merci ! Votre dossier a bien été reçu. Un conseiller Andjix vous contactera dans les 48h ouvrables.</p>
       </div>
     </div>
 
     <div id="f_erreur_cand" class="f-erreur">
       <div class="f-erreur-box">
-        <h2>Une erreur est survenue</h2>
-        <p>Votre profil n'a pas pu être envoyé. Veuillez réessayer ou nous contacter directement :<br><br>
-        <a href="mailto:info.andjix@gmail.com">info.andjix@gmail.com</a> &nbsp;·&nbsp;
-        <a href="tel:6132768401">613-276-8401</a></p>
+        <h2 data-fr="Une erreur est survenue" data-en="An error occurred">Une erreur est survenue</h2>
+        <p data-fr="Votre profil n'a pas pu être envoyé. Veuillez réessayer ou nous contacter directement au 613-276-8401." data-en="An error occurred. Please try again or contact us directly at 613-276-8401.">Votre profil n'a pas pu être envoyé. Veuillez réessayer ou nous contacter directement au 613-276-8401.</p>
       </div>
     </div>
 
@@ -465,11 +476,32 @@
 <script>
   const WEBHOOK_CAND = 'https://hook.us2.make.com/gofja89d3eu2q9pvo8961pf8ren4r8l4';
 
+  function setLangCand(lang) {
+    localStorage.setItem('andjix_lang', lang);
+    document.querySelectorAll('.f-lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.f-lang-btn[data-lang="' + lang + '"]').classList.add('active');
+    document.querySelectorAll('#formulaire [data-fr][data-en]').forEach(el => {
+      el.textContent = el.dataset[lang];
+    });
+    document.querySelectorAll('#formulaire [data-html-fr][data-html-en]').forEach(el => {
+      el.innerHTML = lang === 'fr' ? el.dataset.htmlFr : el.dataset.htmlEn;
+    });
+    document.querySelectorAll('#formulaire [data-ph-fr][data-ph-en]').forEach(el => {
+      el.placeholder = lang === 'fr' ? el.dataset.phFr : el.dataset.phEn;
+    });
+  }
+
+  (function initLangCand() {
+    const saved = localStorage.getItem('andjix_lang') || 'fr';
+    setLangCand(saved);
+  })();
+
   document.getElementById('form-candidat').addEventListener('submit', async function(e) {
     e.preventDefault();
+    const currentLang = localStorage.getItem('andjix_lang') || 'fr';
     const btn = document.getElementById('f_btn_cand');
     btn.disabled = true;
-    btn.textContent = 'Envoi en cours...';
+    btn.textContent = currentLang === 'en' ? 'Sending...' : 'Envoi en cours...';
 
     const secteurs = ['f_s_resto','f_s_hotel','f_s_const','f_s_sante','f_s_comm','f_s_autre']
       .map(id => document.getElementById(id)).filter(el => el.checked).map(el => el.value);
@@ -522,3 +554,4 @@
 
 </body>
 </html>
+
