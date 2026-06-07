@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -47,6 +45,10 @@
   /* ── Bloc formulaire ── */
   #formulaire { background: #0a1628; padding: 64px 0; }
   .formulaire-wrap { max-width: 680px; margin: 0 auto; padding: 0 20px; font-family: 'DM Sans', sans-serif; }
+  .f-lang-toggle-bar { display: flex; align-items: center; justify-content: flex-end; gap: 4px; margin-bottom: 20px; }
+  .f-lang-sep { color: #a09080; font-size: 11px; }
+  .f-lang-btn { background: transparent; border: 1px solid #a09080; color: #a09080; padding: 4px 10px; font-size: 11px; font-family: 'DM Sans', sans-serif; cursor: pointer; border-radius: 2px; letter-spacing: 1px; text-transform: uppercase; transition: background 0.2s, color 0.2s; }
+  .f-lang-btn.active { background: #d4a84b; color: #0a1628; font-weight: 600; border-color: #d4a84b; }
   .formulaire-wrap .f-intro { border-left: 4px solid #d4a84b; padding: 20px 24px; border-radius: 2px; margin-bottom: 32px; }
   .formulaire-wrap .f-intro h2 { font-family: 'Playfair Display', serif; font-size: 22px; color: #f0ece3; margin-bottom: 8px; }
   .formulaire-wrap .f-intro p { font-size: 13px; color: #a09080; line-height: 1.6; font-weight: 300; }
@@ -351,154 +353,155 @@
 <section id="formulaire">
   <div class="formulaire-wrap">
 
-    <div class="f-lang-toggle">
-      <button class="f-lang-btn active" onclick="setLangEmp('fr')">FR</button>
-      <button class="f-lang-btn" onclick="setLangEmp('en')">EN</button>
+    <div class="f-lang-toggle-bar">
+      <button class="f-lang-btn active" data-lang="fr" onclick="setLangEmp('fr')">FR</button>
+      <span class="f-lang-sep">|</span>
+      <button class="f-lang-btn" data-lang="en" onclick="setLangEmp('en')">EN</button>
     </div>
 
     <div class="f-intro">
-      <h2>Rejoignez notre base de données partenaires</h2>
-      <p>Inscrivez votre entreprise gratuitement. Nous vous contacterons dès qu'un candidat qualifié correspond à vos besoins — sans démarche supplémentaire de votre part.</p>
+      <h2 data-fr="Rejoignez notre base de données partenaires" data-en="Join our partner database">Rejoignez notre base de données partenaires</h2>
+      <p data-fr="Inscrivez votre entreprise gratuitement. Nous vous contacterons dès qu'un candidat qualifié correspond à vos besoins — sans démarche supplémentaire de votre part." data-en="Register your business for free. We will contact you as soon as a qualified candidate matches your needs — no additional steps required on your end.">Inscrivez votre entreprise gratuitement. Nous vous contacterons dès qu'un candidat qualifié correspond à vos besoins — sans démarche supplémentaire de votre part.</p>
     </div>
 
     <form id="form-employeur">
 
       <div class="f-section">
-        <div class="f-section-title">Informations sur l'entreprise</div>
+        <div class="f-section-title" data-fr="Informations sur l'entreprise" data-en="Company Information">Informations sur l'entreprise</div>
         <div class="f-row">
           <div class="f-group">
-            <label>Nom de l'entreprise <span class="req">*</span></label>
-            <input type="text" id="f_nom_entreprise" placeholder="Ex. : Hôtel Le Méridien Ottawa" required>
+            <label><span data-fr="Nom de l'entreprise" data-en="Company Name">Nom de l'entreprise</span> <span class="req">*</span></label>
+            <input type="text" id="f_nom_entreprise" data-ph-fr="Ex. : Hôtel Le Méridien Ottawa" data-ph-en="e.g.: Hotel Le Méridien Ottawa" placeholder="Ex. : Hôtel Le Méridien Ottawa" required>
           </div>
           <div class="f-group">
-            <label>Secteur d'activité <span class="req">*</span></label>
+            <label><span data-fr="Secteur d'activité" data-en="Industry">Secteur d'activité</span> <span class="req">*</span></label>
             <select id="f_secteur" required>
-              <option value="">— Sélectionner —</option>
-              <option>Restauration</option>
-              <option>Hôtellerie</option>
-              <option>Construction</option>
-              <option>Santé / Services aux personnes</option>
-              <option>Commerce de détail</option>
-              <option>Transport / Logistique</option>
-              <option>Autre</option>
+              <option value="" data-fr="— Sélectionner —" data-en="— Select —">— Sélectionner —</option>
+              <option value="Restauration" data-fr="Restauration" data-en="Restaurant/Food Service">Restauration</option>
+              <option value="Hôtellerie" data-fr="Hôtellerie" data-en="Hospitality">Hôtellerie</option>
+              <option value="Construction" data-fr="Construction" data-en="Construction">Construction</option>
+              <option value="Santé / Services aux personnes" data-fr="Santé / Services aux personnes" data-en="Healthcare/Personal Services">Santé / Services aux personnes</option>
+              <option value="Commerce de détail" data-fr="Commerce de détail" data-en="Retail">Commerce de détail</option>
+              <option value="Transport / Logistique" data-fr="Transport / Logistique" data-en="Transport/Logistics">Transport / Logistique</option>
+              <option value="Autre" data-fr="Autre" data-en="Other">Autre</option>
             </select>
           </div>
         </div>
         <div class="f-row">
           <div class="f-group">
-            <label>Adresse / Localisation <span class="req">*</span></label>
-            <input type="text" id="f_localisation" placeholder="Ex. : 150 rue Elgin, Ottawa" required>
+            <label><span data-fr="Adresse / Localisation" data-en="Address / Location">Adresse / Localisation</span> <span class="req">*</span></label>
+            <input type="text" id="f_localisation" data-ph-fr="Ex. : 150 rue Elgin, Ottawa" data-ph-en="e.g.: 150 Elgin St., Ottawa" placeholder="Ex. : 150 rue Elgin, Ottawa" required>
           </div>
           <div class="f-group">
-            <label>Taille de l'entreprise</label>
+            <label data-fr="Taille de l'entreprise" data-en="Company Size">Taille de l'entreprise</label>
             <select id="f_taille_entreprise">
-              <option value="">— Sélectionner —</option>
-              <option>1–10 employés</option>
-              <option>11–50 employés</option>
-              <option>51–200 employés</option>
-              <option>200+ employés</option>
+              <option value="" data-fr="— Sélectionner —" data-en="— Select —">— Sélectionner —</option>
+              <option value="1–10 employés" data-fr="1–10 employés" data-en="1–10 employees">1–10 employés</option>
+              <option value="11–50 employés" data-fr="11–50 employés" data-en="11–50 employees">11–50 employés</option>
+              <option value="51–200 employés" data-fr="51–200 employés" data-en="51–200 employees">51–200 employés</option>
+              <option value="200+ employés" data-fr="200+ employés" data-en="200+ employees">200+ employés</option>
             </select>
           </div>
         </div>
       </div>
 
       <div class="f-section">
-        <div class="f-section-title">Besoins en recrutement</div>
+        <div class="f-section-title" data-fr="Besoins en recrutement" data-en="Hiring Needs">Besoins en recrutement</div>
         <div class="f-row single">
           <div class="f-group">
-            <label>Postes recherchés <span class="req">*</span></label>
-            <input type="text" id="f_postes_recherches" placeholder="Ex. : Cuisinier, Réceptionniste, Serveur..." required>
+            <label><span data-fr="Postes recherchés" data-en="Positions Needed">Postes recherchés</span> <span class="req">*</span></label>
+            <input type="text" id="f_postes_recherches" data-ph-fr="Ex. : Cuisinier, Réceptionniste, Serveur..." data-ph-en="e.g.: Cook, Receptionist, Server, Maintenance Agent..." placeholder="Ex. : Cuisinier, Réceptionniste, Serveur..." required>
           </div>
         </div>
         <div class="f-row">
           <div class="f-group">
-            <label>Langue(s) requise(s) <span class="req">*</span></label>
+            <label><span data-fr="Langue(s) requise(s)" data-en="Required Language(s)">Langue(s) requise(s)</span> <span class="req">*</span></label>
             <div class="f-checkbox-group">
-              <div class="f-checkbox-item"><input type="checkbox" id="f_fr" value="Français"><label for="f_fr">Français</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_en" value="Anglais"><label for="f_en">Anglais</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_bi" value="Bilingue"><label for="f_bi">Bilingue</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_autre_lang" value="Autre"><label for="f_autre_lang">Autre</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_fr" value="Français"><label for="f_fr" data-fr="Français" data-en="French">Français</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_en" value="Anglais"><label for="f_en" data-fr="Anglais" data-en="English">Anglais</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_bi" value="Bilingue"><label for="f_bi" data-fr="Bilingue" data-en="Bilingual">Bilingue</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_autre_lang" value="Autre"><label for="f_autre_lang" data-fr="Autre" data-en="Other">Autre</label></div>
             </div>
           </div>
           <div class="f-group">
-            <label>Type de contrat recherché</label>
+            <label data-fr="Type de contrat recherché" data-en="Contract Type">Type de contrat recherché</label>
             <div class="f-checkbox-group">
-              <div class="f-checkbox-item"><input type="checkbox" id="f_tp" value="Temps plein"><label for="f_tp">Temps plein</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_tpa" value="Temps partiel"><label for="f_tpa">Temps partiel</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_sais" value="Saisonnier"><label for="f_sais">Saisonnier</label></div>
-              <div class="f-checkbox-item"><input type="checkbox" id="f_perm" value="Permanent"><label for="f_perm">Permanent</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_tp" value="Temps plein"><label for="f_tp" data-fr="Temps plein" data-en="Full time">Temps plein</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_tpa" value="Temps partiel"><label for="f_tpa" data-fr="Temps partiel" data-en="Part time">Temps partiel</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_sais" value="Saisonnier"><label for="f_sais" data-fr="Saisonnier" data-en="Seasonal">Saisonnier</label></div>
+              <div class="f-checkbox-item"><input type="checkbox" id="f_perm" value="Permanent"><label for="f_perm" data-fr="Permanent" data-en="Permanent">Permanent</label></div>
             </div>
           </div>
         </div>
         <div class="f-row">
           <div class="f-group">
-            <label>Fourchette salariale offerte</label>
+            <label data-fr="Fourchette salariale offerte" data-en="Salary Range">Fourchette salariale offerte</label>
             <select id="f_salaire_offert">
-              <option value="">— Sélectionner —</option>
-              <option>Salaire minimum (~17,20 $/h)</option>
-              <option>17 $ – 20 $/h</option>
-              <option>20 $ – 25 $/h</option>
-              <option>25 $ – 30 $/h</option>
-              <option>30 $+ /h</option>
-              <option>À discuter</option>
+              <option value="" data-fr="— Sélectionner —" data-en="— Select —">— Sélectionner —</option>
+              <option value="Salaire minimum (~17,20 $/h)" data-fr="Salaire minimum (~17,20 $/h)" data-en="Minimum wage (~$17.20/h)">Salaire minimum (~17,20 $/h)</option>
+              <option value="17 $ – 20 $/h" data-fr="17 $ – 20 $/h" data-en="$17 – $20/h">17 $ – 20 $/h</option>
+              <option value="20 $ – 25 $/h" data-fr="20 $ – 25 $/h" data-en="$20 – $25/h">20 $ – 25 $/h</option>
+              <option value="25 $ – 30 $/h" data-fr="25 $ – 30 $/h" data-en="$25 – $30/h">25 $ – 30 $/h</option>
+              <option value="30 $+ /h" data-fr="30 $+ /h" data-en="$30+/h">30 $+ /h</option>
+              <option value="À discuter" data-fr="À discuter" data-en="To be discussed">À discuter</option>
             </select>
           </div>
           <div class="f-group">
-            <label>Délai de recrutement souhaité</label>
+            <label data-fr="Délai de recrutement souhaité" data-en="Hiring Timeline">Délai de recrutement souhaité</label>
             <select id="f_delai_recrutement">
-              <option value="">— Sélectionner —</option>
-              <option>Immédiat (dès que possible)</option>
-              <option>Dans les 2 semaines</option>
-              <option>Dans le mois</option>
-              <option>Planification future</option>
+              <option value="" data-fr="— Sélectionner —" data-en="— Select —">— Sélectionner —</option>
+              <option value="Immédiat (dès que possible)" data-fr="Immédiat (dès que possible)" data-en="Immediate (as soon as possible)">Immédiat (dès que possible)</option>
+              <option value="Dans les 2 semaines" data-fr="Dans les 2 semaines" data-en="Within 2 weeks">Dans les 2 semaines</option>
+              <option value="Dans le mois" data-fr="Dans le mois" data-en="Within a month">Dans le mois</option>
+              <option value="Planification future" data-fr="Planification future" data-en="Future planning">Planification future</option>
             </select>
           </div>
         </div>
         <div class="f-row single">
           <div class="f-group">
-            <label>Exigences ou précisions supplémentaires</label>
-            <textarea id="f_exigences" placeholder="Ex. : Expérience en cuisine asiatique, permis de conduire requis..."></textarea>
+            <label data-fr="Exigences ou précisions supplémentaires" data-en="Additional Requirements">Exigences ou précisions supplémentaires</label>
+            <textarea id="f_exigences" data-ph-fr="Ex. : Expérience en cuisine asiatique, permis de conduire requis..." data-ph-en="e.g.: Asian cuisine experience required, driver's license needed..." placeholder="Ex. : Expérience en cuisine asiatique, permis de conduire requis..."></textarea>
           </div>
         </div>
       </div>
 
       <div class="f-section">
-        <div class="f-section-title">Personne-ressource</div>
+        <div class="f-section-title" data-fr="Personne-ressource" data-en="Contact Person">Personne-ressource</div>
         <div class="f-row">
           <div class="f-group">
-            <label>Nom complet <span class="req">*</span></label>
-            <input type="text" id="f_nom_contact_rh" placeholder="Prénom Nom" required>
+            <label><span data-fr="Nom complet" data-en="Full Name">Nom complet</span> <span class="req">*</span></label>
+            <input type="text" id="f_nom_contact_rh" data-ph-fr="Prénom Nom" data-ph-en="First Last" placeholder="Prénom Nom" required>
           </div>
           <div class="f-group">
-            <label>Titre / Poste</label>
-            <input type="text" id="f_titre_contact_rh" placeholder="Ex. : Directeur RH, Gérant">
+            <label data-fr="Titre / Poste" data-en="Title / Position">Titre / Poste</label>
+            <input type="text" id="f_titre_contact_rh" data-ph-fr="Ex. : Directeur RH, Gérant" data-ph-en="e.g.: HR Director, Manager" placeholder="Ex. : Directeur RH, Gérant">
           </div>
         </div>
         <div class="f-row">
           <div class="f-group">
-            <label>Courriel <span class="req">*</span></label>
-            <input type="email" id="f_courriel_rh" placeholder="exemple@entreprise.com" required>
+            <label><span data-fr="Courriel" data-en="Email">Courriel</span> <span class="req">*</span></label>
+            <input type="email" id="f_courriel_rh" data-ph-fr="exemple@entreprise.com" data-ph-en="example@company.com" placeholder="exemple@entreprise.com" required>
           </div>
           <div class="f-group">
-            <label>Téléphone</label>
-            <input type="tel" id="f_telephone_rh" placeholder="613-XXX-XXXX">
+            <label data-fr="Téléphone" data-en="Phone">Téléphone</label>
+            <input type="tel" id="f_telephone_rh" data-ph-fr="613-XXX-XXXX" data-ph-en="613-XXX-XXXX" placeholder="613-XXX-XXXX">
           </div>
         </div>
         <div class="f-row single">
           <div class="f-group">
-            <label>Moyen de contact préféré</label>
+            <label data-fr="Moyen de contact préféré" data-en="Preferred Contact Method">Moyen de contact préféré</label>
             <div class="f-radio-group">
-              <div class="f-radio-item"><input type="radio" name="f_contact" id="f_c_email" value="Courriel"><label for="f_c_email">Courriel</label></div>
-              <div class="f-radio-item"><input type="radio" name="f_contact" id="f_c_tel" value="Téléphone"><label for="f_c_tel">Téléphone</label></div>
-              <div class="f-radio-item"><input type="radio" name="f_contact" id="f_c_wa" value="WhatsApp"><label for="f_c_wa">WhatsApp</label></div>
+              <div class="f-radio-item"><input type="radio" name="f_contact" id="f_c_email" value="Courriel"><label for="f_c_email" data-fr="Courriel" data-en="Email">Courriel</label></div>
+              <div class="f-radio-item"><input type="radio" name="f_contact" id="f_c_tel" value="Téléphone"><label for="f_c_tel" data-fr="Téléphone" data-en="Phone">Téléphone</label></div>
+              <div class="f-radio-item"><input type="radio" name="f_contact" id="f_c_wa" value="WhatsApp"><label for="f_c_wa" data-fr="WhatsApp" data-en="WhatsApp">WhatsApp</label></div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="f-submit">
-        <button type="submit" class="f-btn" id="f_btn_emp">Soumettre ma demande</button>
-        <p class="f-note">Un conseiller Andjix vous contactera dans les 48h ouvrables.</p>
+        <button type="submit" class="f-btn" id="f_btn_emp" data-fr="Soumettre ma demande" data-en="Submit my request">Soumettre ma demande</button>
+        <p class="f-note" data-fr="Un conseiller Andjix vous contactera dans les 48h ouvrables." data-en="An Andjix advisor will contact you within 48 business hours.">Un conseiller Andjix vous contactera dans les 48h ouvrables.</p>
       </div>
 
     </form>
@@ -521,10 +524,8 @@
 
     <div id="f_erreur_emp" class="f-erreur">
       <div class="f-erreur-box">
-        <h2>Une erreur est survenue</h2>
-        <p>Votre demande n'a pas pu être envoyée. Veuillez réessayer ou nous contacter directement :<br><br>
-        <a href="mailto:info.andjix@gmail.com">info.andjix@gmail.com</a> &nbsp;·&nbsp;
-        <a href="tel:6132768401">613-276-8401</a></p>
+        <h2 data-fr="Une erreur est survenue" data-en="An error occurred">Une erreur est survenue</h2>
+        <p data-fr="Votre demande n'a pas pu être envoyée. Veuillez réessayer ou nous contacter directement au 613-276-8401." data-en="An error occurred. Please try again or contact us directly at 613-276-8401.">Votre demande n'a pas pu être envoyée. Veuillez réessayer ou nous contacter directement au 613-276-8401.</p>
       </div>
     </div>
 
@@ -539,13 +540,35 @@
 <script src="app.js"></script>
 <script>
   const WEBHOOK_EMP = 'https://hook.us2.make.com/jo5mxydfpermgd03yyrqsgwv7j75g4a4';
-  let langEmp = 'fr';
 
   function setLangEmp(lang) {
-    langEmp = lang;
-    document.querySelectorAll('.f-lang-btn').forEach(b => b.classList.remove('active'));
-    document.querySelector('.f-lang-btn[onclick="setLangEmp(\'' + lang + '\')"]').classList.add('active');
+    localStorage.setItem('andjix_lang', lang);
+
+    // Boutons
+    document.querySelectorAll('#formulaire .f-lang-btn').forEach(function(b) {
+      b.classList.remove('active');
+    });
+    var activeBtn = document.querySelector('#formulaire .f-lang-btn[data-lang="' + lang + '"]');
+    if (activeBtn) activeBtn.classList.add('active');
+
+    // Textes (getAttribute plus fiable que dataset)
+    document.querySelectorAll('#formulaire [data-fr][data-en]').forEach(function(el) {
+      var text = el.getAttribute('data-' + lang);
+      if (text !== null) el.textContent = text;
+    });
+
+    // Placeholders
+    document.querySelectorAll('#formulaire [data-ph-fr][data-ph-en]').forEach(function(el) {
+      var ph = el.getAttribute('data-ph-' + lang);
+      if (ph !== null) el.placeholder = ph;
+    });
   }
+
+  // window.load garantit que notre traduction s'applique APRÈS tous les scripts du site
+  window.addEventListener('load', function() {
+    var saved = localStorage.getItem('andjix_lang') || 'fr';
+    setLangEmp(saved);
+  });
 
   document.getElementById('form-employeur').addEventListener('submit', async function(e) {
     e.preventDefault();
