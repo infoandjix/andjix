@@ -185,10 +185,12 @@ section.tight { padding: 72px 0; }
   opacity: 0; pointer-events: none;
   transition: opacity var(--dur-base) var(--ease-standard), transform var(--dur-base) var(--ease-standard);
   z-index: 60;
+    transition-delay: 0.25s;
 }
 .nav-dd:hover .nav-dd-panel {
   opacity: 1; pointer-events: all;
   transform: translateX(-50%) translateY(0);
+    transition-delay: 0s;
 }
 .nav-dd-panel::before {
   content: ''; position: absolute; top: -6px; left: 50%;
