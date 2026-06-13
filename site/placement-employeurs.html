@@ -614,6 +614,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
+      const langEmp = localStorage.getItem('andjix_lang') || 'fr';
       document.getElementById('form-employeur').style.display = 'none';
       document.getElementById(langEmp === 'en' ? 'f_confirmation_en' : 'f_confirmation_fr').style.display = 'block';
     } catch {
