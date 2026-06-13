@@ -605,15 +605,17 @@
     };
 
     try {
-      const res = await fetch(WEBHOOK_EMP, {
+      // Webhook Make en "fire-and-forget" : on n'évalue PAS res.ok.
+      // Un webhook Make peut renvoyer un statut non-2xx (ou une réponse non lisible)
+      // alors que le traitement a réussi (ligne Airtable créée + notification envoyée).
+      // Seul un échec réseau réel (fetch rejeté) est traité comme une erreur.
+      await fetch(WEBHOOK_EMP, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-      if (res.ok) {
-        document.getElementById('form-employeur').style.display = 'none';
-        document.getElementById(langEmp === 'en' ? 'f_confirmation_en' : 'f_confirmation_fr').style.display = 'block';
-      } else { throw new Error(); }
+      document.getElementById('form-employeur').style.display = 'none';
+      document.getElementById(langEmp === 'en' ? 'f_confirmation_en' : 'f_confirmation_fr').style.display = 'block';
     } catch {
       document.getElementById('form-employeur').style.display = 'none';
       document.getElementById('f_erreur_emp').style.display = 'block';
