@@ -26,7 +26,7 @@ Open `http://localhost:3000`.
 |---|---|
 | `ANTHROPIC_API_KEY` | Anthropic API key |
 | `RESEND_API_KEY` | Resend API key for sending lead emails |
-| `LEAD_EMAIL_TO` | Where leads are forwarded (e.g. `info.andjix@gmail.com`) |
+| `LEAD_EMAIL_TO` | Where leads are forwarded (e.g. `info@andjix.ca`) |
 | `LEAD_EMAIL_FROM` | Verified Resend sender on a verified domain |
 | `NEXT_PUBLIC_CALENDLY_URL` | André's Calendly link (shown in success state) |
 

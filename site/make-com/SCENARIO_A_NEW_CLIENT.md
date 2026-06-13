@@ -97,7 +97,7 @@ Pour la version EN, ajouter un **Filter** sur cette route pour `{{clientLang}} =
 Action : **Gmail > Send an Email**.
 
 ```
-To:      info.andjix@gmail.com
+To:      info@andjix.ca
 Subject: 🔔 Nouveau lead Andjix — {{clientName}} ({{clientSegment}})
 Body:    (texte simple, avec tous les champs + lien direct vers la fiche Airtable)
 ```

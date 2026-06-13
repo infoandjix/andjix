@@ -157,7 +157,7 @@ function matchCandidats(employeur, candidats) {
 
 /**
  * sendMatchAlert(employeur, matches)
- * Envoie un récapitulatif des matches à info.andjix@gmail.com via EmailJS.
+ * Envoie un récapitulatif des matches à info@andjix.ca via EmailJS.
  * Requiert EmailJS chargé dans la page et EMAILJS_* configurés dans config.js.
  */
 async function sendMatchAlert(employeur, matches) {
@@ -175,7 +175,7 @@ async function sendMatchAlert(employeur, matches) {
   }).join('\n\n');
 
   const templateParams = {
-    to_email: 'info.andjix@gmail.com',
+    to_email: 'info@andjix.ca',
     employeur_nom: e['Nom entreprise'] || 'N/A',
     employeur_poste: e['Postes recherchés'] || 'N/A',
     nb_matches: matches.length,
@@ -185,7 +185,7 @@ async function sendMatchAlert(employeur, matches) {
 
   try {
     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
-    console.log('Alerte match envoyée à info.andjix@gmail.com');
+    console.log('Alerte match envoyée à info@andjix.ca');
   } catch (err) {
     console.error('Erreur EmailJS :', err);
   }

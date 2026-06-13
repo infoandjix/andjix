@@ -111,7 +111,7 @@ These shape the build, so I'd rather not assume:
 
 ### 3. Lead-capture handoff
 André has no Calendly, no booking system, no social links yet. When the bot says "let's book a session," what happens?
-- Option A: Form → email to `info.andjix@gmail.com`
+- Option A: Form → email to `info@andjix.ca`
 - Option B: I set up a free Calendly under his email this week
 - Option C: Bot collects everything, writes to Firestore, André follows up by phone
 

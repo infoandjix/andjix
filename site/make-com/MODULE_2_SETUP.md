@@ -16,7 +16,7 @@
 | Calendly   | `info@andjix.ca`                    | Free           |
 | Airtable   | `info@andjix.ca`                    | Free           |
 | Make.com   | `info@andjix.ca`                    | Free (1000 ops)|
-| Gmail      | Connecter `info.andjix@gmail.com`   | Existant       |
+| Gmail      | Connecter `info@andjix.ca`   | Existant       |
 
 Stocker tous les mots de passe dans **Bitwarden** (compte partagé avec Emile).
 

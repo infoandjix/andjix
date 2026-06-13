@@ -126,7 +126,7 @@
           <a href="ia.html" data-i18n="footer.l_bot">Andjix IA</a>
           <a href="about.html" data-i18n="nav.about">À propos</a>
           <a href="contact.html#rdv" data-i18n="footer.l_book">Prendre rendez-vous</a>
-          <a href="mailto:info.andjix@gmail.com">info.andjix@gmail.com</a>
+          <a href="mailto:info@andjix.ca">info@andjix.ca</a>
           <a href="tel:+16132768401">+1 613 276 8401</a>
           <a href="confidentialite.html" data-i18n="footer.l_privacy">Politique de confidentialité</a>
           <a href="mentions-legales.html" data-i18n="footer.l_legal">Mentions légales</a>

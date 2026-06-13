@@ -63,7 +63,7 @@ Notes             ← "RDV pris directement via Calendly. Type : {{1.event.name}
 
 **Module 4B — Gmail: notif André**
 ```
-To:      info.andjix@gmail.com
+To:      info@andjix.ca
 Subject: 🗓️ RDV direct Calendly — {{1.invitee.name}}
 Body:    Détails du RDV + lien vers la fiche Airtable créée
 ```
