@@ -7,7 +7,7 @@ import { isTaxRelated, loadArcKB, buildArcSection } from "@/lib/arc-knowledge";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const MODEL = "claude-opus-4-7";
+const MODEL = process.env.ANTHROPIC_MODEL ?? "claude-opus-4-8";
 
 const client = new Anthropic();
 
@@ -177,6 +177,7 @@ export async function POST(req: NextRequest) {
         );
         controller.close();
       } catch (err) {
+        console.error("[chat] erreur Anthropic:", err);
         const message = err instanceof Error ? err.message : "unknown error";
         controller.enqueue(
           encoder.encode(`data: ${JSON.stringify({ error: message })}\n\n`),
