@@ -1,8 +1,4 @@
 {
-  "_meta": {
-    "title": "Andjix Consulting Inc. : Déclarations d'impôts à prix fixe à Ottawa",
-    "description": "Déclarations de revenus à prix fixe pour les particuliers, les familles, les nouveaux arrivants et les travailleurs autonomes d'Ottawa, en français ou en anglais."
-  },
   "nav": {
     "individuals": "Particuliers",
     "sme": "PME",
@@ -470,5 +466,55 @@
     "leave_note": "Aucun engagement. Rencontre en français ou en anglais.",
     "cta": "Choisir un moment",
     "warning": "Ne nous envoyez aucun document ni numéro d'assurance sociale à cette étape."
+  },
+  "pages": {
+    "mentions-legales": {
+      "title": "Mentions légales : Andjix Consulting Inc.",
+      "description": "Mentions légales du site andjix.ca : éditeur, hébergement, propriété intellectuelle, responsabilité, droit applicable."
+    },
+    "confidentialite": {
+      "title": "Politique de confidentialité : Andjix Consulting Inc.",
+      "description": "Politique de confidentialité d'Andjix Consulting Inc., conforme à la LPRPDE et aux lois canadiennes applicables."
+    },
+    "reservation": {
+      "title": "Réserver une rencontre : Andjix Consulting Inc.",
+      "description": "Réservez votre rencontre découverte gratuite de 30 minutes, en personne ou en vidéo, pour connaître votre forfait d'impôts et son prix fixe."
+    },
+    "about": {
+      "title": "À propos : Andjix Consulting Inc.",
+      "description": "Andjix Consulting Inc. : entreprise bilingue d'Ottawa fondée par André Djomamessi, en administration, fiscalité et recrutement."
+    },
+    "contact": {
+      "title": "Contact et rendez-vous : Andjix Consulting Inc.",
+      "description": "Contact, rendez-vous et formulaire pour Andjix Consulting. Disponible 24/7 en ligne, sur rendez-vous du lundi au vendredi."
+    },
+    "services-pme": {
+      "title": "Services PME : Andjix Consulting Inc.",
+      "description": "Solutions d'automatisation et constitution d'entreprise pour les PME, OBNL et associations d'Ottawa. Modernisez sans embaucher."
+    },
+    "placement-employeurs": {
+      "title": "Placement employeurs : Andjix Consulting Inc. — Recrutement bilingue Ottawa",
+      "description": "Recrutez des talents bilingues à Ottawa et Gatineau avec Andjix : 3 niveaux de service, premiers CV en 5 jours ouvrables."
+    },
+    "placement-candidats": {
+      "title": "Placement candidats : Andjix Consulting Inc. — Emploi bilingue à Ottawa",
+      "description": "Trouvez un emploi bilingue à Ottawa grâce au réseau Andjix : CV canadien, coaching entrevue, mise en relation avec les employeurs. Service gratuit pour les candidats."
+    },
+    "index": {
+      "title": "Andjix Consulting Inc. : Déclarations d'impôts à prix fixe à Ottawa",
+      "description": "Déclarations de revenus à prix fixe pour les particuliers, les familles, les nouveaux arrivants et les travailleurs autonomes d'Ottawa, en français ou en anglais."
+    },
+    "ressources": {
+      "title": "Ressources : Andjix Consulting Inc.",
+      "description": "Guides pratiques pour comprendre les démarches canadiennes : impôts, locataires, T2125, constitution d'entreprise."
+    },
+    "ia": {
+      "title": "Andjix IA : L'assistant intelligent pour l'intégration au Canada",
+      "description": "Andjix IA est un assistant intelligent bilingue, formé sur l'administration, la fiscalité ARC et le recrutement au Canada. Diagnostic gratuit en 5 minutes."
+    },
+    "services-particuliers": {
+      "title": "Déclarations d'impôts pour les particuliers : Andjix Consulting Inc.",
+      "description": "Déclarations de revenus à prix fixe pour les particuliers d'Ottawa : forfaits, documents à préparer et questions fréquentes."
+    }
   }
 }

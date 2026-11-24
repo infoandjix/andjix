@@ -1,8 +1,4 @@
 {
-  "_meta": {
-    "title": "Andjix Consulting Inc.: Fixed-price tax returns in Ottawa",
-    "description": "Fixed-price tax returns for individuals, families, newcomers and self-employed people in Ottawa, in English or French."
-  },
   "nav": {
     "individuals": "Individuals",
     "sme": "SMEs",
@@ -470,5 +466,55 @@
     "leave_note": "No commitment. Meeting in English or French.",
     "cta": "Choose a time",
     "warning": "Please do not send us any documents or your Social Insurance Number at this stage."
+  },
+  "pages": {
+    "mentions-legales": {
+      "title": "Legal notice: Andjix Consulting Inc.",
+      "description": "Legal notice for andjix.ca: publisher, hosting, intellectual property, liability, governing law."
+    },
+    "confidentialite": {
+      "title": "Privacy policy: Andjix Consulting Inc.",
+      "description": "Privacy policy of Andjix Consulting Inc., under PIPEDA."
+    },
+    "reservation": {
+      "title": "Book a meeting: Andjix Consulting Inc.",
+      "description": "Book your free 30-minute discovery meeting, in person or by video, to find your tax package and its fixed price."
+    },
+    "about": {
+      "title": "About: Andjix Consulting Inc.",
+      "description": "Andjix Consulting Inc.: a bilingual Ottawa business founded by André Djomamessi, in administration, tax and recruitment."
+    },
+    "contact": {
+      "title": "Contact and booking: Andjix Consulting Inc.",
+      "description": "Contact Andjix Consulting: booking, email and phone. Andjix AI online 24/7, meetings by appointment Monday to Friday."
+    },
+    "services-pme": {
+      "title": "SME services: Andjix Consulting Inc.",
+      "description": "Automation and incorporation for SMEs, nonprofits and associations in Ottawa."
+    },
+    "placement-employeurs": {
+      "title": "Employers: Andjix Consulting Inc. — Bilingual recruitment in Ottawa",
+      "description": "Hire bilingual talent in Ottawa and Gatineau with Andjix: 3 service tiers, first resumes in 5 business days."
+    },
+    "placement-candidats": {
+      "title": "Job seekers: Andjix Consulting Inc. — Bilingual jobs in Ottawa",
+      "description": "Find a bilingual job in Ottawa through the Andjix network: Canadian resume, interview coaching, employer matching. Free for candidates."
+    },
+    "index": {
+      "title": "Andjix Consulting Inc.: Fixed-price tax returns in Ottawa",
+      "description": "Fixed-price tax returns for individuals, families, newcomers and self-employed people in Ottawa, in English or French."
+    },
+    "ressources": {
+      "title": "Resources: Andjix Consulting Inc.",
+      "description": "Practical guides to understand Canadian procedures: taxes, tenants, T2125, incorporation."
+    },
+    "ia": {
+      "title": "Andjix AI: the smart assistant for settling in Canada",
+      "description": "Andjix AI is a bilingual smart assistant for Canadian administration, CRA tax questions and recruitment. Free 5-minute assessment."
+    },
+    "services-particuliers": {
+      "title": "Tax returns for individuals: Andjix Consulting Inc.",
+      "description": "Fixed-price tax returns for Ottawa residents: packages, documents to prepare and frequently asked questions."
+    }
   }
 }

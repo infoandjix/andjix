@@ -20,9 +20,12 @@
     const dict = dictionaries[lang];
     if (!dict) return;
     document.documentElement.lang = lang;
-    document.title = dict._meta?.title || document.title;
+    // Titre et description propres à chaque page (clé = nom du fichier, sans .html)
+    const page = (location.pathname.split('/').pop() || 'index').replace(/\.html$/, '') || 'index';
+    const meta = dict.pages && dict.pages[page];
+    if (meta && meta.title) document.title = meta.title;
     const desc = document.querySelector('meta[name="description"]');
-    if (desc && dict._meta?.description) desc.setAttribute('content', dict._meta.description);
+    if (desc && meta && meta.description) desc.setAttribute('content', meta.description);
 
     document.querySelectorAll('[data-i18n]').forEach((el) => {
       const key = el.getAttribute('data-i18n');
