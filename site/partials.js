@@ -30,7 +30,7 @@
         <div class="nav-dd-panel">
           <a href="services-particuliers.html#impots" class="dd-item">
             <div class="dd-icon dd-icon-blue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-            <div><div class="dd-title" data-i18n="nav.fiscalite">Déclaration d'impôts</div><div class="dd-desc" data-i18n="nav.fiscalite_desc">T1, T2125, T2 · Première année au Canada · EFILE ARC</div></div>
+            <div><div class="dd-title" data-i18n="nav.fiscalite">Déclaration d'impôts</div><div class="dd-desc" data-i18n="nav.fiscalite_desc">T1, T2125 · Première année au Canada · Rattrapage des années passées</div></div>
           </a>
           <a href="services-particuliers.html#nouveaux-arrivants" class="dd-item">
             <div class="dd-icon dd-icon-deep"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
@@ -56,7 +56,7 @@
           </a>
           <a href="placement-employeurs.html" class="dd-item">
             <div class="dd-icon dd-icon-orange"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-            <div><div class="dd-title" data-i18n="nav.placement_emp">Je cherche du personnel</div><div class="dd-desc" data-i18n="nav.placement_emp_desc">3 niveaux · Garantie 60 jours · Premiers CV en 5 jours</div></div>
+            <div><div class="dd-title" data-i18n="nav.placement_emp">Je cherche du personnel</div><div class="dd-desc" data-i18n="nav.placement_emp_desc">3 niveaux de service · Premiers CV en 5 jours</div></div>
           </a>
         </div>
       </div>
