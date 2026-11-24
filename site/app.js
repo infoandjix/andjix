@@ -44,9 +44,13 @@
   // Anchors with data-typeform="impots|newcomer|placement" → href = matching URL
   // Anchors that point to a REPLACE_ME URL get disabled (gray + alert) so
   // André can spot unconfigured CTAs in QA before going live.
+  // Only anchors still marked as placeholders (href="#") are rewritten:
+  // links that already carry a real address are never overwritten.
+  const isPlaceholder = a => (a.getAttribute('href') || '#') === '#';
   const cfg = window.ANDJIX || {};
   const calendly = cfg.calendly;
   document.querySelectorAll('[data-calendly-link]').forEach(a => {
+    if (!isPlaceholder(a)) return;
     if (calendly && calendly !== 'REPLACE_ME') {
       a.setAttribute('href', calendly);
       a.setAttribute('target', '_blank');
@@ -56,6 +60,7 @@
     }
   });
   document.querySelectorAll('[data-typeform]').forEach(a => {
+    if (!isPlaceholder(a)) return;
     const key = a.getAttribute('data-typeform');
     const url = cfg.typeform && cfg.typeform[key];
     if (url && url !== 'REPLACE_ME') {
