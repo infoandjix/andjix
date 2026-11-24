@@ -38,6 +38,11 @@
       if (typeof value === 'string') el.innerHTML = value;
     });
 
+    // Blocs de contenu complets par langue (ex. politique de confidentialité)
+    document.querySelectorAll('[data-lang-block]').forEach((el) => {
+      el.hidden = el.getAttribute('data-lang-block') !== lang;
+    });
+
     const toggle = document.querySelector('[data-lang-current]');
     if (toggle) toggle.textContent = lang === 'fr' ? 'EN' : 'FR';
 
