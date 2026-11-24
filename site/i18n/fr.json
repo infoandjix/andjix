@@ -191,12 +191,7 @@
     "card5_title": "ACE, soins dentaires, prestations canadiennes",
     "card5_desc": "Les programmes auxquels vous avez droit comme nouveau résident, et comment en faire la demande.",
     "card6_title": "Inscrire son enfant à l'école à Ottawa",
-    "card6_desc": "École publique francophone, anglophone, catholique : comment choisir et faire l'inscription.",
-    "newsletter_title": "Une ressource publiée chaque mois.",
-    "newsletter_lede": "Inscrivez-vous pour recevoir nos guides dès leur publication. Un courriel par mois, désinscription en un clic.",
-    "newsletter_placeholder": "Votre adresse courriel",
-    "newsletter_cta": "S'inscrire",
-    "newsletter_note": "Nous respectons votre vie privée. Voir notre politique de confidentialité."
+    "card6_desc": "École publique francophone, anglophone, catholique : comment choisir et faire l'inscription."
   },
   "contact": {
     "hero_eyebrow": "Contact et rendez-vous",
