@@ -64,7 +64,6 @@
           </div>
         </div>
         <div class="footer-contact">
-          <span>Andjix Consulting Inc.</span>
           <span data-i18n="footer.city">Ottawa (Ontario)</span>
           <a href="mailto:info@andjix.ca">info@andjix.ca</a>
           <a href="tel:+16132768401">613-276-8401</a>

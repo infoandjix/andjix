@@ -1611,15 +1611,15 @@ html, body { overflow-x: hidden; }
 .btn { min-height: 44px; line-height: 1.25; text-align: center; }
 
 .footer-contact { display: flex; flex-direction: column; gap: 6px; font-size: 0.9375rem; color: var(--text-muted); }
-.footer-contact span:first-child { font-family: 'Sora', sans-serif; font-weight: 700; color: var(--blue-deep); }
+@media (min-width: 961px) { .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; } }
 .footer-contact a { color: var(--text-muted); }
 .footer-contact a:hover { color: var(--blue); }
 
 .tx-hero { background: var(--gradient-soft); color: white; padding: 88px 0 96px; }
 .tx-hero-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: center; }
 .tx-hero h1 { color: white; margin-bottom: 12px; }
-.tx-hero-sub { font-family: 'Sora', sans-serif; font-weight: 700; font-size: clamp(1.25rem, 2.2vw, 1.625rem); margin-bottom: 20px; }
-.tx-hero-lede { font-size: 1.1875rem; line-height: 1.55; max-width: 620px; margin-bottom: 32px; color: rgba(255, 255, 255, 0.92); }
+.tx-hero-sub { color: white; font-family: 'Sora', sans-serif; font-weight: 700; font-size: clamp(1.25rem, 2.2vw, 1.625rem); margin-bottom: 20px; }
+.tx-hero-lede { color: rgba(255, 255, 255, 0.92); font-size: 1.1875rem; line-height: 1.55; max-width: 620px; margin-bottom: 32px; color: rgba(255, 255, 255, 0.92); }
 .tx-pill {
   display: inline-block; margin-bottom: 24px; padding: 8px 16px; border-radius: 999px;
   background: var(--blue-deep); border: 1px solid rgba(255, 255, 255, 0.4);

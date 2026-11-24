@@ -373,10 +373,10 @@
     "plan1_desc": "Salarié ou étudiant seul : T1, feuillets, crédits de base.",
     "plan2_name": "Famille",
     "plan2_desc": "Deux déclarations coordonnées, prestations, frais de garde.",
-    "plan2_price": "À partir de 150 $",
+    "plan2_price": "À partir de 150 $",
     "plan3_name": "Nouvel arrivant",
     "plan3_desc": "Date d'arrivée, revenu mondial, ouverture des crédits et prestations.",
-    "plan3_price": "À partir de 110 $",
+    "plan3_price": "À partir de 110 $",
     "plan4_name": "Autonome",
     "plan4_desc": "T1 et T2125, dépenses, véhicule, rappel TPS/TVH.",
     "plan4_price": "Prix fixe confirmé après la rencontre",
@@ -409,7 +409,8 @@
     "also2_link": "Lancer le diagnostic",
     "final_title": "Prêt pour la saison ? Réservez tôt.",
     "final_lede": "Les dossiers réservés avant l'ouverture de la saison sont traités en premier.",
-    "final_cta": "Réserver ma rencontre gratuite"
+    "final_cta": "Réserver ma rencontre gratuite",
+    "plan1_price": "70 $"
   },
   "impots": {
     "title": "Déclaration d'impôts",

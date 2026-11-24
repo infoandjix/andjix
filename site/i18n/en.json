@@ -409,7 +409,8 @@
     "also2_link": "Start the assessment",
     "final_title": "Ready for tax season? Book early.",
     "final_lede": "Files booked before the season opens are handled first.",
-    "final_cta": "Book my free meeting"
+    "final_cta": "Book my free meeting",
+    "plan1_price": "$70"
   },
   "impots": {
     "title": "Tax returns",
