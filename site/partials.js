@@ -21,27 +21,7 @@
     </button>
     <div class="nav-links" data-nav-panel>
 
-      <!-- Particuliers -->
-      <div class="nav-dd">
-        <button class="nav-dd-btn${active('services-particuliers.html') ? ' active' : ''}">
-          <span data-i18n="nav.particuliers">Particuliers</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="nav-dd-panel">
-          <a href="services-particuliers.html#impots" class="dd-item">
-            <div class="dd-icon dd-icon-blue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-            <div><div class="dd-title" data-i18n="nav.fiscalite">Déclaration d'impôts</div><div class="dd-desc" data-i18n="nav.fiscalite_desc">T1, T2125 · Première année au Canada · Rattrapage des années passées</div></div>
-          </a>
-          <a href="services-particuliers.html#nouveaux-arrivants" class="dd-item">
-            <div class="dd-icon dd-icon-deep"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
-            <div><div class="dd-title" data-i18n="nav.arrivants">Nouveaux arrivants</div><div class="dd-desc" data-i18n="nav.arrivants_desc">NAS, OHIP, école, logement · 90 premiers jours</div></div>
-          </a>
-          <a href="services-particuliers.html#conseil" class="dd-item">
-            <div class="dd-icon dd-icon-blue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-            <div><div class="dd-title" data-i18n="nav.conseil">Conseil administratif</div><div class="dd-desc" data-i18n="nav.conseil_desc">Avis de cotisation, TPS/TVH, acomptes provisionnels</div></div>
-          </a>
-        </div>
-      </div>
+      <a href="services-particuliers.html#impots"${active('services-particuliers.html')} data-i18n="nav.impots">Impôts</a>
 
       <!-- Placement -->
       <div class="nav-dd">
@@ -61,30 +41,12 @@
         </div>
       </div>
 
-      <!-- PME -->
-      <div class="nav-dd">
-        <button class="nav-dd-btn${active('services-pme.html') ? ' active' : ''}">
-          <span data-i18n="nav.sme">PME</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="nav-dd-panel">
-          <a href="services-pme.html#automatisation" class="dd-item">
-            <div class="dd-icon dd-icon-blue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
-            <div><div class="dd-title" data-i18n="nav.automation">Automatisation IA</div><div class="dd-desc" data-i18n="nav.automation_desc">CRM, formulaires intelligents, flux de travail intégrés</div></div>
-          </a>
-          <a href="services-pme.html#constitution" class="dd-item">
-            <div class="dd-icon dd-icon-red"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <div><div class="dd-title" data-i18n="nav.incorporation">Constitution d'entreprise</div><div class="dd-desc" data-i18n="nav.incorporation_desc">NUANS, fédéral/Ontario, NE, TPS/TVH, conformité PME</div></div>
-          </a>
-        </div>
-      </div>
-
       <a href="ia.html"${active('ia.html')} data-i18n="nav.ai">Andjix IA</a>
       <a href="about.html"${active('about.html')} data-i18n="nav.about">À propos</a>
       <button class="lang-toggle" aria-label="Changer de langue" data-lang-toggle>
         <span data-lang-current>EN</span>
       </button>
-      <a href="contact.html#rdv" class="nav-cta" data-i18n="nav.cta">Prendre rendez-vous</a>
+      <a href="reservation.html" class="nav-cta" data-i18n="nav.cta">Réserver une rencontre</a>
     </div>
   </div>
 </nav>`;
@@ -101,7 +63,13 @@
             <div style="font-size: 0.8125rem; color: var(--text-muted); letter-spacing: 0.08em;">OTTAWA · CANADA</div>
           </div>
         </div>
-        <p class="footer-tag" data-i18n="footer.tag">Accompagnement fiscal, professionnel et administratif à Ottawa et Gatineau. Bilingue FR/EN.</p>
+        <div class="footer-contact">
+          <span>Andjix Consulting Inc.</span>
+          <span data-i18n="footer.city">Ottawa (Ontario)</span>
+          <a href="mailto:info@andjix.ca">info@andjix.ca</a>
+          <a href="tel:+16132768401">613-276-8401</a>
+          <a href="confidentialite.html" data-i18n="footer.l_privacy">Politique de confidentialité</a>
+        </div>
       </div>
       <div>
         <h5 data-i18n="footer.h_particuliers">Particuliers</h5>
@@ -126,9 +94,6 @@
           <a href="ia.html" data-i18n="footer.l_bot">Andjix IA</a>
           <a href="about.html" data-i18n="nav.about">À propos</a>
           <a href="contact.html#rdv" data-i18n="footer.l_book">Prendre rendez-vous</a>
-          <a href="mailto:info@andjix.ca">info@andjix.ca</a>
-          <a href="tel:+16132768401">+1 613 276 8401</a>
-          <a href="confidentialite.html" data-i18n="footer.l_privacy">Politique de confidentialité</a>
           <a href="mentions-legales.html" data-i18n="footer.l_legal">Mentions légales</a>
         </div>
       </div>

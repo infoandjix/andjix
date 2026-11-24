@@ -1599,3 +1599,80 @@ html, body { overflow-x: hidden; }
   .features-4 { grid-template-columns: 1fr; }
   .profiles-grid-6 { grid-template-columns: 1fr; }
 }
+
+/* ===== Refonte impôts : offre d'impôts au centre ===== */
+/* Rouge réservé aux boutons d'action */
+.nav-cta { background: var(--red); }
+.nav-cta:hover { background: #B3241A; box-shadow: 0 8px 20px -6px rgba(213, 43, 30, 0.4); }
+.btn-red { background: var(--red); color: white; font-weight: 600; }
+.btn-red:hover { background: #B3241A; color: white; transform: translateY(-2px); box-shadow: 0 12px 28px -8px rgba(213, 43, 30, 0.45); }
+.btn-white { background: white; color: var(--blue-deep); font-weight: 600; }
+.btn-white:hover { color: var(--blue); transform: translateY(-2px); }
+.btn { min-height: 44px; line-height: 1.25; text-align: center; }
+
+.footer-contact { display: flex; flex-direction: column; gap: 6px; font-size: 0.9375rem; color: var(--text-muted); }
+.footer-contact span:first-child { font-family: 'Sora', sans-serif; font-weight: 700; color: var(--blue-deep); }
+.footer-contact a { color: var(--text-muted); }
+.footer-contact a:hover { color: var(--blue); }
+
+.tx-hero { background: var(--gradient-soft); color: white; padding: 88px 0 96px; }
+.tx-hero-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: center; }
+.tx-hero h1 { color: white; margin-bottom: 12px; }
+.tx-hero-sub { font-family: 'Sora', sans-serif; font-weight: 700; font-size: clamp(1.25rem, 2.2vw, 1.625rem); margin-bottom: 20px; }
+.tx-hero-lede { font-size: 1.1875rem; line-height: 1.55; max-width: 620px; margin-bottom: 32px; color: rgba(255, 255, 255, 0.92); }
+.tx-pill {
+  display: inline-block; margin-bottom: 24px; padding: 8px 16px; border-radius: 999px;
+  background: var(--blue-deep); border: 1px solid rgba(255, 255, 255, 0.4);
+  font-size: 0.875rem; font-weight: 600; color: white;
+}
+.tx-who { background: white; color: var(--text); border-radius: var(--radius); padding: 28px; box-shadow: 0 24px 48px -12px rgba(11, 61, 145, 0.35); }
+.tx-who h2 { font-size: 1.25rem; color: var(--blue-deep); margin-bottom: 8px; }
+.tx-who ul { list-style: none; padding: 0; margin: 0; }
+.tx-who li { padding: 10px 0; border-bottom: 1px solid var(--border-soft); font-size: 1rem; }
+.tx-who li:last-child { border-bottom: none; }
+
+.tx-section-head { max-width: 720px; margin-bottom: 32px; }
+.tx-section-head h2 { color: var(--blue-deep); margin-bottom: 12px; }
+.tx-section-head p { font-size: 1.125rem; color: var(--text-muted); line-height: 1.6; }
+.tx-soft { background: var(--bg-soft); }
+
+.tx-plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
+.tx-plan { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+.tx-plan.featured { border: 2px solid var(--blue); background: var(--bg-soft); padding: 23px; }
+.tx-plan h3 { font-size: 1.25rem; color: var(--blue-deep); margin: 0; }
+.tx-plan p { font-size: 0.9375rem; color: var(--text-muted); line-height: 1.55; flex-grow: 1; margin: 0; }
+.tx-price { align-self: flex-start; background: var(--bg-soft); border: 1px solid var(--blue); color: var(--blue-deep); border-radius: 10px; padding: 6px 12px; font-weight: 700; font-size: 1rem; }
+.tx-plan.featured .tx-price { background: white; }
+.tx-price.tx-price-note { border-color: var(--border); font-size: 0.875rem; font-weight: 600; }
+.tx-more { display: inline-block; margin-top: 24px; font-weight: 600; color: var(--blue-deep); text-decoration: underline; }
+
+.tx-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+.tx-steps li { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 10px; }
+.tx-step-num { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.75rem; color: var(--blue); }
+.tx-steps h3, .tx-why h3, .tx-also h3 { font-size: 1.125rem; color: var(--blue-deep); margin: 0; }
+.tx-steps p, .tx-also p { font-size: 0.9375rem; color: var(--text-muted); line-height: 1.55; margin: 0; }
+
+.tx-why { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+.tx-why > div { display: flex; flex-direction: column; gap: 10px; }
+.tx-why p { color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+.tx-also { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.tx-also > div { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 8px; }
+.tx-also a { font-weight: 600; font-size: 0.9375rem; }
+
+.tx-final { background: var(--blue-deep); color: white; padding: 64px 0; }
+.tx-final-inner { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; }
+.tx-final h2 { color: white; margin-bottom: 8px; font-size: clamp(1.625rem, 3vw, 2rem); }
+.tx-final p { color: rgba(255, 255, 255, 0.9); margin: 0; }
+
+@media (max-width: 960px) {
+  .tx-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 520px) {
+  .tx-hero { padding: 48px 0 56px; }
+  .tx-hero h1 { font-size: clamp(2rem, 9vw, 2.5rem); }
+  .tx-hero-lede { font-size: 1.0625rem; }
+  .tx-hero .hero-actions .btn, .tx-final .btn { width: 100%; }
+  .tx-plans, .tx-steps, .tx-also { grid-template-columns: 1fr; }
+  .tx-final { padding: 48px 0; }
+}
