@@ -455,5 +455,19 @@
     "faq2_a": "Most recent years can be filed electronically with the CRA. Older years are filed on paper. Either way, the price is announced upfront.",
     "faq3_q": "How are my documents protected?",
     "faq3_a": "They are uploaded to an encrypted portal, never by email. See our <a href=\"confidentialite.html\">privacy policy</a>."
+  },
+  "resa": {
+    "crumb_home": "Home",
+    "title": "Book your discovery meeting",
+    "chip1": "Free",
+    "chip2": "30 minutes",
+    "chip3": "In person or by video",
+    "leave_title": "You leave with:",
+    "leave1": "the package that fits your situation",
+    "leave2": "its fixed price, confirmed in writing",
+    "leave3": "the list of documents to prepare",
+    "leave_note": "No commitment. Meeting in English or French.",
+    "cta": "Choose a time",
+    "warning": "Please do not send us any documents or your Social Insurance Number at this stage."
   }
 }

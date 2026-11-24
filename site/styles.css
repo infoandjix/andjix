@@ -1706,3 +1706,16 @@ html, body { overflow-x: hidden; }
 @media (max-width: 768px) {
   .tx-boxes { grid-template-columns: 1fr; }
 }
+
+/* Page reservation.html */
+.tx-resa { padding: 64px 0 104px; }
+.tx-resa h1 { color: var(--blue-deep); margin: 16px 0 20px; }
+.tx-resa .tx-box h2 { font-size: 1.25rem; color: var(--blue-deep); margin-bottom: 14px; }
+.tx-chips { list-style: none; padding: 0; margin: 0 0 32px; display: flex; flex-wrap: wrap; gap: 10px; }
+.tx-chips li { background: var(--sky-soft); color: var(--blue-deep); border-radius: 999px; padding: 8px 16px; font-weight: 600; font-size: 0.9375rem; }
+.tx-resa-action { margin-top: 32px; }
+.tx-resa-action .btn { font-size: 1.0625rem; padding: 18px 36px; }
+@media (max-width: 520px) {
+  .tx-resa { padding: 40px 0 64px; }
+  .tx-resa-action .btn { width: 100%; }
+}

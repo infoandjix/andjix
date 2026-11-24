@@ -455,5 +455,19 @@
     "faq2_a": "La plupart des années récentes peuvent être transmises électroniquement à l'ARC. Les années plus anciennes se produisent sur papier. Dans les deux cas, le prix est annoncé d'avance.",
     "faq3_q": "Comment mes documents sont-ils protégés ?",
     "faq3_a": "Ils sont déposés sur un portail chiffré, jamais par courriel. Voir notre <a href=\"confidentialite.html\">politique de confidentialité</a>."
+  },
+  "resa": {
+    "crumb_home": "Accueil",
+    "title": "Réservez votre rencontre découverte",
+    "chip1": "Gratuite",
+    "chip2": "30 minutes",
+    "chip3": "En personne ou en vidéo",
+    "leave_title": "Vous repartez avec :",
+    "leave1": "le forfait qui correspond à votre situation",
+    "leave2": "son prix fixe, confirmé par écrit",
+    "leave3": "la liste des documents à préparer",
+    "leave_note": "Aucun engagement. Rencontre en français ou en anglais.",
+    "cta": "Choisir un moment",
+    "warning": "Ne nous envoyez aucun document ni numéro d'assurance sociale à cette étape."
   }
 }
