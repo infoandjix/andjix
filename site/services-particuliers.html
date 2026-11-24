@@ -25,7 +25,7 @@
         </div>
         <span class="hero-eyebrow" data-i18n="particuliers.hero_eyebrow">Services particuliers</span>
         <h1 data-i18n="particuliers.hero_title">Un parcours adapté à chaque profil.</h1>
-        <p class="hero-lede" data-i18n="particuliers.hero_lede">Que vous arriviez cette semaine, que vous gériez une activité autonome, ou que vous prépariez votre prochaine déclaration, voici comment Andjix vous accompagne.</p>
+        <p class="hero-lede" data-i18n="particuliers.hero_lede">Que vous produisiez votre déclaration de l'année, que vous rattrapiez des années passées ou que vous arriviez au Canada, voici comment Andjix vous accompagne.</p>
       </div>
       <div class="subhero-photo reveal">
         <img src="assets/photos/pexels-eric-prouzet-225470-17353516.jpg" alt="Édifice de bureaux au centre-ville d'Ottawa reflétant les tours du Parlement, drapeau canadien au premier plan" />
@@ -43,22 +43,109 @@
   </div>
 </div>
 
-<section id="impots" class="svc-section">
+<section id="impots" class="tx-impots">
   <div class="container">
-    <div class="svc-grid">
-      <div class="svc-content reveal">
-        <span class="section-eyebrow">01</span>
-        <h2 data-i18n="particuliers.s1_title">Déclaration d'impôts</h2>
-        <p class="lede" data-i18n="particuliers.s1_lede">Particuliers, travailleurs autonomes, sociétés. Tout ce qu'il faut pour déposer correctement et maximiser vos crédits.</p>
+    <div class="tx-section-head reveal">
+      <span class="section-eyebrow">01</span>
+      <h2 data-i18n="impots.title">Déclaration d'impôts</h2>
+      <p data-i18n="impots.intro">Déclarations de l'année en cours et rattrapage des années passées. Un prix fixe annoncé d'avance, une révision avec vous avant la signature, et le suivi de votre avis de cotisation. En français ou en anglais.</p>
+    </div>
+    <div class="hero-actions reveal">
+      <a href="reservation.html" class="btn btn-red" data-i18n="home.cta_book">Réserver ma rencontre découverte gratuite (30 min)</a>
+      <a href="ia.html" class="btn btn-ghost" data-i18n="home.cta_diag">Faire mon diagnostic gratuit (5 min)</a>
+    </div>
+
+    <h3 class="tx-sub reveal" data-i18n="impots.table_title">Nos forfaits</h3>
+    <div class="tx-table-wrap reveal" tabindex="0" role="region" aria-labelledby="tx-table-caption">
+      <table class="tx-table">
+        <caption id="tx-table-caption" class="sr-only" data-i18n="impots.table_caption">Forfaits de déclaration d'impôts et prix fixes</caption>
+        <thead>
+          <tr>
+            <th scope="col" data-i18n="impots.th_plan">Forfait</th>
+            <th scope="col" data-i18n="impots.th_who">Pour qui</th>
+            <th scope="col" data-i18n="impots.th_incl">Ce qui est inclus</th>
+            <th scope="col" data-i18n="impots.th_price">Prix fixe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" data-i18n="home.plan1_name">Essentiel</th>
+            <td data-i18n="impots.r1_who">Salarié ou étudiant seul</td>
+            <td data-i18n="impots.r1_incl">T1, feuillets, crédits de base (TPS/TVH, Trillium)</td>
+            <td class="tx-td-price">70 $</td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="home.plan2_name">Famille</th>
+            <td data-i18n="impots.r2_who">Couple avec ou sans enfants</td>
+            <td data-i18n="impots.r2_incl">Deux T1 coordonnées, Allocation canadienne pour enfants, frais de garde</td>
+            <td class="tx-td-price" data-i18n="home.plan2_price">À partir de 150 $</td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="home.plan3_name">Nouvel arrivant</th>
+            <td data-i18n="impots.r3_who">Première année au Canada</td>
+            <td data-i18n="impots.r3_incl">Date d'arrivée, revenu mondial, ouverture des crédits et prestations</td>
+            <td class="tx-td-price" data-i18n="home.plan3_price">À partir de 110 $</td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="home.plan4_name">Autonome</th>
+            <td data-i18n="impots.r4_who">Chauffeurs, livreurs, pigistes, consultants</td>
+            <td data-i18n="impots.r4_incl">T1 et T2125, dépenses d'entreprise et de véhicule, rappel TPS/TVH</td>
+            <td data-i18n="impots.r4_price">Confirmé après la rencontre</td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="home.plan5_name">Rattrapage</th>
+            <td data-i18n="impots.r5_who">Années non produites</td>
+            <td data-i18n="impots.r5_incl">Traitement en lot, une année à la fois</td>
+            <td data-i18n="impots.r5_price">Par année, confirmé après la rencontre</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tx-note" data-i18n="impots.table_note">Prix avant taxes. Pour les forfaits Autonome et Rattrapage, le prix dépend de votre dossier : il vous est confirmé par écrit après la rencontre découverte gratuite, avant tout travail.</p>
+
+    <div class="tx-boxes reveal">
+      <div class="tx-box">
+        <h3 data-i18n="impots.incl_title">Inclus dans tous les forfaits</h3>
         <ul>
-          <li data-i18n="particuliers.s1_b1">T1 individuel : revenus d'emploi, étudiants, retraités</li>
-          <li data-i18n="particuliers.s1_b2">T2125 : chauffeurs, livreurs, pigistes, consultants</li>
-          <li data-i18n="particuliers.s1_b4">Collecte des feuillets, calcul des crédits, transmission ARC, suivi de l'avis de cotisation</li>
+          <li data-i18n="impots.incl1">Rencontre découverte gratuite de 30 minutes</li>
+          <li data-i18n="impots.incl2">Dépôt des documents par portail chiffré</li>
+          <li data-i18n="impots.incl3">Révision ligne par ligne avec vous avant la signature</li>
+          <li data-i18n="impots.incl4">Transmission électronique à l'ARC</li>
+          <li data-i18n="impots.incl5">Explication de votre avis de cotisation</li>
         </ul>
       </div>
-      <div class="svc-photo reveal">
-        <img src="assets/photos/desk-documents.jpg" alt="Documents fiscaux et calculatrice sur bureau" loading="lazy" />
+      <div class="tx-box">
+        <h3 data-i18n="impots.docs_title">Documents à préparer</h3>
+        <ul>
+          <li data-i18n="impots.docs1">Pièce d'identité et numéro d'assurance sociale</li>
+          <li data-i18n="impots.docs2">Dernier avis de cotisation (si vous en avez un)</li>
+          <li data-i18n="impots.docs3">Reçus : frais de garde, loyer, frais médicaux, dons</li>
+          <li data-i18n="impots.docs4">Nouveaux arrivants : date d'arrivée et revenus de l'étranger</li>
+          <li data-i18n="impots.docs5">Autonomes : relevés des plateformes, dépenses, kilométrage</li>
+        </ul>
+        <p class="tx-note" data-i18n="impots.docs_note">Les feuillets (T4, T5…) peuvent être récupérés directement auprès de l'ARC avec votre autorisation.</p>
       </div>
+    </div>
+
+    <div class="tx-notice reveal">
+      <h3 data-i18n="impots.not_title">Non offert cette saison</h3>
+      <p data-i18n="impots.not_desc">Déclarations de sociétés (T2) et déclarations du Québec (TP-1). Nous pouvons vous orienter vers un autre professionnel.</p>
+    </div>
+
+    <div class="tx-faq reveal">
+      <h3 class="tx-sub" data-i18n="impots.faq_title">Questions fréquentes</h3>
+      <details>
+        <summary data-i18n="impots.faq1_q">Le prix peut-il changer en cours de route ?</summary>
+        <p data-i18n="impots.faq1_a">Non. Le forfait et son prix sont confirmés par écrit avant de commencer. Si un élément imprévu change de forfait, nous vous le disons avant de faire le travail.</p>
+      </details>
+      <details>
+        <summary data-i18n="impots.faq2_q">Combien d'années en retard pouvez-vous rattraper ?</summary>
+        <p data-i18n="impots.faq2_a">La plupart des années récentes peuvent être transmises électroniquement à l'ARC. Les années plus anciennes se produisent sur papier. Dans les deux cas, le prix est annoncé d'avance.</p>
+      </details>
+      <details>
+        <summary data-i18n="impots.faq3_q">Comment mes documents sont-ils protégés ?</summary>
+        <p data-i18n-html="impots.faq3_a">Ils sont déposés sur un portail chiffré, jamais par courriel. Voir notre <a href="confidentialite.html">politique de confidentialité</a>.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -137,9 +224,6 @@
         <a href="ia.html" class="btn btn-primary">
           <span data-i18n="particuliers.cta_primary">Lancer Andjix IA</span>
           <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-        <a href="reservation.html" class="btn btn-ghost">
-          <span data-i18n="particuliers.cta_typeform">Démarrer mon dossier impôts</span>
         </a>
         <a href="reservation.html" class="btn btn-ghost" data-i18n="particuliers.cta_secondary">Prendre rendez-vous</a>
       </div>
