@@ -159,15 +159,20 @@
     "compare_r5_classic": "You're referred elsewhere with no follow-up.",
     "compare_r5_andjix": "A meeting with André when your file calls for it.",
     "use_cases_title": "What people ask Andjix AI",
-    "uc1": "\"I just arrived, where do I start?\"",
+    "uc1": "\"I just arrived, do I need to file a tax return?\"",
     "uc2": "\"How does T2125 work for an Uber driver?\"",
     "uc3": "\"I got a notice of assessment, what does it mean?\"",
     "uc4": "\"I want to incorporate, federal or provincial?\"",
     "uc5": "\"Which credits can I claim as a newcomer?\"",
-    "uc6": "\"Can my child go to French school in Ottawa?\"",
+    "uc6": "\"Which package fits my situation?\"",
     "cta_title": "Start your diagnosis.",
     "cta_lede": "Five minutes. Clear direction. No credit card required.",
-    "cta_primary": "Launch Andjix AI"
+    "cta_primary": "Launch Andjix AI",
+    "demo_m1": "Hello, I'm Andjix AI. How can I help you today?",
+    "demo_m2": "I arrived in Ottawa last year with my family. Do I need to file a tax return?",
+    "demo_m3": "Yes, and it matters: your first return opens access to credits and benefits. Three quick questions:<br>1. What was your arrival date?<br>2. Did you have income abroad that year?<br>3. Do you have children under 18?",
+    "demo_m4": "We arrived in August. I worked in Cameroon before leaving. Two children, aged 6 and 9.",
+    "demo_m5": "Your situation fits the <strong>Newcomer package</strong> (from $110, before taxes): arrival date, world income, setting up your credits and the <strong>Canada Child Benefit</strong>. The exact amounts depend on your complete file.<br><br>The 30-minute discovery meeting is free and you leave with the price confirmed in writing. Please don't send any documents or your SIN before the meeting."
   },
   "ressources": {
     "hero_eyebrow": "Resources",

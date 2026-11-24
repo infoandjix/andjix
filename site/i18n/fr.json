@@ -159,15 +159,20 @@
     "compare_r5_classic": "Vous êtes orienté ailleurs sans suivi.",
     "compare_r5_andjix": "Rencontre avec André quand votre dossier le demande.",
     "use_cases_title": "Ce que les gens demandent à Andjix IA",
-    "uc1": "« Je viens d'arriver, par où je commence ? »",
+    "uc1": "« Je viens d'arriver, dois-je faire une déclaration ? »",
     "uc2": "« Comment fonctionne T2125 pour un chauffeur Uber ? »",
     "uc3": "« J'ai reçu un avis de cotisation, qu'est-ce que ça veut dire ? »",
     "uc4": "« Je veux constituer ma société, fédérale ou provinciale ? »",
     "uc5": "« Quels crédits puis-je réclamer comme nouvel arrivant ? »",
-    "uc6": "« Mon enfant peut-il aller à l'école française à Ottawa ? »",
+    "uc6": "« Quel forfait correspond à ma situation ? »",
     "cta_title": "Démarrez votre diagnostic.",
     "cta_lede": "Cinq minutes. Une orientation claire. Aucune carte de crédit requise.",
-    "cta_primary": "Lancer Andjix IA"
+    "cta_primary": "Lancer Andjix IA",
+    "demo_m1": "Bonjour, je suis Andjix IA. En quoi puis-je vous aider aujourd'hui ?",
+    "demo_m2": "Je suis arrivé à Ottawa l'an dernier avec ma famille. Est-ce que je dois faire une déclaration d'impôts ?",
+    "demo_m3": "Oui, et c'est important : votre première déclaration ouvre l'accès aux crédits et aux prestations. Trois questions rapides :<br>1. Quelle est votre date d'arrivée ?<br>2. Aviez-vous des revenus à l'étranger cette année-là ?<br>3. Avez-vous des enfants de moins de 18 ans ?",
+    "demo_m4": "Arrivés en août. J'ai travaillé au Cameroun avant de partir. Deux enfants de 6 et 9 ans.",
+    "demo_m5": "Votre situation correspond au <strong>forfait Nouvel arrivant</strong> (à partir de 110 $, avant taxes) : date d'arrivée, revenu mondial, ouverture des crédits et de l'<strong>Allocation canadienne pour enfants</strong>. Le montant exact dépend de votre dossier complet.<br><br>La rencontre découverte de 30 minutes est gratuite et vous repartez avec le prix confirmé par écrit. N'envoyez aucun document ni NAS avant la rencontre."
   },
   "ressources": {
     "hero_eyebrow": "Ressources",
