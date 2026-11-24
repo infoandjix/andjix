@@ -74,7 +74,6 @@
         <h5 data-i18n="footer.h_particuliers">Particuliers</h5>
         <div class="footer-links">
           <a href="services-particuliers.html#impots" data-i18n="nav.fiscalite">Déclaration d'impôts</a>
-          <a href="services-particuliers.html#nouveaux-arrivants" data-i18n="nav.arrivants">Nouveaux arrivants</a>
           <a href="services-particuliers.html#conseil" data-i18n="nav.conseil">Conseil administratif</a>
         </div>
       </div>

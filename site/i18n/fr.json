@@ -4,7 +4,6 @@
     "sme": "PME",
     "fiscalite": "Déclaration d'impôts",
     "emploi": "Emploi",
-    "arrivants": "Nouveaux arrivants",
     "conseil": "Conseil administratif",
     "placement": "Placement",
     "placement_cand": "Je cherche un emploi",
@@ -79,13 +78,6 @@
     "hero_lede": "Que vous produisiez votre déclaration de l'année, que vous rattrapiez des années passées ou que vous arriviez au Canada, voici comment Andjix vous accompagne.",
     "nav_label": "Aller à un service",
     "s1_title": "Déclaration d'impôts",
-    "s2_title": "Accueil nouveaux arrivants",
-    "s2_lede": "Pour les réfugiés, immigrants économiques et étudiants étrangers. Tout ce qui doit être fait dans les 90 premiers jours.",
-    "s2_b1": "NAS, OHIP, banque, permis de conduire ontarien",
-    "s2_b2": "Inscription des enfants à l'école, garderie subventionnée",
-    "s2_b3": "Cours de langue (CLIC, IALP), reconnaissance des diplômes",
-    "s2_b4": "Droits du locataire ontarien, aide au logement",
-    "s2_b5": "Prestations gouvernementales : ACE, soins dentaires, programmes provinciaux",
     "s3_title": "Placement et emploi",
     "s3_lede": "De l'adaptation du CV à la signature du contrat. Pour ceux qui cherchent leur premier emploi canadien ou un changement.",
     "s3_b1": "CV au standard canadien, lettre de motivation, profil LinkedIn",
@@ -104,7 +96,9 @@
     "cta_title": "Pas sûr du bon parcours ?",
     "cta_lede": "Lancez Andjix IA. Cinq minutes plus tard, vous aurez une orientation claire.",
     "cta_primary": "Lancer Andjix IA",
-    "cta_secondary": "Prendre rendez-vous"
+    "cta_secondary": "Prendre rendez-vous",
+    "newcomer_title": "Première déclaration au Canada ? Voyez notre <a href=\"#impots\">forfait Nouvel arrivant</a>.",
+    "newcomer_desc": "Pour l'installation (logement, école, santé, emploi), les organismes d'accueil de la région offrent un accompagnement gratuit. Trouvez-les sur le <a href=\"https://ircc.canada.ca/francais/nouveaux/services/index.asp\" target=\"_blank\" rel=\"noopener\">répertoire officiel d'IRCC</a>."
   },
   "pme": {
     "hero_eyebrow": "Services PME",

@@ -1719,3 +1719,4 @@ html, body { overflow-x: hidden; }
   .tx-resa { padding: 40px 0 64px; }
   .tx-resa-action .btn { width: 100%; }
 }
+.tx-notice h3 a, .tx-notice p a { text-decoration: underline; }

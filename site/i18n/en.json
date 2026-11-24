@@ -4,7 +4,6 @@
     "sme": "SMEs",
     "fiscalite": "Tax filing",
     "emploi": "Employment",
-    "arrivants": "Newcomers",
     "conseil": "Administrative consulting",
     "placement": "Staffing",
     "placement_cand": "I'm looking for work",
@@ -79,13 +78,6 @@
     "hero_lede": "Whether you are filing this year's return, catching up on past years or just arriving in Canada, here is how Andjix can help.",
     "nav_label": "Jump to a service",
     "s1_title": "Tax filing",
-    "s2_title": "Newcomer onboarding",
-    "s2_lede": "For refugees, economic immigrants, and international students. Everything that needs to happen in the first 90 days.",
-    "s2_b1": "SIN, OHIP, banking, Ontario driver's licence",
-    "s2_b2": "School enrolment, subsidized daycare",
-    "s2_b3": "Language classes (LINC, IALP), credential recognition",
-    "s2_b4": "Ontario tenant rights, housing support",
-    "s2_b5": "Government benefits: CCB, dental care, provincial programs",
     "s3_title": "Staffing and placement",
     "s3_lede": "From CV adaptation to contract signing. For those looking for a first Canadian job or a change.",
     "s3_b1": "Canadian-standard CV, cover letter, LinkedIn profile",
@@ -104,7 +96,9 @@
     "cta_title": "Not sure of the right path?",
     "cta_lede": "Launch Andjix AI. Five minutes later, you'll have clear direction.",
     "cta_primary": "Launch Andjix AI",
-    "cta_secondary": "Book a session"
+    "cta_secondary": "Book a session",
+    "newcomer_title": "First tax return in Canada? See our <a href=\"#impots\">Newcomer package</a>.",
+    "newcomer_desc": "For settling in (housing, school, health, jobs), local newcomer organizations offer free support. Find them in the <a href=\"https://ircc.canada.ca/english/newcomers/services/index.asp\" target=\"_blank\" rel=\"noopener\">official IRCC directory</a>."
   },
   "pme": {
     "hero_eyebrow": "SME services",
