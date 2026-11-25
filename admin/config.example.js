@@ -14,6 +14,5 @@ window.FIREBASE_CONFIG = {
 // the `admins` Firestore collection has any docs. Keep at least one trusted
 // email here so we never get locked out.
 window.BOOTSTRAP_ADMINS = [
-  "emile.giovannie@gmail.com",
   "info.andjix@gmail.com",
 ];

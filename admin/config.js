@@ -12,6 +12,5 @@ window.FIREBASE_CONFIG = {
 // Firestore collection exists. Keep at least one trusted email so you
 // never get locked out.
 window.BOOTSTRAP_ADMINS = [
-  "emile.giovannie@gmail.com",
   "info.andjix@gmail.com",
 ];
