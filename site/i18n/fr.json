@@ -48,8 +48,8 @@
     "hero_title": "Né d'une nécessité, conçu pour l'impact.",
     "hero_lede": "Andjix Consulting Inc. est une firme d'accompagnement administratif, fiscal et professionnel basée à Ottawa.",
     "section1_title": "Une entreprise bilingue, ancrée dans le système canadien.",
-    "section1_p1": "Andjix Consulting Inc. a été fondée à Ottawa par André Djomamessi. Formation en administration et en fiscalité, complétée par une expérience canadienne. Plus d'une décennie d'activité dans le secteur privé : gestion d'entreprise, conformité fiscale, recrutement.",
-    "section1_p2": "Installé au Canada depuis plusieurs années, André connaît bien les démarches administratives et fiscales au Canada et les besoins réels des nouveaux arrivants.",
+    "section1_p1": "Andjix Consulting Inc. est une entreprise d'Ottawa spécialisée dans les déclarations de revenus des particuliers, des familles, des nouveaux arrivants et des travailleurs autonomes. Elle réunit des compétences en administration, en fiscalité et en recrutement, appuyées par une connaissance concrète des démarches administratives et fiscales au Canada.",
+    "section1_p2": "Pour les dossiers qui dépassent son champ d'intervention, Andjix collabore avec un réseau de professionnels partenaires, notamment des comptables professionnels agréés (CPA) et des consultants réglementés en immigration et en citoyenneté (CRIC), vers qui elle peut orienter ses clients.",
     "pillars_title": "Trois domaines complémentaires.",
     "p1_title": "Administration",
     "p1_desc": "Expérience opérationnelle de l'administration canadienne. Connaissance des démarches administratives et fiscales au Canada.",
@@ -139,7 +139,7 @@
     "how_step2_title": "L'IA pose les bonnes questions",
     "how_step2_desc": "Elle ne répond pas avec des liens génériques. Elle creuse, comme le ferait un conseiller expérimenté, jusqu'à comprendre votre cas réel.",
     "how_step3_title": "Vous recevez un plan d'action",
-    "how_step3_desc": "Un résumé clair de ce que vous pouvez faire seul, et de ce qui mérite une rencontre avec André. Avec des liens, des délais et des montants.",
+    "how_step3_desc": "Un résumé clair de ce que vous pouvez faire seul, et de ce qui mérite une rencontre avec Andjix. Avec des liens, des délais et des montants.",
     "demo_eyebrow": "Démonstration",
     "demo_title": "Une vraie conversation Andjix IA.",
     "demo_lede": "Un exemple de diagnostic, reconstitué à partir de cas types.",
@@ -157,7 +157,7 @@
     "compare_r4_classic": "Pas d'expertise fiscale ou juridique approfondie.",
     "compare_r4_andjix": "Connaissance ARC, administration, fiscalité et recrutement.",
     "compare_r5_classic": "Vous êtes orienté ailleurs sans suivi.",
-    "compare_r5_andjix": "Rencontre avec André quand votre dossier le demande.",
+    "compare_r5_andjix": "Rencontre avec Andjix quand votre dossier le demande.",
     "use_cases_title": "Ce que les gens demandent à Andjix IA",
     "uc1": "« Je viens d'arriver, dois-je faire une déclaration ? »",
     "uc2": "« Comment fonctionne T2125 pour un chauffeur Uber ? »",
@@ -200,7 +200,7 @@
     "card1_desc": "L'option la plus rapide. Diagnostic gratuit en moins de 5 minutes, 24/7, en FR ou EN.",
     "card1_cta": "Lancer maintenant",
     "card2_title": "Consultation approfondie",
-    "card2_desc": "Pour les dossiers complexes ou un échange direct avec André. Premier appel de découverte gratuit.",
+    "card2_desc": "Pour les dossiers complexes ou un échange direct avec nous. Premier appel de découverte gratuit.",
     "card2_cta": "Réserver un appel",
     "card3_title": "Courriel ou téléphone",
     "card3_desc": "Pour les questions courtes et les demandes administratives. N'envoyez aucun document par courriel.",
@@ -476,7 +476,7 @@
     },
     "about": {
       "title": "À propos : Andjix Consulting Inc.",
-      "description": "Andjix Consulting Inc. : entreprise bilingue d'Ottawa fondée par André Djomamessi, en administration, fiscalité et recrutement."
+      "description": "Andjix Consulting Inc. : entreprise bilingue d'Ottawa en fiscalité, administration et recrutement, appuyée par un réseau de professionnels partenaires."
     },
     "contact": {
       "title": "Contact et rendez-vous : Andjix Consulting Inc.",

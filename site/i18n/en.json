@@ -48,8 +48,8 @@
     "hero_title": "Born from necessity, built for impact.",
     "hero_lede": "Andjix Consulting Inc. is an administrative, tax, and professional support firm based in Ottawa.",
     "section1_title": "A bilingual business, grounded in the Canadian system.",
-    "section1_p1": "Andjix Consulting Inc. was founded in Ottawa by André Djomamessi. Training in administration and taxation, complemented by Canadian experience. Over a decade in the private sector: business management, tax compliance, recruitment.",
-    "section1_p2": "Settled in Canada for several years, André knows administrative and tax processes in Canada and the real needs of newcomers well.",
+    "section1_p1": "Andjix Consulting Inc. is an Ottawa business specializing in income tax returns for individuals, families, newcomers and self-employed people. It brings together skills in administration, taxation and recruitment, backed by hands-on knowledge of administrative and tax processes in Canada.",
+    "section1_p2": "For files outside its scope, Andjix works with a network of partner professionals, including Chartered Professional Accountants (CPAs) and Regulated Canadian Immigration Consultants (RCICs), to whom it can refer clients.",
     "pillars_title": "Three complementary areas.",
     "p1_title": "Administration",
     "p1_desc": "Operational experience of Canadian administration. Knowledge of administrative and tax processes in Canada.",
@@ -139,7 +139,7 @@
     "how_step2_title": "The AI asks the right questions",
     "how_step2_desc": "It doesn't reply with generic links. It digs in, like an experienced advisor would, until it understands your real case.",
     "how_step3_title": "You get an action plan",
-    "how_step3_desc": "A clear summary of what you can handle on your own, and what deserves a meeting with André. With links, deadlines and amounts.",
+    "how_step3_desc": "A clear summary of what you can handle on your own, and what deserves a meeting with Andjix. With links, deadlines and amounts.",
     "demo_eyebrow": "Demo",
     "demo_title": "A real Andjix AI conversation.",
     "demo_lede": "An example diagnosis, reconstructed from typical cases.",
@@ -157,7 +157,7 @@
     "compare_r4_classic": "No deep tax or legal expertise.",
     "compare_r4_andjix": "CRA, administration, tax, and recruitment know-how.",
     "compare_r5_classic": "You're referred elsewhere with no follow-up.",
-    "compare_r5_andjix": "A meeting with André when your file calls for it.",
+    "compare_r5_andjix": "A meeting with Andjix when your file calls for it.",
     "use_cases_title": "What people ask Andjix AI",
     "uc1": "\"I just arrived, do I need to file a tax return?\"",
     "uc2": "\"How does T2125 work for an Uber driver?\"",
@@ -200,7 +200,7 @@
     "card1_desc": "The fastest option. Free diagnosis in under 5 minutes, 24/7, in EN or FR.",
     "card1_cta": "Launch now",
     "card2_title": "In-depth consultation",
-    "card2_desc": "For complex files or a direct conversation with André. First discovery call free.",
+    "card2_desc": "For complex files or a direct conversation with us. First discovery call free.",
     "card2_cta": "Book a call",
     "card3_title": "Email or phone",
     "card3_desc": "For short questions and administrative requests. Please do not send documents by email.",
@@ -476,7 +476,7 @@
     },
     "about": {
       "title": "About: Andjix Consulting Inc.",
-      "description": "Andjix Consulting Inc.: a bilingual Ottawa business founded by André Djomamessi, in administration, tax and recruitment."
+      "description": "Andjix Consulting Inc.: a bilingual Ottawa business in tax, administration and recruitment, backed by a network of partner professionals."
     },
     "contact": {
       "title": "Contact and booking: Andjix Consulting Inc.",
